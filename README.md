@@ -45,16 +45,14 @@ List of extra features not included in the MVP:
 | GET       | /login                      | Redirects to / if user is logged in, else renders /login                                                     |
 | POST      | /login                      | Creates new session and redirects to /user-profile, else shows an error message and renders /login           |
 | POST      | /logout                     | Ends de session and redirects to /                                                                           |
-| GET       | /animal-list                | Renders /animal-list                                                                                         |
-| GET       | /animal-list/{{id}}/details | Renders /animal-list/{{id}}/details loading the information related to the animal                            |
-| GET       | /user-profile               | Renders the user information                                                                                 |
-| POST      | /user-profile/request       |                                                                                                              |
-| GET       | /animal-list/add            | Renders the form to add a new animal to the list                                                             |
-| POST      | /animal-list/add            | Form to add an animal to the animal list. Redirects to /animal-list                                          |
-| PUT/PATCH | /animal-list/{{id}}/update  | Form with the animal details prefilled to update the information. Redirects to /animal-list/{{id}}           |
-| DELETE    | /animal-list/{{id}}         | Deletes a user’s animal from the /animal-list                                                                |  
-| GET       | /error-404                  | Renders a Page Not Found view                                                                                | 
-| GET       | /error-500                  | Renders a Internal Service Error view                                                                        | 
+| GET       | /animals                    | Renders /animals                                                                                             |
+| GET       | /animals/{{animalId}}       | Renders /animal/{{animalId}}/details loading the information related to the animal                           |
+| GET       | /users/{{userId}}           | Renders the user information                                                                                 |
+| POST      | /users/{{userId}}           |                                                                                                              |
+| GET       | /animals/add                | Renders the form to add a new animal to the list                                                             |
+| POST      | /animals                    | Form to add an animal to the animal list. Redirects to /animal-list                                          |
+| PUT/PATCH | /animals/{{id}}             | Form with the animal details prefilled to update the information. Redirects to /animal-list/{{id}}           |
+| DELETE    | /animals/{{id}}             | Deletes a user’s animal from the /animal-list                                                                |  
 
 ## Models
 
@@ -76,6 +74,12 @@ List of extra features not included in the MVP:
 - **description**: String
 - **care routine**: String
 - **special needs**: Boolean
+
+### Adoptions
+- **checkin**: Date
+- **checkout**: Date
+- **owner**: String
+- **host**: String
 
 ## Wireframes
 - **Mobile**: [Excalidraw](https://excalidraw.com/#json=4827543047766016,9D2kT2LcVIgi4aAL3p_p5Q)
