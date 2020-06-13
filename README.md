@@ -49,6 +49,7 @@ List of extra features not included in the MVP:
 | GET       | /animal-list/{{id}}/details | Renders /animal-list/{{id}}/details loading the information related to the animal                            |
 | GET       | /user-profile               | Renders the user information                                                                                 |
 | POST      | /user-profile/request       |                                                                                                              |
+| GET       | /animal-list/add            | Renders the form to add a new animal to the list                                                             |
 | POST      | /animal-list/add            | Form to add an animal to the animal list. Redirects to /animal-list                                          |
 | PUT/PATCH | /animal-list/{{id}}/update  | Form with the animal details prefilled to update the information. Redirects to /animal-list/{{id}}           |
 | DELETE    | /animal-list/{{id}}         | Deletes a user’s animal from the /animal-list                                                                |  
