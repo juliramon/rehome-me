@@ -75,7 +75,7 @@ List of extra features not included in the MVP:
 - **care routine**: String
 - **special needs**: Boolean
 
-### Adoptions model
+### Adoption model
 - **checkin**: Date
 - **checkout**: Date
 - **owner**: Schema.Types.ObjectId
