@@ -10,7 +10,6 @@ Alba Gustems – Juli Ramon
 ## Description
 An app where users can rehome or adopt pets permanently or temporarily. 
 
-
 ## User Stories
 - **404**: As a user I want to know when a page no longer exists.
 - **500**: As a user I want to know when something went wrong with the page so that I know it’s not my fault. 
@@ -23,7 +22,6 @@ animals list**: As a user I want to see all pets available for rehoming so that 
 - **animals create**: As a user I want to create new pets so that other users can rehome them
 - **animal details**: As a user I want to know the details of the animal so I can decide if I’m a good fit for it.
 - **animal rehoming**: As a user I want to offer myself as a new permanent or temporary home for a listed pet
-
 
 ## Backlog
 List of extra features not included in the MVP:
@@ -38,18 +36,47 @@ List of extra features not included in the MVP:
 - Add geolocaion to the pets that are available for rehoming
 - Show animals in need for adoption in the map
 
-
 ## Routes
-| Method  | URL  | Description                                       |
-|---------|------|---------------------------------------------------|
-| GET     | /    | Homepage with description of the adoption process |
-
+| Method    | URL                         | Description                                                                                                  |
+|-----------|-----------------------------|--------------------------------------------------------------------------------------------------------------|
+| GET       | /                           | Homepage with description of the adoption process                                                            |
+| GET       | /signup                     | Redirects to / if user is logged in, else renders /signup                                                    |
+| POST      | /signup                     | Creates a new user to the DB and redirects to /user-profile, else shows an error message and renders /signup |
+| GET       | /login                      | Redirects to / if user is logged in, else renders /login                                                     |
+| POST      | /login                      | Creates new session and redirects to /user-profile, else shows an error message and renders /login           |
+| POST      | /logout                     | Ends de session and redirects to /                                                                           |
+| GET       | /animal-list                | Renders /animal-list                                                                                         |
+| GET       | /animal-list/{{id}}/details | Renders /animal-list/{{id}}/details loading the information related to the animal                            |
+| GET       | /user-profile               | Renders the user information                                                                                 |
+| POST      | /user-profile/request       |                                                                                                              |
+| POST      | /animal-list/add            | Form to add an animal to the animal list. Redirects to /animal-list                                          |
+| PUT/PATCH | /animal-list/{{id}}/update  | Form with the animal details prefilled to update the information. Redirects to /animal-list/{{id}}           |
+| DELETE    | /animal-list/{{id}}         | Deletes a user’s animal from the /animal-list                                                                |  
+| GET       | /error-404                  | Renders a Page Not Found view                                                                                | 
+| GET       | /error-500                  | Renders a Internal Service Error view                                                                        | 
 
 ## Models
 
 ### User model
-- username: String
-- password: String
-- email address: String
-- avatar: String
-- pets: [String]
+- **username**: String
+- **password**: String
+- **email address**: String
+- **avatar**: String
+- **pets**: String Array
+
+### Pet model
+- **name**: String
+- **category**: String
+- **image**: String
+- **size**: String Array
+- **checkin**: Date
+- **checkout**: Date
+- **description**: String
+- **care routine**: String
+- **special needs**: Boolean
+
+## Links
+- **GitHub**: [GitHub](https://github.com/juliramon/rehome-me)
+- **Heroku**: [Heroku](#)
+- **Trello**: [Trello](https://trello.com/b/zdfwIawY/rehome-me)
+- **Slides**: [GoogleSlides](#)
