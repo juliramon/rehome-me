@@ -63,6 +63,7 @@ List of extra features not included in the MVP:
 - **password**: String
 - **email address**: String
 - **avatar**: String
+- **description**: String
 - **pets**: String Array
 
 ### Pet model
