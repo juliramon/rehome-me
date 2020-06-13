@@ -75,11 +75,11 @@ List of extra features not included in the MVP:
 - **care routine**: String
 - **special needs**: Boolean
 
-### Adoptions
+### Adoptions model
 - **checkin**: Date
 - **checkout**: Date
-- **owner**: String
-- **host**: String
+- **owner**: Schema.Types.ObjectId
+- **host**: Schema.Types.ObjectId
 
 ## Wireframes
 - **Mobile**: [Excalidraw](https://excalidraw.com/#json=4827543047766016,9D2kT2LcVIgi4aAL3p_p5Q)
