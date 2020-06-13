@@ -77,6 +77,9 @@ List of extra features not included in the MVP:
 - **care routine**: String
 - **special needs**: Boolean
 
+## Wireframes
+- **Mobile**: [Excalidraw](https://excalidraw.com/#json=4827543047766016,9D2kT2LcVIgi4aAL3p_p5Q)
+
 ## Links
 - **GitHub**: [GitHub](https://github.com/juliramon/rehome-me)
 - **Heroku**: [Heroku](#)
