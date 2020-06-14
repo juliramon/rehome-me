@@ -1,10 +1,16 @@
 const bcryptjs = require('bcryptjs');
 const { Mongoose } = require('mongoose');
-//const User = require('../models/User.model');
+const User = require('../models/User.model');
 
 const saltRounds = 10;
 
-const loadSignupForm = (req, res) => res.render('auth/signup');
+const loadSignupForm = (req, res) => {
+  if (req.session.currentUser) {
+    res.redirect('/user-profile');
+  } else {
+    res.render('auth/signup');
+  }
+};
 
 const submitSignupForm = async (req, res, next) => {
   try {
@@ -25,7 +31,7 @@ const submitSignupForm = async (req, res, next) => {
     const hashedPassword = await bcryptjs.hash(password, salt);
     const userSignup = await User.create({username, email, passwordHash: hashedPassword})
     res.redirect('/user-profile');
-  } catch(err) {
+  } catch(error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).render('auth/signup', { errorMessage: error.message });
     } else if(error.code === 11000){
@@ -36,7 +42,13 @@ const submitSignupForm = async (req, res, next) => {
   }
 };
 
-const loadLoginForm = (req, res) => res.render('auth/login');
+const loadLoginForm = (req, res) => {
+  if (req.session.currentUser) {
+    res.redirect('/user-profile');
+  } else {
+    res.render('auth/login');
+  }
+}
 
 const submitLoginForm = async (req, res, next) => {
   try {
@@ -50,8 +62,9 @@ const submitLoginForm = async (req, res, next) => {
     if(!userLogin) {
       res.render('auth/login', {errorMessage: 'Username is not found. Try another username.'})
       return;
-    } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-      req.session.currentUser = userLogin; // save the user in the session
+    } else if (bcryptjs.compareSync(password, userLogin.passwordHash)) {
+      req.session.currentUser = userLogin;
+      console.log('User logged in')
       res.redirect('/user-profile')
       return;
     } else {
@@ -65,6 +78,7 @@ const submitLoginForm = async (req, res, next) => {
 
 const logout = (req, res) => {
   req.session.destroy()
+  console.log('Session destroyed')
   res.redirect('/')
 }
 

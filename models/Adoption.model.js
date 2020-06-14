@@ -12,7 +12,7 @@ const adoptionSchema = new Schema({
     required: true,
     default: Date.now
   },
-  cheackout: {
+  checkout: {
     type: Date,
     required: true,
     default: Date.now
