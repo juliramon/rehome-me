@@ -1,9 +1,7 @@
-/* Reseting the default values */
 * {
   margin: 0px;
   padding: 0px;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 /* Responsive NavBar */
 nav {
@@ -12,46 +10,37 @@ nav {
   align-items: center;
   min-height: 8vh;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: green;
-}
+  background-color: green; }
 
 .logo {
   color: white;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-size: 1.3em;
-}
+  font-size: 1.3em; }
 
 .nav-links {
   display: flex;
   justify-content: space-around;
-  width: 40%;
-}
+  width: 40%; }
 
 .nav-links li {
-  list-style: none;
-}
+  list-style: none; }
 
 .nav-links a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .burger {
-  display: none;
-}
+  display: none; }
 
 .burger i {
   color: white;
-  font-size: 1.5em;
-}
+  font-size: 1.5em; }
 
 @media screen and (max-width: 1024px) {
   body {
-    overflow-x: hidden;
-  }
-
+    overflow-x: hidden; }
   .nav-links {
     position: absolute;
     right: 0px;
@@ -63,31 +52,26 @@ nav {
     align-items: center;
     width: 60%;
     transform: translatex(100%);
-    transition: transform 0.5s ease-in;
-  }
-
+    transition: transform 0.5s ease-in; }
   .nav-links li {
-    opacity: 0;
-  }
-
+    opacity: 0; }
   .burger {
     display: block;
-    cursor: pointer;
-  }
-}
+    cursor: pointer; } }
 
 .nav-active {
-  transform: translateX(0%);
-}
+  transform: translateX(0%); }
 
 @keyframes navLinkFade {
   from {
     opacity: 0;
-    transform: translateX(50px)
-  }
-
+    transform: translateX(50px); }
   to {
     opacity: 1;
-    transform: translateX(0px)
-  }
-}
+    transform: translateX(0px); } }
+
+/* Index Page */
+main {
+  margin: 50px; }
+
+/*# sourceMappingURL=style.css.map */
