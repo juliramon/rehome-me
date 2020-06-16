@@ -1,4 +1,68 @@
-<main>
-  <h1>This is the index page</h1>
-  <p>Welcome to the index page</p>
+<main class="rehome-me">
+  <div class="titles">
+    <h1>Rehome Me</h1>
+    <h4>Because rehoming a pet shoud be easy and stress free</h4>
+  </div>
+
+  <div class="buttons-log">
+    <form action="/login" method="GET">
+      <input type="submit" value="Login">
+    </form>
+    <form action="/signup" method="GET">
+      <input type="submit" value="Sign Up">
+    </form>
+  </div>
 </main>
+
+
+<section class="process">
+  <h2>How does it work?</h2>
+  <div class="feature-card">
+    <div class="feature-icon">
+      <i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
+    <div class="feature-explanation">
+      <h3>Add a Pet Profile</h3>
+      <h5>Get your pets posted on Rehome Me to be seen by the adopters</h5>
+    </div>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">
+      <i class="fa fa-home" aria-hidden="true"></i>
+    </div>
+    <div class="feature-explanation">
+      <h3>Get a New Home</h3>
+      <h5>Wait for an adopter to contact you or choose one of the available homes</h5>
+    </div>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">
+      <i class="fa fa-handshake-o" aria-hidden="true"></i>
+    </div>
+    <div class="feature-explanation">
+      <h3>Finalize the Adoption</h3>
+      <h5>Get your pets posted on Rehome Me to be seen by the adopters</h5>
+    </div>
+  </div>
+</section>
+
+
+<section class="featured-animals">
+  <h2>Featured Pets</h2>
+  <!-- Need to build the logic in the route first (returning only 6 latest animals) -->
+  {{#each animals}}
+  <div class="animal-card">
+    <div class="animal-picture">
+      <img src="{{animals.image}}" alt="{{animals.name}} photo">
+    </div>
+    <div class="animal-info">
+      <h3>{{animals.name}}</h3>
+      <form action="/animals/{{_id}}" method="GET">
+        <input type="submit" value="See Details">
+      </form>
+    </div>
+  </div>
+  {{/each}}
+</section>

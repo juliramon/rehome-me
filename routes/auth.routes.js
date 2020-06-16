@@ -15,5 +15,6 @@ router
   .get('/login', loadLoginForm)
   .post('/login', submitLoginForm)
   .post('/logout', logout)
+  .get('/user-profile', (res, req, next) => res.render('index'))
 
 module.exports = router;
