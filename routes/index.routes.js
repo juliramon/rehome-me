@@ -1,7 +1,10 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const {
+  getFeaturedAnimals
+} = require('../controllers/index.controllers');
 
 router
-  .get('/', (req, res, next) => res.render('index'));
+  .get('/', getFeaturedAnimals);
 
 module.exports = router;
