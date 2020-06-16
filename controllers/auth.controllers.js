@@ -1,8 +1,6 @@
 const bcryptjs = require('bcryptjs');
-const {
-  Mongoose
-} = require('mongoose');
-//const User = require('../models/User.model');
+const User = require('../models/User.model');
+const mongoose = require('mongoose');
 
 const saltRounds = 10;
 
@@ -39,7 +37,7 @@ const submitSignupForm = async (req, res, next) => {
       passwordHash: hashedPassword
     })
     res.redirect('/user-profile');
-  } catch (err) {
+  } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).render('auth/signup', {
         errorMessage: error.message
@@ -77,8 +75,8 @@ const submitLoginForm = async (req, res, next) => {
         errorMessage: 'Username is not found. Try another username.'
       })
       return;
-    } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-      req.session.currentUser = userLogin; // save the user in the session
+    } else if (bcryptjs.compareSync(password, userLogin.passwordHash)) {
+      req.session.currentUser = userLogin;
       res.redirect('/user-profile')
       return;
     } else {
