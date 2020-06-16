@@ -1,7 +1,13 @@
 const express = require('express');
+const { 
+  getIndex, 
+  getUserProfile
+} = require('../controllers/pages.controllers');
+
 const router  = express.Router();
 
 router
-  .get('/', (req, res, next) => res.render('index'));
+  .get('/', getIndex)
+  .get('/user-profile', getUserProfile)
 
 module.exports = router;
