@@ -1,7 +1,29 @@
 const mongoose = require('mongoose');
 const Animal = require('../models/Animal.model');
 
-const getIndex = (req, res, next) => res.render('index')
+const getIndex = async (req, res, next) => {
+  try {
+    const animals = await Animal.find().limit(6);
+    console.log(animals)
+    res.render('index', {
+      animals: animals
+    });
+  } catch (error) {
+
+
+    /*if (error instanceof mongoose.Error.ValidationError) {
+      res.status(400).render('add-animal', {
+        errorMessage: error.message
+      });
+    } else if (error.code === 11000) {
+      res.status(400).render('add-animal', {
+        errorMessage: 'This animal has already been registered'
+      });
+    } else {
+      next(error)
+    }*/
+  }
+}
 
 const getUserProfile = (req, res) => res.render('user-profile')
 
@@ -43,7 +65,7 @@ const createNewAnimal = async (req, res, next) => {
       specialNeeds: booleanCheck,
       owner: req.session.currentUser._id
     })
-    res.redirect('/user-profile');
+    return res.redirect('/user-profile');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).render('add-animal', {
@@ -59,9 +81,27 @@ const createNewAnimal = async (req, res, next) => {
   }
 };
 
+const getAnimalDetails = async (req, res, next) => {
+  try {
+    const findAnimal = await Animal.findById(req.params.id);
+    res.render('animal-details', findAnimal)
+  } catch (error) {
+    next(error)
+  }
+};
+
+const deleteAnimal = async (req, res, next) => {
+  const removeAnimal = await Animal.deleteOne({
+    _id: req.params.id
+  });
+  res.redirect('/')
+};
+
 module.exports = {
   getIndex,
   getUserProfile,
   getAnimalForm,
-  createNewAnimal
+  createNewAnimal,
+  getAnimalDetails,
+  deleteAnimal
 }
