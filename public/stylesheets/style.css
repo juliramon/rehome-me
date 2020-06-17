@@ -102,9 +102,6 @@ main {
   margin-left: 20px; }
 
 #userProfile .user.wrapper .user-data ul {
-  margin-left: 20px; }
-
-#userProfile .user-data ul {
   list-style: none;
   margin: 0;
   padding: 0; }
@@ -115,6 +112,27 @@ main {
   height: 85px; }
 
 .btn {
+  margin: 25px 0; }
+
+#userProfile .wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between; }
+
+#userProfile .col:nth-child(2) {
+  margin-left: 20px; }
+
+#userProfile .user-data ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+#userProfile .avatar img {
+  border-radius: 100px;
+  width: 85px;
+  height: 85px; }
+
+#userProfile .edit-profile .btn {
   border: 1px solid red;
   border-radius: 3px;
   padding: 5px 10px;
@@ -124,12 +142,16 @@ main {
 #userProfile .animals.wrapper {
   display: flex;
   flex-flow: column;
-  margin: -15px; }
+  margin: -15px;
+  text-align: center; }
 
 #userProfile .floating-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  overflow: hidden; }
+
+#userProfile .floating-button .add-btn {
   overflow: hidden; }
 
 #userProfile .floating-button .add-btn {
@@ -181,6 +203,7 @@ main {
 
 .box.animal .buttons .btn:first-child {
   margin-right: 10px; }
+
 #userProfile .animals.wrapper {
   display: flex;
   flex-flow: row wrap;
