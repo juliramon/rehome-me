@@ -1,17 +1,21 @@
-<div class="box animal">
-  <a href="#">
-    <div class="cover" style="background-image: url('https://instagram.fbcn3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/102259163_169704154517378_2438403726811633525_n.jpg?_nc_ht=instagram.fbcn3-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=8DR4qQcTLEAAX-SDkza&oh=0cfbeeb5da4b63b653c6ca6d3a424a2b&oe=5F110700');">
+<div class="box animal">  
+  <div class="col">
+    <div class="avatar">
+      <a href="/animal/{{_id}}">
+        <img src="https://instagram.fbcn3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/102259163_169704154517378_2438403726811633525_n.jpg?_nc_ht=instagram.fbcn3-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=8DR4qQcTLEAAX-SDkza&oh=0cfbeeb5da4b63b653c6ca6d3a424a2b&oe=5F110700" alt="">
+      </a>
     </div>
-    </a>
-    <div class="animal-data">
+  </div>
+  <div class="col">
+    <a href="/animal/{{_id}}">
       <ul>
         <li class="name"><h3>Bru</h3></li>
         <li class="size">Size: Small</li>
       </ul>
+    </a>
+    <div class="buttons">
+      <a href="/animals/{{_id}}" title="Edit" class="btn">Edit</a>
+      <a href="/animals/{{_id}}" title="Remove" class="btn">Remove</a>
     </div>
-  </a>
-  <div class="buttons">
-    <a href="/animals/{{_id}}" title="Edit" class="btn">Edit</a>
-    <a href="/animals/{{_id}}" title="Remove" class="btn">Remove</a>
   </div>
 </div>

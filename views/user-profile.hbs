@@ -1,7 +1,7 @@
 <section id="userProfile">
   <div class="header">
     <p>My Profile</h1>
-    <p class="sub-h1">See and edit your profile data and animals added</p>
+    <p>See and edit your profile data and animals added</p>
   </div>
   <div class="box">
     <div class="user wrapper">
@@ -27,6 +27,7 @@
     <h2>Animals added</h2>
   </div>
   <div class="animals wrapper">
+    {{> animalCard}}
     {{#each animal}}
       {{> animalCard}}
     {{/each}}
