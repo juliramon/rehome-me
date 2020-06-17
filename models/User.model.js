@@ -26,11 +26,7 @@ const userSchema = new Schema({
   },
   description: {
     type: String
-  },
-  pets: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Animal'
-  }]
+  }
 });
 
 const User = mongoose.model('User', userSchema);
