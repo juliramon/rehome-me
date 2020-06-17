@@ -24,9 +24,6 @@
         </div>
       </div>
     </div>
-    {{else}}
-    <p>Still not logged in. Please <a href="/login">login</a>.</p>
-    {{/if}}
   </div>
   <div class="header">
     <h2>Animals added</h2>
@@ -36,5 +33,8 @@
       {{> animalCard}}
     {{/each}}
   </div>
+  {{else}}
+    <p>Still not logged in. Please <a href="/login">login</a>.</p>
+  {{/if}}
   {{> addButton}}
 </section>
