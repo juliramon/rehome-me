@@ -3,7 +3,7 @@ const Animal = require('../models/Animal.model');
 
 const getIndex = (req, res, next) => res.render('index')
 
-const getUserProfile = (req, res) => res.render('user-profile')
+const getUserProfile = (req, res) => res.render('user-profile', {userInSession: req.session.currentUser})
 
 const getAnimalForm = (req, res) => res.render('add-animal')
 
