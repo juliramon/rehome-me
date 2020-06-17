@@ -41,6 +41,10 @@ const animalSchema = new Schema({
   },
   specialNeeds: {
     type: Boolean
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 

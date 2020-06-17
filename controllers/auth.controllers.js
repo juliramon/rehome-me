@@ -1,6 +1,6 @@
 const bcryptjs = require('bcryptjs');
-const mongoose = require('mongoose');
 const User = require('../models/User.model');
+const mongoose = require('mongoose');
 
 const saltRounds = 10;
 
@@ -76,7 +76,7 @@ const submitLoginForm = async (req, res, next) => {
       })
       return;
     } else if (bcryptjs.compareSync(password, userLogin.passwordHash)) {
-      req.session.currentUser = userLogin; // save the user in the session
+      req.session.currentUser = userLogin;
       res.redirect('/user-profile')
       return;
     } else {
