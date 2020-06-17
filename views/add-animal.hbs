@@ -1,0 +1,68 @@
+<section class="mw-1600">
+  <div class="form">
+    <form action="/animal/add" method="POST">
+      <div class="input-group">
+        <label for="name">Pet's Name</label>
+        <input type="text" name="name" id="name" placeholder="Type your pet's name">
+      </div>
+
+      <div class="input-group">
+        <label for="category">Pet's species</label>
+        <select name="category" id="category">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="snake">Snake</option>
+          <option value="rabbit">Rabbit</option>
+          <option value="bird">Bird</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="size">Pet's size</label>
+        <select name="size" id="size">
+          <option value="huge">Huge</option>
+          <option value="large">Large</option>
+          <option value="medium">Medium</option>
+          <option value="small">Small</option>
+          <option value="tiny">Tiny</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="image">Pet's Photo</label>
+        <input type="url" name="image" id="image" placeholder="Link your pet's photo">
+      </div>
+
+      <div class="input-group">
+        <label for="chekin">Check-In</label>
+        <input type="date" name="checkin" id="checkin">
+      </div>
+
+      <div class="input-group">
+        <label for="checkout">Check-Out</label>
+        <input type="date" name="checkout" id="checkout">
+      </div>
+
+      <div class="input-group">
+        <label for="description">Pet's description</label>
+        <textarea id="description" name="description" rows="4" cols="50">Write the pet's description here ...
+        </textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="careRoutine">Care Routine</label>
+        <textarea id="careRoutine" name="careRoutine" rows="4" cols="50">Write the pet's care routine here ...
+        </textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="specialNeeds"> Special Needs</label><br>
+        <input type="checkbox" id="specialNeeds" name="specialNeeds" value="specialNeeds">
+      </div>
+      <button type="submit">Add Pet</button>
+      {{#if errorMessage}}
+      <p>{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
+</section>

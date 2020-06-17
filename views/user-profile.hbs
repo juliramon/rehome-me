@@ -1,0 +1,38 @@
+<section id="userProfile">
+  <div class="header">
+    <p>My Profile</h1>
+    <p>See and edit your profile data and animals added</p>
+  </div>
+  <div class="box">
+    {{#if userInSession}}
+    <div class="user wrapper">
+      <div class="col">
+        <div class="avatar">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe">
+        </div>
+      </div>
+      <div class="col">
+        <div class="user-data">
+          <ul>
+            <li class="username"><h1>J{{userInSession.username}}</h1></li>
+            <li class="description"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum optio quis eos, eveniet quae dolores sed iure vel repudiandae totam id a ullam, delectus excepturi eius. Cupiditate nesciunt nobis molestiae. </li>
+            {{!-- <li class="edit-profile">
+              <a href="/users/edit?user_id={{_id}}" title="Edit profile" class="btn">Edit profile</a>
+            </li> --}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+  <div class="header">
+    <h2>Animals added</h2>
+  </div>
+  <div class="animals wrapper">
+    {{> animalCard}}
+    {{#each animal}}
+      {{> animalCard}}
+    {{/each}}
+  </div>
+  {{> addButton}}
+</section>

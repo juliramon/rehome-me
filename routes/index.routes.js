@@ -1,7 +1,17 @@
 const express = require('express');
-const router  = express.Router();
+const {
+  getIndex,
+  getUserProfile,
+  getAnimalForm,
+  createNewAnimal
+} = require('../controllers/pages.controllers');
+
+const router = express.Router();
 
 router
-  .get('/', (req, res, next) => res.render('index'));
+  .get('/', getIndex)
+  .get('/user-profile', getUserProfile)
+  .get('/animal/add', getAnimalForm)
+  .post('/animal/add', createNewAnimal)
 
 module.exports = router;
