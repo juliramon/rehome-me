@@ -136,10 +136,6 @@ main {
   width: 85px;
   height: 85px; }
 
-.btn {
-  margin: 25px 0;
-}
-
 #userProfile .edit-profile .btn {
   border: 1px solid red;
   border-radius: 3px;
@@ -167,7 +163,7 @@ main {
 
 .box.animal {
   width: 100%;
-  margin: 15px;
+  margin: 15px 0;
   display: flex;
   flex-flow: row nowrap;
   align-items: center; }
