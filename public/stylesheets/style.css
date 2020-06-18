@@ -111,9 +111,6 @@ nav .wrapper {
   width: 85px;
   height: 85px; }
 
-.btn {
-  margin: 25px 0; }
-
 #userProfile .edit-profile .btn {
   border: 1px solid red;
   border-radius: 3px;
@@ -139,7 +136,7 @@ nav .wrapper {
 /*ANIMAL BOX*/
 .box.animal {
   width: 100%;
-  margin: 15px;
+  margin: 15px 0;
   display: flex;
   flex-flow: row nowrap;
   align-items: center; }
@@ -161,21 +158,9 @@ nav .wrapper {
 
 .box.animal .col:nth-child(2) {
   width: 100%;
-  margin-left: 20px; }
-
-.box.animal .buttons {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-start;
-  flex: 1;
-  margin-top: 10px; }
-
-.box.animal .buttons .btn {
-  width: 100px; }
-
-.box.animal .buttons .btn:first-child {
-  margin-right: 10px; }
+  height: 120px;
+  background-size: cover;
+  background-position: center center; }
 
 /* ANIMAL DETAILS PAGE */
 #details-main {
@@ -207,6 +192,21 @@ nav .wrapper {
   border-radius: 100%; }
 
 .animal-text {
-  margin-top: 10%; }
+  margin-top: 10%;
+  margin-left: 20px; }
+
+.box.animal .buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  margin-top: 10px; }
+
+.box.animal .buttons .btn {
+  width: 100px; }
+
+.box.animal .buttons .btn:first-child {
+  margin-right: 10px; }
 
 /*# sourceMappingURL=style.css.map */
