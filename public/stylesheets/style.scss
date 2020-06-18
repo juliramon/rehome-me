@@ -136,10 +136,6 @@ main {
   width: 85px;
   height: 85px; }
 
-.btn {
-  margin: 25px 0;
-}
-
 #userProfile .edit-profile .btn {
   border: 1px solid red;
   border-radius: 3px;
@@ -147,13 +143,13 @@ main {
   display: block;
   text-align: center; }
 
-#userProfile .floating-button {
+.floating-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
   overflow: hidden; }
 
-#userProfile .floating-button .add-btn {
+.floating-button .add-btn {
   height: 100px;
   width: 100px;
   background-color: red;
@@ -167,7 +163,7 @@ main {
 
 .box.animal {
   width: 100%;
-  margin: 15px;
+  margin: 15px 0;
   display: flex;
   flex-flow: row nowrap;
   align-items: center; }

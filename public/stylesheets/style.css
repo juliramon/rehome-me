@@ -121,13 +121,13 @@ main {
   display: block;
   text-align: center; }
 
-#userProfile .floating-button {
+.floating-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
   overflow: hidden; }
 
-#userProfile .floating-button .add-btn {
+.floating-button .add-btn {
   height: 100px;
   width: 100px;
   background-color: red;

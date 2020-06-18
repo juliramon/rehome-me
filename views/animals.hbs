@@ -3,8 +3,8 @@
     <h1>List of animals</h1>
   </div>
   <div class="animals wrapper">
-    {{#each animal}}
-      {{> animalCard}}
+    {{#each animals}}
+      {{> animalCard this}}
     {{/each}}
   </div>
   {{> addButton}}

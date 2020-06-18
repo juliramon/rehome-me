@@ -26,10 +26,10 @@
     </div>
   </div>
   <div class="header">
-    <h2>Animals added</h2>
+    <h2>{{userInSession.username}}'s animals</h2>
   </div>
   <div class="animals wrapper">
-    {{#each animal}}
+    {{#each userAnimals}}
       {{> animalCard}}
     {{/each}}
   </div>
