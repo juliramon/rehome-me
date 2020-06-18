@@ -14,8 +14,7 @@ const animalSchema = new Schema({
   },
   image: {
     type: String,
-    unique: true,
-    match: [/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm, 'Invalid URL']
+    unique: true
   },
   size: {
     type: String,

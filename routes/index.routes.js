@@ -1,4 +1,6 @@
 const express = require('express');
+const fileUploader = require('../configs/cloudinary.config');
+
 const {
   getIndex,
   getUserProfile,
@@ -15,7 +17,7 @@ router
   .get('/', getIndex)
   .get('/user-profile', getUserProfile)
   .get('/animal/add', getAnimalForm)
-  .post('/animal/add', createNewAnimal)
+  .post('/animal/add', fileUploader.single('image'), createNewAnimal)
   .get('/animal/:id', getAnimalDetails)
   .get('/animal/:id/delete', deleteAnimal)
   .get('/animals', getAnimalsList)
