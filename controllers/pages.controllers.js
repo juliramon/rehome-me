@@ -9,19 +9,7 @@ const getIndex = async (req, res, next) => {
       animals: animals
     });
   } catch (error) {
-
-
-    /*if (error instanceof mongoose.Error.ValidationError) {
-      res.status(400).render('add-animal', {
-        errorMessage: error.message
-      });
-    } else if (error.code === 11000) {
-      res.status(400).render('add-animal', {
-        errorMessage: 'This animal has already been registered'
-      });
-    } else {
-      next(error)
-    }*/
+    next(error)
   }
 }
 
