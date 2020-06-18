@@ -4,7 +4,13 @@ const mongoose = require('mongoose');
 
 const saltRounds = 10;
 
-const loadSignupForm = (req, res) => res.render('auth/signup');
+const loadSignupForm = (req, res) => {
+  if(req.session.currentUser){
+    return res.redirect('/user-profile');
+  } else {
+    return res.render('auth/signup');
+  }
+};
 
 const submitSignupForm = async (req, res, next) => {
   try {
@@ -15,18 +21,17 @@ const submitSignupForm = async (req, res, next) => {
     } = req.body;
     const hasEmptyCredentials = !username || !email || !password;
     if (hasEmptyCredentials) {
-      res.render('auth/signup', {
+      return res.render('auth/signup', {
         errorMessage: 'Username, email and password are mandatory'
       });
-      return;
+      
     };
 
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(password)) {
-      res.status(400).render('auth/signup', {
+      return res.status(400).render('auth/signup', {
         errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.'
       });
-      return;
     };
 
     const salt = await bcryptjs.genSalt(saltRounds);
@@ -52,7 +57,13 @@ const submitSignupForm = async (req, res, next) => {
   }
 };
 
-const loadLoginForm = (req, res) => res.render('auth/login');
+const loadLoginForm = (req, res) => {
+  if(req.session.currentUser){
+    return res.redirect('/user-profile');
+  } else {
+    return res.render('auth/login');
+  }
+};
 
 const submitLoginForm = async (req, res, next) => {
   try {

@@ -14,8 +14,9 @@
       <div class="col">
         <div class="user-data">
           <ul>
-            <li class="username"><h1>J{{userInSession.username}}</h1></li>
-            <li class="description"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum optio quis eos, eveniet quae dolores sed iure vel repudiandae totam id a ullam, delectus excepturi eius. Cupiditate nesciunt nobis molestiae. </li>
+            <li class="username"><h1>{{userInSession.username}}</h1></li>
+            <li class="username"><p>@{{userInSession.username}}</p></li>
+            <li class="description">{{userInSession.description}}</li>
             {{!-- <li class="edit-profile">
               <a href="/users/edit?user_id={{_id}}" title="Edit profile" class="btn">Edit profile</a>
             </li> --}}
@@ -23,16 +24,17 @@
         </div>
       </div>
     </div>
-    {{/if}}
   </div>
   <div class="header">
     <h2>Animals added</h2>
   </div>
   <div class="animals wrapper">
-    {{> animalCard}}
     {{#each animal}}
       {{> animalCard}}
     {{/each}}
   </div>
+  {{else}}
+    <p>Still not logged in. Please <a href="/login">login</a>.</p>
+  {{/if}}
   {{> addButton}}
 </section>
