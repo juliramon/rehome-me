@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uploadCloud = require('../configs/cloudinary.config');
 const Animal = require('../models/Animal.model');
 
 const getIndex = async (req, res, next) => {
@@ -15,9 +16,14 @@ const getIndex = async (req, res, next) => {
 
 const getUserProfile = async (req, res) => {
   try {
-    const userAnimals = await Animal.find({owner: req.session.currentUser._id});
+    const userAnimals = await Animal.find({
+      owner: req.session.currentUser._id
+    });
     console.log(userAnimals)
-    res.render('user-profile', {userInSession: req.session.currentUser, userAnimals})
+    res.render('user-profile', {
+      userInSession: req.session.currentUser,
+      userAnimals
+    })
   } catch (error) {
     console.log(error)
   }
@@ -30,7 +36,6 @@ const createNewAnimal = async (req, res, next) => {
     const {
       name,
       category,
-      image,
       size,
       checkin,
       checkout,
@@ -39,7 +44,6 @@ const createNewAnimal = async (req, res, next) => {
       specialNeeds
     } = req.body;
 
-    console.log(req.body);
     const hasEmptyCredentials = !name || !category || !size || !checkin || !checkout || !description;
     if (hasEmptyCredentials) {
       return res.render('add-animal', {
@@ -52,7 +56,7 @@ const createNewAnimal = async (req, res, next) => {
     const addAnimal = await Animal.create({
       name,
       category,
-      image,
+      image: req.file.path,
       size,
       checkin,
       checkout,
@@ -95,7 +99,9 @@ const deleteAnimal = async (req, res, next) => {
 
 const getAnimalsList = async (req, res, next) => {
   const animals = await Animal.find();
-  res.render('animals', {animals})
+  res.render('animals', {
+    animals
+  })
 }
 
 module.exports = {
