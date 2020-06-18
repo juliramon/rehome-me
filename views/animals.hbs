@@ -1,0 +1,11 @@
+<section id="animalsList">
+  <div class="header">
+    <h1>List of animals</h1>
+  </div>
+  <div class="animals wrapper">
+    {{#each animals}}
+      {{> animalCard this}}
+    {{/each}}
+  </div>
+  {{> addButton}}
+</section>

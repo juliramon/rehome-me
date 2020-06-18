@@ -116,47 +116,40 @@ nav .wrapper {
 
 /*USER PROFILE*/
 #userProfile .header {
-  margin: 25px 0;
-}
+  margin: 25px 0; }
 
-#userProfile .wrapper {
+#userProfile .user.wrapper {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
-}
+  justify-content: flex-start; }
 
-#userProfile .col:nth-child(2) {
-  margin-left: 20px;
-}
+#userProfile .user.wrapper .col:nth-child(2) {
+  margin-left: 20px; }
 
-#userProfile .user-data ul {
+#userProfile .user.wrapper .user-data ul {
   list-style: none;
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
-#userProfile .avatar img {
+#userProfile .user.wrapper .avatar img {
   border-radius: 100px;
   width: 85px;
-  height: 85px;
-}
+  height: 85px; }
 
 #userProfile .edit-profile .btn {
   border: 1px solid red;
   border-radius: 3px;
   padding: 5px 10px;
   display: block;
-  text-align: center;
-}
+  text-align: center; }
 
-#userProfile .floating-button {
+.floating-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
-#userProfile .floating-button .add-btn {
+.floating-button .add-btn {
   height: 100px;
   width: 100px;
   background-color: red;
@@ -166,18 +159,31 @@ nav .wrapper {
   line-height: 100px;
 }
 
-#userProfile .animals.wrapper {
+/*ANIMAL BOX*/
+
+.box.animal {
+  width: 100%;
+  margin: 15px 0;
   display: flex;
-  flex-flow: row wrap;
-  margin: -15px;
-}
+  flex-flow: row nowrap;
+  align-items: center; }
 
-#userProfile .animals.wrapper .box {
-  width: 42%;
-  margin: 15px;
-}
+.box.animal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
 
-#userProfile .animal .cover {
+.box.animal .avatar {
+  width: 80px;
+  height: 80px;
+  overflow: hidden; }
+
+.box.animal .avatar img {
+  border-radius: 100px;
+  width: 80px;
+  height: 80px; }
+
+.box.animal .col:nth-child(2) {
   width: 100%;
   height: 120px;
   background-size: cover;
@@ -223,4 +229,19 @@ nav .wrapper {
 
 .animal-text {
   margin-top: 10%;
+  margin-left: 20px; 
 }
+
+.box.animal .buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  margin-top: 10px; }
+
+.box.animal .buttons .btn {
+  width: 100px; }
+
+.box.animal .buttons .btn:first-child {
+  margin-right: 10px; }

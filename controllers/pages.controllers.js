@@ -13,7 +13,15 @@ const getIndex = async (req, res, next) => {
   }
 }
 
-const getUserProfile = (req, res) => res.render('user-profile')
+const getUserProfile = async (req, res) => {
+  try {
+    const userAnimals = await Animal.find({owner: req.session.currentUser._id});
+    console.log(userAnimals)
+    res.render('user-profile', {userInSession: req.session.currentUser, userAnimals})
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const getAnimalForm = (req, res) => res.render('add-animal')
 
@@ -85,11 +93,17 @@ const deleteAnimal = async (req, res, next) => {
   res.redirect('/')
 };
 
+const getAnimalsList = async (req, res, next) => {
+  const animals = await Animal.find();
+  res.render('animals', {animals})
+}
+
 module.exports = {
   getIndex,
   getUserProfile,
   getAnimalForm,
   createNewAnimal,
   getAnimalDetails,
-  deleteAnimal
+  deleteAnimal,
+  getAnimalsList
 }
