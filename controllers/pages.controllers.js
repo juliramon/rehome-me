@@ -90,7 +90,7 @@ const deleteAnimal = async (req, res, next) => {
   const removeAnimal = await Animal.deleteOne({
     _id: req.params.id
   });
-  res.redirect('/')
+  res.redirect('/user-profile')
 };
 
 const getAnimalsList = async (req, res, next) => {
