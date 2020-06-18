@@ -55,13 +55,13 @@
   {{#each animals}}
   <div class="animal-card">
     <div class="animal-picture">
-      <img src="{{animals.image}}" alt="{{animals.name}} photo">
+      <img src="{{image}}" alt="{{name}} photo">
     </div>
     <div class="animal-info">
-      <h3>{{animals.name}}</h3>
-      <form action="/animals/{{_id}}" method="GET">
-        <input type="submit" value="See Details">
-      </form>
+      <h3>{{name}}</h3>
+      <button>
+        <a href="animal/{{_id}}">See Details</a>
+      </button>
     </div>
   </div>
   {{/each}}

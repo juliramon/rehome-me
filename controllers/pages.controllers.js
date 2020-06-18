@@ -1,7 +1,17 @@
 const mongoose = require('mongoose');
 const Animal = require('../models/Animal.model');
 
-const getIndex = (req, res, next) => res.render('index')
+const getIndex = async (req, res, next) => {
+  try {
+    const animals = await Animal.find().limit(6);
+    console.log(animals)
+    res.render('index', {
+      animals: animals
+    });
+  } catch (error) {
+    next(error)
+  }
+}
 
 const getUserProfile = async (req, res) => {
   try {
@@ -51,7 +61,7 @@ const createNewAnimal = async (req, res, next) => {
       specialNeeds: booleanCheck,
       owner: req.session.currentUser._id
     })
-    res.redirect('/user-profile');
+    return res.redirect('/user-profile');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).render('add-animal', {
@@ -67,6 +77,22 @@ const createNewAnimal = async (req, res, next) => {
   }
 };
 
+const getAnimalDetails = async (req, res, next) => {
+  try {
+    const findAnimal = await Animal.findById(req.params.id);
+    res.render('animal-details', findAnimal)
+  } catch (error) {
+    next(error)
+  }
+};
+
+const deleteAnimal = async (req, res, next) => {
+  const removeAnimal = await Animal.deleteOne({
+    _id: req.params.id
+  });
+  res.redirect('/')
+};
+
 const getAnimalsList = async (req, res, next) => {
   const animals = await Animal.find();
   res.render('animals', {animals})
@@ -77,5 +103,7 @@ module.exports = {
   getUserProfile,
   getAnimalForm,
   createNewAnimal,
+  getAnimalDetails,
+  deleteAnimal,
   getAnimalsList
 }
