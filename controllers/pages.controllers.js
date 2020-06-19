@@ -112,8 +112,6 @@ const getEditAnimalForm = async (req, res, next) => {
   const checkInDate = formatDate('animal', 'checkin');
   const checkOutDate = formatDate('animal', 'checkout');
 
-  console.log(animal.size)
-
   const sizes = Animal.schema.path('size').enumValues;
   const objSizes = sizes.map(el => {
     const newEl = {
@@ -121,18 +119,30 @@ const getEditAnimalForm = async (req, res, next) => {
     }
     return newEl;
   })
-
-  const isSelected = ''
-  for(let name in objSizes){
-    if(name == animal.size){
-      console.log('selected')
+  
+  objSizes.forEach(el => {
+    if(el.name === animal.size){
+      let index = objSizes.indexOf(el);
+      objSizes.splice(index, 1);
     }
-  }
+  })
 
-  console.log(objSizes);
-  console.log(isSelected)
+  const species = Animal.schema.path('category').enumValues;
+  const objSpecies = species.map(el => {
+    const newEl = {
+      name: el
+    }
+    return newEl;
+  })
 
-  res.render('edit-animal', {animal, checkInDate, checkOutDate, objSizes, isSelected})
+  objSpecies.forEach(el => {
+    if(el.name === animal.category){
+      let index = objSpecies.indexOf(el);
+      objSpecies.splice(index, 1);
+    }
+  })
+
+  res.render('edit-animal', {animal, checkInDate, checkOutDate, objSizes, objSpecies})
 };
 
 const editAnimal = async (req, res, next) => {

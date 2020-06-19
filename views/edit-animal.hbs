@@ -9,19 +9,19 @@
       <div class="input-group">
         <label for="category">Pet's species</label>
         <select name="category" id="category">
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-          <option value="snake">Snake</option>
-          <option value="rabbit">Rabbit</option>
-          <option value="bird">Bird</option>
+          <option value="{{animal.category}}" selected>{{animal.category}}</option>
+          {{#each objSpecies}}
+            <option value="{{name}}">{{name}}</option>
+          {{/each}}
         </select>
       </div>
 
       <div class="input-group">
         <label for="size">Pet's size</label>
         <select name="size" id="size">
+          <option value="{{animal.size}}" selected>{{animal.size}}</option>
           {{#each objSizes}}
-            <option value="{{name}}" {{isSelected}}>{{name}}</option>
+            <option value="{{name}}">{{name}}</option>
           {{/each}}
         </select>
       </div>
