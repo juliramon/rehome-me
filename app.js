@@ -36,6 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
+hbs.registerHelper('isSelected', function (options, size) {
+  return options === size ? 'selected' : '';
+});
 
 app.locals.title = 'Express - Generated with IronGenerator';
 

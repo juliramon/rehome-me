@@ -98,6 +98,63 @@ const getAnimalsList = async (req, res, next) => {
   res.render('animals', {animals})
 }
 
+const getEditAnimalForm = async (req, res, next) => {
+  const animal = await Animal.findById(req.params.animalId)
+  console.log(animal);
+  const formatDate = (model, field) => {
+    let year = eval(model + "." + field + "." + 'getFullYear()');
+    let month = eval(model + "." + field + "." + 'getMonth()') + 1;
+    let date = eval(model + "." + field + "." + 'getDate()');
+    month < 10 ? month = `0${month}` : undefined;
+    date < 10 ? date = `0${date}` : undefined;
+    return year + "-" + month + "-" + date;
+  }
+  const checkInDate = formatDate('animal', 'checkin');
+  const checkOutDate = formatDate('animal', 'checkout');
+
+  console.log(animal.size)
+
+  const sizes = Animal.schema.path('size').enumValues;
+  const objSizes = sizes.map(el => {
+    const newEl = {
+      name: el
+    }
+    return newEl;
+  })
+
+  const isSelected = ''
+  for(let name in objSizes){
+    if(name == animal.size){
+      console.log('selected')
+    }
+  }
+
+  console.log(objSizes);
+  console.log(isSelected)
+
+  res.render('edit-animal', {animal, checkInDate, checkOutDate, objSizes, isSelected})
+};
+
+const editAnimal = async (req, res, next) => {
+  console.log('Edit form submitted, values changed=>', req.body)
+  const {
+    name,
+    category,
+    image,
+    size,
+    checkin,
+    checkout,
+    description,
+    careRoutine,
+    specialNeeds
+  } = req.body;
+
+  const booleanCheck = specialNeeds ? true : false;
+
+  const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {$set: {name, category, image, size, checkin, checkout, description, careRoutine, specialNeeds: booleanCheck}})
+  res.redirect('/user-profile')
+}
+
 module.exports = {
   getIndex,
   getUserProfile,
@@ -105,5 +162,7 @@ module.exports = {
   createNewAnimal,
   getAnimalDetails,
   deleteAnimal,
-  getAnimalsList
+  getAnimalsList,
+  getEditAnimalForm,
+  editAnimal
 }
