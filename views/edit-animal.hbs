@@ -1,6 +1,6 @@
 <section class="mw-1600">
   <div class="form">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
       <div class="input-group">
         <label for="name">Pet's Name</label>
         <input type="text" name="name" id="name" placeholder="Type your pet's name" value="{{animal.name}}">
@@ -28,7 +28,16 @@
 
       <div class="input-group">
         <label for="image">Pet's Photo</label>
-        <input type="url" name="image" id="image" placeholder="Link your pet's photo" value="{{animal.image}}">
+        <div class="wrapper">
+          <div class="col">
+            <div class="image">
+              <img src="{{animal.image}}" alt="{{animal.name}}">
+            </div>
+          </div>
+          <div class="col">
+            <input type="file" name="image" id="image" value="{{animal.image}}">
+          </div>
+        </div>
       </div>
 
       <div class="input-group">
@@ -54,10 +63,10 @@
       </div>
 
       <div class="input-group">
-        <label for="specialNeeds"> Special Needs</label><br>
-        <input type="checkbox" id="specialNeeds" name="specialNeeds" {{#if animal.specialNeeds}} checked="true" {{/if}}>
+        <input type="checkbox" id="specialNeeds" name="specialNeeds" {{#if animal.specialNeeds}} checked="true" {{/if}}class="inline">
+        <label for="specialNeeds" class="inline">Special Needs</label>
       </div>
-      <button type="submit">Edit Pet</button>
+      <input type="submit" value="Submit edit">
       {{#if errorMessage}}
       <p>{{errorMessage}}</p>
       {{/if}}

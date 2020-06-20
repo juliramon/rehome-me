@@ -1,7 +1,12 @@
+$dark-green: #4D716D;
+$soft-green: #86B8B1;
+$white: #FFFFFF;
+
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .mw-1600 {
@@ -9,22 +14,47 @@
   margin: 0 auto;
 }
 
+section {
+  padding: 45px 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 0;
+}
+
 /* Responsive NavBar */
+header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
 nav {
-  background-color: green;
+  background-color: $soft-green;
   padding: 0 5% 0 5%;
+  border-bottom: 1px solid $white;
 }
 
 nav .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 8vh;
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 6vh;
+}
+
+.img-logo >img{
+  padding-right: 25%;
+  width: 30px;
 }
 
 .logo {
-  color: white;
+  display: flex;
+  align-items: center;
+  color: $white;
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 1.3em;
@@ -41,7 +71,7 @@ nav .wrapper {
 }
 
 .nav-links a {
-  color: white;
+  color: $white;
   text-decoration: none;
   font-weight: bold;
 }
@@ -49,7 +79,7 @@ nav .wrapper {
 .nav-links li form button {
   background-color: transparent;
   border: none;
-  color: white;
+  color: $white;
   font-weight: bold;
   font-size: inherit;
   cursor: pointer;
@@ -60,7 +90,7 @@ nav .wrapper {
 }
 
 .burger i {
-  color: white;
+  color: $white;
   font-size: 1.5em;
 }
 
@@ -73,8 +103,8 @@ nav .wrapper {
     position: absolute;
     right: 0px;
     height: 92vh;
-    top: 8vh;
-    background-color: green;
+    top: 6.1vh;
+    background-color: $soft-green;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,17 +141,105 @@ nav .wrapper {
 
 /* Index Page */
 .rehome-me {
-  margin: 50px;
+  padding: 50px;
+  background-image: url('../images/bg-hero.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.hero {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  padding: 15px 30px;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2%;
+  color: $dark-green;
+  text-align: center;
+}
+
+.buttons-log{
+  margin-top: 15px;
+  display:flex;
+  justify-content: center;
+}
+
+.buttons-log > form{
+  margin:3%;
+}
+
+input[type=submit], button[type=submit] {
+  background-color: $white;
+  color: $soft-green;
+  text-transform: uppercase;
+  padding: 1.5vh 4vh;
+  font-size: 0.8em;
+  font-weight: bold;
+  font-family: Sans-Serif;
+  border: 1px solid $soft-green;
+  border-radius: 15px;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+
+input[type=submit]:hover ,button[type=submit]:hover{
+  color: $white;
+  background-color: $soft-green;
+  border: 1px solid $white;
+  transition: all 0.4s ease 0s;
+}
+
+.process {
+  text-align: center;
+  border-bottom: 1px dotted $soft-green;
+}
+
+.process {
+  h2,h3,h4,h5,.fa {
+    color: $dark-green;
+  }
+}
+
+.features {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.feature-card {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.feature-card .fa {
+  font-size: 30px;
+  margin-bottom: 8px;
 }
 
 /*USER PROFILE*/
-#userProfile .header {
-  margin: 25px 0; }
+#userProfile {
+  padding-top:15px;
+}
+
+#userProfile .header>h1,h2,p{
+  margin: 10px 0;
+  color: $dark-green
+}
 
 #userProfile .user.wrapper {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  padding: 4%;
+  border: 2px solid $soft-green;
+  border-radius: 20px; 
+}
 
 #userProfile .user.wrapper .col:nth-child(2) {
   margin-left: 20px; }
@@ -145,18 +263,23 @@ nav .wrapper {
 
 .floating-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 50px;
+  right: 10px;
   overflow: hidden; }
 
 .floating-button .add-btn {
-  height: 100px;
-  width: 100px;
-  background-color: red;
-  border-radius: 100px;
+  height: 70px;
+  width: 70px;
+  background-color: $soft-green;
+  border-radius: 70px;
   display: block;
   text-align: center;
-  line-height: 100px;
+  line-height: 72px;
+}
+
+.floating-button>a{
+  color: $white;
+  font-size: 35px;
 }
 
 /*ANIMAL BOX*/
@@ -176,6 +299,7 @@ nav .wrapper {
 .box.animal .avatar {
   width: 80px;
   height: 80px;
+  margin-right: 15px;
   overflow: hidden; }
 
 .box.animal .avatar img {
@@ -185,7 +309,6 @@ nav .wrapper {
 
 .box.animal .col:nth-child(2) {
   width: 100%;
-  height: 120px;
   background-size: cover;
   background-position: center center;
 }
@@ -197,14 +320,24 @@ nav .wrapper {
 
 #details-main>h2 {
   margin-left: 5%;
+  color: $dark-green;
 }
 
 .animal-text {
   padding: 3%;
+  color: $white;
+  text-align:center;
+  border-radius: 10px;
+}
+
+.animal-text {h3 
+  {
+  text-decoration: underline;
+  }
 }
 
 .animal-routine {
-  margin-top: 5%;
+  margin-top: 8%;
 }
 
 .animal-data {
@@ -212,13 +345,22 @@ nav .wrapper {
 }
 
 .animal-photo {
-  width: 50%;
+  width: 250px;
+  height: 250px;
   padding: 2%;
+  margin-right: 10px;
 }
 
 .details-list {
   width: 50%;
   padding: 3%;
+  color: $dark-green;
+  border: 2px solid $soft-green;
+  border-radius: 10px;
+}
+
+.details-list>ul{
+  list-style: none;
 }
 
 .animal-photo>img {
@@ -228,8 +370,25 @@ nav .wrapper {
 }
 
 .animal-text {
-  margin-top: 10%;
-  margin-left: 20px; 
+  margin: 10% 2%;
+  background-color: $soft-green; 
+}
+
+/* FEATURED ANIMALS*/
+.featured-animals > h2 {
+  color: $dark-green;
+}
+
+.box.animal {
+  background-color: $soft-green;
+  border-radius: 15px;
+  width: 100%;
+  margin: 2% 0;
+  padding: 3%;
+}
+
+.box.animal a{
+  color:$white;
 }
 
 .box.animal .buttons {
@@ -245,3 +404,79 @@ nav .wrapper {
 
 .box.animal .buttons .btn:first-child {
   margin-right: 10px; }
+
+/* ANIMAL CARD CRUD */
+.buttons>a:hover{
+  text-decoration: underline;
+}
+
+/*EDIT-ADD FORMS*/
+.form {
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: $dark-green;
+  }
+  .input-group {
+    margin-bottom: 15px;
+  }
+  input,select, textarea {
+      padding: 10px;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid $dark-green;
+      box-shadow: none;
+      font-size: 1em;
+  }
+  select {
+    height: 40px;
+  }
+  textarea {
+    resize: vertical;
+  }
+
+  .inline {
+    display: inline-block;
+    width: auto;
+  }
+  .wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+  .image img {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 100px;
+    position: relative;
+    top: 3px;
+  }
+  .wrapper .col:nth-child(2) {
+    width: 100%;
+  }
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  margin-top: 2%;
+  padding: 1.6em;
+  background-color: $dark-green;
+  color: $white;
+  font-size: 0.7em;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+footer > a {
+  color: $soft-green;
+  text-decoration: underline
+}
+
+footer > img {
+  width: 1.2em;
+  margin-right: 0.7em;
+}

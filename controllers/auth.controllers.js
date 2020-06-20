@@ -41,6 +41,7 @@ const submitSignupForm = async (req, res, next) => {
       email,
       passwordHash: hashedPassword
     })
+    req.session.currentUser = userSignup;
     res.redirect('/user-profile');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {

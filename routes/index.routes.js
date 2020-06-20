@@ -24,6 +24,6 @@ router
   .get('/animal/:id/delete', deleteAnimal)
   .get('/animals', getAnimalsList)
   .get('/animal/:animalId/edit', getEditAnimalForm)
-  .post('/animal/:animalId/edit', editAnimal)
+  .post('/animal/:animalId/edit', fileUploader.single('image'), editAnimal)
 
 module.exports = router;

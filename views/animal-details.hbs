@@ -1,16 +1,18 @@
 <main id="details-main">
-  <h2>Hi there! I'm {{name}}</h2>
+  <h2>Hi there! I'm {{findAnimal.name}}</h2>
   <section class="animal-data">
     <div class="animal-photo">
-      <img src="{{image}}" alt="{{name}}'s photo'">
+      <img src="{{findAnimal.image}}" alt="{{findAnimal.name}}'s photo'">
     </div>
     <div class="details-list">
       <ul>
-        <li><b>Name:</b>{{name}}</li>
-        <li><b>Category:</b>{{category}}</li>
-        <li><b>Size:</b>{{size}}</li>
-        <li><b>CheckIn / CheckOut:</b>{{checkin}} / {{checkout}}</li>
-        {{#if specialNeeds}}
+        <li><b>Name: </b>{{findAnimal.name}}</li><br>
+        <li><b>Category: </b>{{findAnimal.category}}</li><br>
+        <li><b>Size: </b>{{findAnimal.size}}</li><br>
+        <li><b>CheckIn / CheckOut: </b>{{checkInDate}} /
+        <br>
+         {{checkOutDate}}</li><br>
+        {{#if findAnimal.specialNeeds}}
         <li><b>Animal with special needs</b></li>
         {{/if}}
       </ul>
@@ -18,15 +20,12 @@
   </section>
   <section class="animal-text">
     <div class="animal-description">
-      <h4>Animal Description</h4>
-      <p>{{description}}</p>
+      <h3>Animal Description</h3><br>
+      <p>{{findAnimal.description}}</p>
     </div>
     <div class="animal-routine">
-      <h4>Care Routine</h4>
-      <p>{{careRoutine}}</p>
+      <h3>Care Routine</h3><br>
+      <p>{{findAnimal.careRoutine}}</p>
     </div>
   </section>
-  <button>
-    <a href="/animal/{{_id}}/delete">Delete {{name}}</a>
-  </button>
 </main>

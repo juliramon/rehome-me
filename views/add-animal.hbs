@@ -45,19 +45,17 @@
 
       <div class="input-group">
         <label for="description">Pet's description</label>
-        <textarea id="description" name="description" rows="4" cols="50">Write the pet's description here ...
-        </textarea>
+        <textarea id="description" name="description" rows="4" cols="50" placeholder="Write the pet's description here ..."></textarea>
       </div>
 
       <div class="input-group">
         <label for="careRoutine">Care Routine</label>
-        <textarea id="careRoutine" name="careRoutine" rows="4" cols="50">Write the pet's care routine here ...
-        </textarea>
+        <textarea id="careRoutine" name="careRoutine" rows="4" cols="50" placeholder="Write the pet's care routine here ..."></textarea>
       </div>
 
       <div class="input-group">
-        <label for="specialNeeds"> Special Needs</label><br>
-        <input type="checkbox" id="specialNeeds" name="specialNeeds" value="specialNeeds">
+        <label class="inline" for="specialNeeds"> Special Needs</label>
+        <input class="inline" type="checkbox" id="specialNeeds" name="specialNeeds" value="specialNeeds">
       </div>
       <button type="submit">Add Pet</button>
       {{#if errorMessage}}

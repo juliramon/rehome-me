@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
 const Animal = require('../models/Animal.model');
+const {formatDate} = require('../helpers/helpers');
 
 const getIndex = async (req, res, next) => {
   try {
     const animals = await Animal.find().limit(6);
     console.log(animals)
     res.render('index', {
-      animals: animals
+      animals: animals,
+      userInSession: req.session.currentUser
     });
   } catch (error) {
     next(error)
@@ -29,7 +31,7 @@ const getUserProfile = async (req, res) => {
   }
 }
 
-const getAnimalForm = (req, res) => res.render('add-animal')
+const getAnimalForm = (req, res) => res.render('add-animal', {userInSession: req.session.currentUser})
 
 const createNewAnimal = async (req, res, next) => {
   try {
@@ -84,7 +86,13 @@ const createNewAnimal = async (req, res, next) => {
 const getAnimalDetails = async (req, res, next) => {
   try {
     const findAnimal = await Animal.findById(req.params.id);
-    res.render('animal-details', findAnimal)
+    const checkInDate = formatDate(findAnimal, 'checkin');
+    const checkOutDate = formatDate(findAnimal, 'checkout');
+    res.render('animal-details', {
+      findAnimal, 
+      checkInDate,
+      checkOutDate,
+      userInSession: req.session.currentUser})
   } catch (error) {
     next(error)
   }
@@ -100,24 +108,15 @@ const deleteAnimal = async (req, res, next) => {
 const getAnimalsList = async (req, res, next) => {
   const animals = await Animal.find();
   res.render('animals', {
-    animals
+    animals,
+    userInSession: req.session.currentUser
   })
 }
 
 const getEditAnimalForm = async (req, res, next) => {
-  const animal = await Animal.findById(req.params.animalId)
-  console.log(animal);
-  const formatDate = (model, field) => {
-    let year = eval(model + "." + field + "." + 'getFullYear()');
-    let month = eval(model + "." + field + "." + 'getMonth()') + 1;
-    let date = eval(model + "." + field + "." + 'getDate()');
-    month < 10 ? month = `0${month}` : undefined;
-    date < 10 ? date = `0${date}` : undefined;
-    return year + "-" + month + "-" + date;
-  }
-  const checkInDate = formatDate('animal', 'checkin');
-  const checkOutDate = formatDate('animal', 'checkout');
-
+  const animal = await Animal.findById(req.params.animalId);
+  const checkInDate = formatDate(animal, 'checkin');
+  const checkOutDate = formatDate(animal, 'checkout');
   const sizes = Animal.schema.path('size').enumValues;
   const objSizes = sizes.map(el => {
     const newEl = {
@@ -148,7 +147,7 @@ const getEditAnimalForm = async (req, res, next) => {
     }
   })
 
-  res.render('edit-animal', {animal, checkInDate, checkOutDate, objSizes, objSpecies})
+  res.render('edit-animal', {animal, checkInDate, checkOutDate, objSizes, objSpecies, userInSession: req.session.currentUser})
 };
 
 const editAnimal = async (req, res, next) => {
@@ -156,7 +155,6 @@ const editAnimal = async (req, res, next) => {
   const {
     name,
     category,
-    image,
     size,
     checkin,
     checkout,
@@ -167,7 +165,7 @@ const editAnimal = async (req, res, next) => {
 
   const booleanCheck = specialNeeds ? true : false;
 
-  const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {$set: {name, category, image, size, checkin, checkout, description, careRoutine, specialNeeds: booleanCheck}})
+  const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {$set: {name, category, size, image:req.file.path, checkin, checkout, description, careRoutine, specialNeeds: booleanCheck}})
   res.redirect('/user-profile')
 }
 
