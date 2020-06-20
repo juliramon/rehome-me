@@ -94,7 +94,7 @@ const deleteAnimal = async (req, res, next) => {
   const removeAnimal = await Animal.deleteOne({
     _id: req.params.id
   });
-  res.redirect('/')
+  res.redirect('/user-profile')
 };
 
 const getAnimalsList = async (req, res, next) => {
@@ -104,6 +104,73 @@ const getAnimalsList = async (req, res, next) => {
   })
 }
 
+const getEditAnimalForm = async (req, res, next) => {
+  const animal = await Animal.findById(req.params.animalId)
+  console.log(animal);
+  const formatDate = (model, field) => {
+    let year = eval(model + "." + field + "." + 'getFullYear()');
+    let month = eval(model + "." + field + "." + 'getMonth()') + 1;
+    let date = eval(model + "." + field + "." + 'getDate()');
+    month < 10 ? month = `0${month}` : undefined;
+    date < 10 ? date = `0${date}` : undefined;
+    return year + "-" + month + "-" + date;
+  }
+  const checkInDate = formatDate('animal', 'checkin');
+  const checkOutDate = formatDate('animal', 'checkout');
+
+  const sizes = Animal.schema.path('size').enumValues;
+  const objSizes = sizes.map(el => {
+    const newEl = {
+      name: el
+    }
+    return newEl;
+  })
+  
+  objSizes.forEach(el => {
+    if(el.name === animal.size){
+      let index = objSizes.indexOf(el);
+      objSizes.splice(index, 1);
+    }
+  })
+
+  const species = Animal.schema.path('category').enumValues;
+  const objSpecies = species.map(el => {
+    const newEl = {
+      name: el
+    }
+    return newEl;
+  })
+
+  objSpecies.forEach(el => {
+    if(el.name === animal.category){
+      let index = objSpecies.indexOf(el);
+      objSpecies.splice(index, 1);
+    }
+  })
+
+  res.render('edit-animal', {animal, checkInDate, checkOutDate, objSizes, objSpecies})
+};
+
+const editAnimal = async (req, res, next) => {
+  console.log('Edit form submitted, values changed=>', req.body)
+  const {
+    name,
+    category,
+    image,
+    size,
+    checkin,
+    checkout,
+    description,
+    careRoutine,
+    specialNeeds
+  } = req.body;
+
+  const booleanCheck = specialNeeds ? true : false;
+
+  const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {$set: {name, category, image, size, checkin, checkout, description, careRoutine, specialNeeds: booleanCheck}})
+  res.redirect('/user-profile')
+}
+
 module.exports = {
   getIndex,
   getUserProfile,
@@ -111,5 +178,7 @@ module.exports = {
   createNewAnimal,
   getAnimalDetails,
   deleteAnimal,
-  getAnimalsList
+  getAnimalsList,
+  getEditAnimalForm,
+  editAnimal
 }

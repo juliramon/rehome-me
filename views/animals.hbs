@@ -4,7 +4,9 @@
   </div>
   <div class="animals wrapper">
     {{#each animals}}
-      {{> animalCard this}}
+      {{> animalCardPublic this}}
+      {{else}}
+      <p>There are no animals yet</p>
     {{/each}}
   </div>
   {{> addButton}}
