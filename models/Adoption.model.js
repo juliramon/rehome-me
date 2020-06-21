@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const adoptionSchema = new Schema({
   type: {
     type: String,
-    required: true,
     enum: ['permanent', 'temporary']
   },
   checkin: {
@@ -25,7 +24,7 @@ const adoptionSchema = new Schema({
   host: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: [true, 'You must be logged in to access to this feature']
   }
 });
 

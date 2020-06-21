@@ -22,7 +22,9 @@ a {
   text-decoration: none;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: 0;
 }
 
@@ -46,7 +48,7 @@ nav .wrapper {
   min-height: 6vh;
 }
 
-.img-logo >img{
+.img-logo>img {
   padding-right: 25%;
   width: 30px;
 }
@@ -163,17 +165,18 @@ nav .wrapper {
   text-align: center;
 }
 
-.buttons-log{
+.buttons-log {
   margin-top: 15px;
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
-.buttons-log > form{
-  margin:3%;
+.buttons-log>form {
+  margin: 3%;
 }
 
-input[type=submit], button[type=submit] {
+input[type=submit],
+button[type=submit] {
   background-color: $white;
   color: $soft-green;
   text-transform: uppercase;
@@ -187,7 +190,8 @@ input[type=submit], button[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover ,button[type=submit]:hover{
+input[type=submit]:hover,
+button[type=submit]:hover {
   color: $white;
   background-color: $soft-green;
   border: 1px solid $white;
@@ -200,7 +204,12 @@ input[type=submit]:hover ,button[type=submit]:hover{
 }
 
 .process {
-  h2,h3,h4,h5,.fa {
+
+  h2,
+  h3,
+  h4,
+  h5,
+  .fa {
     color: $dark-green;
   }
 }
@@ -224,10 +233,12 @@ input[type=submit]:hover ,button[type=submit]:hover{
 
 /*USER PROFILE*/
 #userProfile {
-  padding-top:15px;
+  padding-top: 15px;
 }
 
-#userProfile .header>h1,h2,p{
+#userProfile .header>h1,
+h2,
+p {
   margin: 10px 0;
   color: $dark-green
 }
@@ -238,34 +249,39 @@ input[type=submit]:hover ,button[type=submit]:hover{
   justify-content: flex-start;
   padding: 4%;
   border: 2px solid $soft-green;
-  border-radius: 20px; 
+  border-radius: 20px;
 }
 
 #userProfile .user.wrapper .col:nth-child(2) {
-  margin-left: 20px; }
+  margin-left: 20px;
+}
 
 #userProfile .user.wrapper .user-data ul {
   list-style: none;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 #userProfile .user.wrapper .avatar img {
   border-radius: 100px;
   width: 85px;
-  height: 85px; }
+  height: 85px;
+}
 
 #userProfile .edit-profile .btn {
   border: 1px solid red;
   border-radius: 3px;
   padding: 5px 10px;
   display: block;
-  text-align: center; }
+  text-align: center;
+}
 
 .floating-button {
   position: fixed;
   bottom: 50px;
   right: 10px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .floating-button .add-btn {
   height: 70px;
@@ -277,7 +293,7 @@ input[type=submit]:hover ,button[type=submit]:hover{
   line-height: 72px;
 }
 
-.floating-button>a{
+.floating-button>a {
   color: $white;
   font-size: 35px;
 }
@@ -289,23 +305,27 @@ input[type=submit]:hover ,button[type=submit]:hover{
   margin: 15px 0;
   display: flex;
   flex-flow: row nowrap;
-  align-items: center; }
+  align-items: center;
+}
 
 .box.animal ul {
   list-style: none;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 .box.animal .avatar {
   width: 80px;
   height: 80px;
   margin-right: 15px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .box.animal .avatar img {
   border-radius: 100px;
   width: 80px;
-  height: 80px; }
+  height: 80px;
+}
 
 .box.animal .col:nth-child(2) {
   width: 100%;
@@ -326,13 +346,13 @@ input[type=submit]:hover ,button[type=submit]:hover{
 .animal-text {
   padding: 3%;
   color: $white;
-  text-align:center;
+  text-align: center;
   border-radius: 10px;
 }
 
-.animal-text {h3 
-  {
-  text-decoration: underline;
+.animal-text {
+  h3 {
+    text-decoration: underline;
   }
 }
 
@@ -359,7 +379,7 @@ input[type=submit]:hover ,button[type=submit]:hover{
   border-radius: 10px;
 }
 
-.details-list>ul{
+.details-list>ul {
   list-style: none;
 }
 
@@ -371,11 +391,11 @@ input[type=submit]:hover ,button[type=submit]:hover{
 
 .animal-text {
   margin: 10% 2%;
-  background-color: $soft-green; 
+  background-color: $soft-green;
 }
 
 /* FEATURED ANIMALS*/
-.featured-animals > h2 {
+.featured-animals>h2 {
   color: $dark-green;
 }
 
@@ -387,8 +407,8 @@ input[type=submit]:hover ,button[type=submit]:hover{
   padding: 3%;
 }
 
-.box.animal a{
-  color:$white;
+.box.animal a {
+  color: $white;
 }
 
 .box.animal .buttons {
@@ -397,16 +417,19 @@ input[type=submit]:hover ,button[type=submit]:hover{
   align-items: center;
   justify-content: flex-start;
   flex: 1;
-  margin-top: 10px; }
+  margin-top: 10px;
+}
 
 .box.animal .buttons .btn {
-  width: 100px; }
+  width: 100px;
+}
 
 .box.animal .buttons .btn:first-child {
-  margin-right: 10px; }
+  margin-right: 10px;
+}
 
 /* ANIMAL CARD CRUD */
-.buttons>a:hover{
+.buttons>a:hover {
   text-decoration: underline;
 }
 
@@ -417,20 +440,26 @@ input[type=submit]:hover ,button[type=submit]:hover{
     margin-bottom: 8px;
     color: $dark-green;
   }
+
   .input-group {
     margin-bottom: 15px;
   }
-  input,select, textarea {
-      padding: 10px;
-      width: 100%;
-      border-radius: 4px;
-      border: 1px solid $dark-green;
-      box-shadow: none;
-      font-size: 1em;
+
+  input,
+  select,
+  textarea {
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid $dark-green;
+    box-shadow: none;
+    font-size: 1em;
   }
+
   select {
     height: 40px;
   }
+
   textarea {
     resize: vertical;
   }
@@ -439,11 +468,13 @@ input[type=submit]:hover ,button[type=submit]:hover{
     display: inline-block;
     width: auto;
   }
+
   .wrapper {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
   }
+
   .image img {
     width: 40px;
     height: 40px;
@@ -452,6 +483,7 @@ input[type=submit]:hover ,button[type=submit]:hover{
     position: relative;
     top: 3px;
   }
+
   .wrapper .col:nth-child(2) {
     width: 100%;
   }
@@ -471,12 +503,22 @@ footer {
   bottom: 0;
 }
 
-footer > a {
+footer>a {
   color: $soft-green;
   text-decoration: underline
 }
 
-footer > img {
+footer>img {
   width: 1.2em;
   margin-right: 0.7em;
+}
+
+/* ERROR HANDLING */
+.error {
+  background: #f02b63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 380px;
 }

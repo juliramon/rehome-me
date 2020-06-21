@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
 const Animal = require('../models/Animal.model');
-const {formatDate} = require('../helpers/helpers');
+const Adoption = require('../models/Adoption.model');
+const {
+  formatDate
+} = require('../helpers/helpers');
 
 const getIndex = async (req, res, next) => {
   try {
@@ -31,7 +34,9 @@ const getUserProfile = async (req, res) => {
   }
 }
 
-const getAnimalForm = (req, res) => res.render('add-animal', {userInSession: req.session.currentUser})
+const getAnimalForm = (req, res) => res.render('add-animal', {
+  userInSession: req.session.currentUser
+})
 
 const createNewAnimal = async (req, res, next) => {
   try {
@@ -89,10 +94,11 @@ const getAnimalDetails = async (req, res, next) => {
     const checkInDate = formatDate(findAnimal, 'checkin');
     const checkOutDate = formatDate(findAnimal, 'checkout');
     res.render('animal-details', {
-      findAnimal, 
+      findAnimal,
       checkInDate,
       checkOutDate,
-      userInSession: req.session.currentUser})
+      userInSession: req.session.currentUser
+    })
   } catch (error) {
     next(error)
   }
@@ -124,9 +130,9 @@ const getEditAnimalForm = async (req, res, next) => {
     }
     return newEl;
   })
-  
+
   objSizes.forEach(el => {
-    if(el.name === animal.size){
+    if (el.name === animal.size) {
       let index = objSizes.indexOf(el);
       objSizes.splice(index, 1);
     }
@@ -141,13 +147,20 @@ const getEditAnimalForm = async (req, res, next) => {
   })
 
   objSpecies.forEach(el => {
-    if(el.name === animal.category){
+    if (el.name === animal.category) {
       let index = objSpecies.indexOf(el);
       objSpecies.splice(index, 1);
     }
   })
 
-  res.render('edit-animal', {animal, checkInDate, checkOutDate, objSizes, objSpecies, userInSession: req.session.currentUser})
+  res.render('edit-animal', {
+    animal,
+    checkInDate,
+    checkOutDate,
+    objSizes,
+    objSpecies,
+    userInSession: req.session.currentUser
+  })
 };
 
 const editAnimal = async (req, res, next) => {
@@ -165,8 +178,52 @@ const editAnimal = async (req, res, next) => {
 
   const booleanCheck = specialNeeds ? true : false;
 
-  const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {$set: {name, category, size, image:req.file.path, checkin, checkout, description, careRoutine, specialNeeds: booleanCheck}})
+  const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {
+    $set: {
+      name,
+      category,
+      size,
+      image: req.file.path,
+      checkin,
+      checkout,
+      description,
+      careRoutine,
+      specialNeeds: booleanCheck
+    }
+  })
   res.redirect('/user-profile')
+};
+
+const adoptAnimal = async (req, res, next) => {
+  try {
+    const animal = await Animal.findById(req.params.animalId);
+    const adoption = await Adoption.create({
+      name: animal.name,
+      checkin: animal.checkin,
+      checkout: animal.checkout,
+      owner: animal.owner,
+      host: req.session.currentUser._id
+    });
+    res.redirect('/');
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      res.status(400).render('error', {
+        errorMessage: error.message
+      })
+    } else if (error instanceof TypeError) {
+      // Handling the error if it's a MongoDB duplication error
+      res.status(400).render('auth/login', {
+        errorMessage: 'You must be logged in to access to adopt a pet'
+      })
+    } else {
+      next(error)
+    }
+  }
+};
+
+const getAdoptionData = async (res, req, next) => {
+  // Buscar la info de l'adopció i passar-la a una view
+  res.render()
 }
 
 module.exports = {
@@ -178,5 +235,7 @@ module.exports = {
   deleteAnimal,
   getAnimalsList,
   getEditAnimalForm,
-  editAnimal
+  editAnimal,
+  adoptAnimal,
+  getAdoptionData
 }
