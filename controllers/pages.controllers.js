@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
 const Animal = require('../models/Animal.model');
+const User = require('../models/User.model');
 const {formatDate} = require('../helpers/helpers');
+
 
 const getIndex = async (req, res, next) => {
   try {
@@ -151,22 +153,38 @@ const getEditAnimalForm = async (req, res, next) => {
 };
 
 const editAnimal = async (req, res, next) => {
-  console.log('Edit form submitted, values changed=>', req.body)
-  const {
-    name,
-    category,
-    size,
-    checkin,
-    checkout,
-    description,
-    careRoutine,
-    specialNeeds
-  } = req.body;
+  try {
+    console.log('Edit form submitted, values changed=>', req.body)
+    console.log('req.file.path', req.file)
+    const {
+      name,
+      category,
+      size,
+      checkin,
+      checkout,
+      description,
+      careRoutine,
+      specialNeeds
+    } = req.body;
 
-  const booleanCheck = specialNeeds ? true : false;
+    const booleanCheck = specialNeeds ? true : false;
 
-  const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {$set: {name, category, size, image:req.file.path, checkin, checkout, description, careRoutine, specialNeeds: booleanCheck}})
-  res.redirect('/user-profile')
+    const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {$set: {name, category, size, image: req.file.path, checkin, checkout, description, careRoutine, specialNeeds: booleanCheck}})
+    res.redirect('/user-profile')
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
+const getSittersList = async (req, res, next) => {
+  const sitters = await User.find({})
+  res.render('users', {sitters})
+}
+
+const getEditProfileForm = async (req, res, next) => {
+  const user = await User.findById(req.params.userId)
+  res.render('edit-user', {user});
 }
 
 module.exports = {
@@ -178,5 +196,7 @@ module.exports = {
   deleteAnimal,
   getAnimalsList,
   getEditAnimalForm,
-  editAnimal
+  editAnimal,
+  getSittersList,
+  getEditProfileForm
 }

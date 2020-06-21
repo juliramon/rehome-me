@@ -24,9 +24,8 @@ const userSchema = new Schema({
     type: String,
     match: [/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm, 'Invalid URL']
   },
-  description: {
-    type: String
-  }
+  description: String,
+  sitter: Boolean
 });
 
 const User = mongoose.model('User', userSchema);

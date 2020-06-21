@@ -17,9 +17,9 @@
             <li class="username"><h1>{{userInSession.username}}</h1></li>
             <li class="username"><p>@{{userInSession.username}}</p></li>
             <li class="description">{{userInSession.description}}</li>
-            {{!-- <li class="edit-profile">
-              <a href="/users/edit?user_id={{_id}}" title="Edit profile" class="btn">Edit profile</a>
-            </li> --}}
+            <li class="edit-profile">
+              <a href="/user/{{userInSession._id}}/edit" title="Edit profile">Edit profile</a>
+            </li>
           </ul>
         </div>
       </div>
