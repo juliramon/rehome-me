@@ -13,8 +13,12 @@ const adoptionSchema = new Schema({
   },
   checkout: {
     type: Date,
-    required: true,
     default: Date.now
+  },
+  animal: {
+    type: Schema.Types.ObjectId,
+    ref: 'Animal',
+    required: true
   },
   owner: {
     type: Schema.Types.ObjectId,
@@ -25,7 +29,7 @@ const adoptionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: [true, 'You must be logged in to access to this feature']
-  }
+  },
 });
 
 const Adoption = mongoose.model('Adoption', adoptionSchema);

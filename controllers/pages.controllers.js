@@ -198,7 +198,7 @@ const adoptAnimal = async (req, res, next) => {
   try {
     const animal = await Animal.findById(req.params.animalId);
     const adoption = await Adoption.create({
-      name: animal.name,
+      animal: animal._id,
       checkin: animal.checkin,
       checkout: animal.checkout,
       owner: animal.owner,
@@ -221,11 +221,6 @@ const adoptAnimal = async (req, res, next) => {
   }
 };
 
-const getAdoptionData = async (res, req, next) => {
-  // Buscar la info de l'adopció i passar-la a una view
-  res.render()
-}
-
 module.exports = {
   getIndex,
   getUserProfile,
@@ -237,5 +232,4 @@ module.exports = {
   getEditAnimalForm,
   editAnimal,
   adoptAnimal,
-  getAdoptionData
 }
