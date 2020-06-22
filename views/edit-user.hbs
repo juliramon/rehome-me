@@ -10,8 +10,8 @@
         <label for="avatar">Avatar</label>
         <div class="wrapper">
           <div class="col">
-            <div class="avatar">
-              <img src="{{user.avatar}}" alt="{{user.name}}">
+            <div class="image">
+              <img src="{{avatar}}" alt="{{user.name}}">
             </div>
           </div>
           <div class="col">
@@ -22,12 +22,12 @@
 
       <div class="input-group">
         <label for="description">User description</label>
-        <textarea id="description" name="description" rows="4" cols="50" placeholder="Enter a description..."></textarea>
+        <textarea id="description" name="description" rows="4" cols="50" placeholder="Enter a description...">{{user.description}}</textarea>
       </div>
 
       <div class="input-group">
-        <input type="checkbox" id="isSitter" name="isSitter" {{#if user.isSitter}} checked="true" {{/if}}class="inline">
-        <label for="isSitter" class="inline">Sitter</label>
+        <input type="checkbox" id="sitter" name="sitter" {{#if user.sitter}} checked="true" {{/if}}class="inline">
+        <label for="sitter" class="inline">Sitter</label>
       </div>
       <input type="submit" value="Submit edit">
       {{#if errorMessage}}

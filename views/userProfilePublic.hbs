@@ -1,14 +1,12 @@
 <section id="userProfile">
   <div class="header">
-    <h1>My Profile</h1>
-    <p>See and edit your profile data and animals added</p>
+    <h1>{{user.username}}'s profile</h1>
   </div>
   <div class="box">
-    {{#if userInSession}}
     <div class="user wrapper">
       <div class="col">
         <div class="avatar">
-          <img src="{{avatar}}" alt="{{user.username}}">
+          <img src="{{avatar}}" alt="John Doe">
         </div>
       </div>
       <div class="col">
@@ -17,10 +15,7 @@
             <li class="username"><h1>{{user.username}}</h1></li>
             <li class="username"><p>@{{user.username}}</p></li>
             <li class="description">{{user.description}}</li>
-            <li class="">{{#if user.sitter}} User is sitter {{/if}}</li>
-            <li>
-              <a href="/user/{{user._id}}/edit" title="Edit profile">Edit profile</a>
-            </li>
+            <li class="">{{#if user.sitter}} User is a sitter {{/if}}</li>
           </ul>
         </div>
       </div>
@@ -31,11 +26,8 @@
   </div>
   <div class="animals wrapper">
     {{#each userAnimals}}
-      {{> animalCardCRUD}}
+      {{> animalCardPublic}}
     {{/each}}
   </div>
-  {{else}}
-    <p>Still not logged in. Please <a href="/login">login</a>.</p>
-  {{/if}}
   {{> addButton}}
 </section>
