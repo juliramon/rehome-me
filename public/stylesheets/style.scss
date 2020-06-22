@@ -286,7 +286,7 @@ p {
 .floating-button .add-btn {
   height: 70px;
   width: 70px;
-  background-color: $soft-green;
+  background-color: $dark-green;
   border-radius: 70px;
   display: block;
   text-align: center;
@@ -390,8 +390,22 @@ p {
 }
 
 .animal-text {
-  margin: 10% 2%;
+  margin: 10% 2% 0% 2%;
   background-color: $soft-green;
+}
+
+.animal-adoption {
+  padding: 2%;
+  margin: 5% 3% 20% 3%;
+  padding: 5%;
+  color: $dark-green;
+  border: 2px solid $dark-green;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.animal-adoption>form {
+  margin-top: 3%;
 }
 
 /* FEATURED ANIMALS*/
@@ -492,7 +506,6 @@ p {
 /* FOOTER */
 footer {
   width: 100%;
-  margin-top: 2%;
   padding: 1.6em;
   background-color: $dark-green;
   color: $white;

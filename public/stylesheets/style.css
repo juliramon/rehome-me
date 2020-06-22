@@ -230,7 +230,7 @@ p {
 .floating-button .add-btn {
   height: 70px;
   width: 70px;
-  background-color: #86B8B1;
+  background-color: #4D716D;
   border-radius: 70px;
   display: block;
   text-align: center;
@@ -314,8 +314,20 @@ p {
   border-radius: 100%; }
 
 .animal-text {
-  margin: 10% 2%;
+  margin: 10% 2% 0% 2%;
   background-color: #86B8B1; }
+
+.animal-adoption {
+  padding: 2%;
+  margin: 5% 3% 20% 3%;
+  padding: 5%;
+  color: #4D716D;
+  border: 2px solid #4D716D;
+  border-radius: 20px;
+  text-align: center; }
+
+.animal-adoption > form {
+  margin-top: 3%; }
 
 /* FEATURED ANIMALS*/
 .featured-animals > h2 {
@@ -397,7 +409,6 @@ p {
 /* FOOTER */
 footer {
   width: 100%;
-  margin-top: 2%;
   padding: 1.6em;
   background-color: #4D716D;
   color: #FFFFFF;

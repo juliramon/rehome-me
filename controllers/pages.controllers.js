@@ -8,8 +8,9 @@ const {
 
 const getIndex = async (req, res, next) => {
   try {
-    const animals = await Animal.find().limit(6);
-    console.log(animals)
+    const animals = await Animal.find({
+      adopted: undefined
+    }).limit(6);
     res.render('index', {
       animals: animals,
       userInSession: req.session.currentUser
@@ -22,12 +23,22 @@ const getIndex = async (req, res, next) => {
 const getUserProfile = async (req, res) => {
   try {
     const userAnimals = await Animal.find({
+      owner: req.session.currentUser._id,
+      adopted: undefined
+    })
+    const userAnimalsAdopted = await Adoption.find({
       owner: req.session.currentUser._id
-    });
-    console.log(userAnimals)
+    }).populate('animal').populate('host')
+
+    const userAnimalsOwned = await Adoption.find({
+      host: req.session.currentUser._id
+    }).populate('animal').populate('owner')
+
     res.render('user-profile', {
       userInSession: req.session.currentUser,
-      userAnimals
+      userAnimals,
+      userAnimalsAdopted,
+      userAnimalsOwned
     })
   } catch (error) {
     console.log(error)
@@ -48,7 +59,7 @@ const createNewAnimal = async (req, res, next) => {
       checkout,
       description,
       careRoutine,
-      specialNeeds
+      specialNeeds,
     } = req.body;
 
     const hasEmptyCredentials = !name || !category || !size || !checkin || !checkout || !description;
@@ -70,7 +81,7 @@ const createNewAnimal = async (req, res, next) => {
       description,
       careRoutine,
       specialNeeds: booleanCheck,
-      owner: req.session.currentUser._id
+      owner: req.session.currentUser._id,
     })
     return res.redirect('/user-profile');
   } catch (error) {
@@ -112,7 +123,9 @@ const deleteAnimal = async (req, res, next) => {
 };
 
 const getAnimalsList = async (req, res, next) => {
-  const animals = await Animal.find();
+  const animals = await Animal.find({
+    adopted: undefined
+  });
   res.render('animals', {
     animals,
     userInSession: req.session.currentUser
@@ -164,7 +177,6 @@ const getEditAnimalForm = async (req, res, next) => {
 };
 
 const editAnimal = async (req, res, next) => {
-  console.log('Edit form submitted, values changed=>', req.body)
   const {
     name,
     category,
@@ -204,14 +216,20 @@ const adoptAnimal = async (req, res, next) => {
       owner: animal.owner,
       host: req.session.currentUser._id
     });
-    res.redirect('/');
+    const animalAdopted = await Animal.findOneAndUpdate({
+      _id: req.params.animalId
+    }, {
+      adopted: true
+    }, {
+      new: true
+    })
+    res.redirect('/user-profile');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).render('error', {
         errorMessage: error.message
       })
     } else if (error instanceof TypeError) {
-      // Handling the error if it's a MongoDB duplication error
       res.status(400).render('auth/login', {
         errorMessage: 'You must be logged in to access to adopt a pet'
       })

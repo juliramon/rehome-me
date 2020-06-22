@@ -1,0 +1,22 @@
+<div class="box animal">
+  <div class="col">
+    <div class="avatar">
+      <a href="/animal/{{animal._id}}">
+        <img src="{{animal.image}}" alt="">
+      </a>
+    </div>
+  </div>
+  <div class="col">
+    <a href="/animal/{{animal._id}}">
+      <ul>
+        <li class="name">
+          <h3>{{animal.name}}</h3>
+        </li>
+        <li>Adoptive family: {{host.email}} </li>
+      </ul>
+    </a>
+    <div class="buttons">
+      <a href="/animal/{{_id}}/edit" title="Edit" class="btn">Edit</a>
+    </div>
+  </div>
+</div>
