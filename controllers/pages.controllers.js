@@ -236,6 +236,17 @@ const getSitterDetails = async (req, res, next) => {
   }
 }
 
+const deleteUser = async (req, res, next) => {
+  try{
+    const user = await User.deleteOne({_id: req.params.userId})
+    const userAnimals = await Animal.deleteMany({owner: req.session.currentUser._id})
+    req.session.destroy();
+    res.redirect('/');
+  } catch(error){
+    console.log('Error deleting the user =>', error);
+  }
+}
+
 module.exports = {
   getIndex,
   getUserProfile,
@@ -249,5 +260,6 @@ module.exports = {
   getSittersList,
   getEditProfileForm,
   editUser,
-  getSitterDetails
+  getSitterDetails,
+  deleteUser
 }

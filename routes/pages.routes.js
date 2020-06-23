@@ -14,7 +14,8 @@ const {
   getSitterDetails,
   getSittersList,
   getEditProfileForm,
-  editUser
+  editUser,
+  deleteUser
 } = require('../controllers/pages.controllers');
 
 const router = express.Router();
@@ -33,6 +34,6 @@ router
   .get('/user/:userId', getSitterDetails)
   .get('/user/:userId/edit', getEditProfileForm)
   .post('/user/:userId/edit', fileUploader.single('avatar'), editUser)
+  .get('/user/:userId/delete', deleteUser)
   
-
 module.exports = router;
