@@ -1,0 +1,33 @@
+<section id="userProfile">
+  <div class="header">
+    <h1>{{user.username}}'s profile</h1>
+  </div>
+  <div class="box">
+    <div class="user wrapper">
+      <div class="col">
+        <div class="avatar">
+          <img src="{{avatar}}" alt="John Doe">
+        </div>
+      </div>
+      <div class="col">
+        <div class="user-data">
+          <ul>
+            <li class="username"><h1>{{user.username}}</h1></li>
+            <li class="username"><p>@{{user.username}}</p></li>
+            <li class="description">{{user.description}}</li>
+            <li class="">{{#if user.sitter}} User is a sitter {{/if}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header">
+    <h2>{{user.username}}'s animals</h2>
+  </div>
+  <div class="animals wrapper">
+    {{#each userAnimals}}
+      {{> animalCardPublic}}
+    {{/each}}
+  </div>
+  {{> addButton}}
+</section>

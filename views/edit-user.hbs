@@ -1,0 +1,38 @@
+<section class="mw-1600">
+  <div class="form">
+    <form method="POST" enctype="multipart/form-data">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Edit your username" value="{{user.username}}">
+      </div>
+
+      <div class="input-group">
+        <label for="avatar">Avatar</label>
+        <div class="wrapper">
+          <div class="col">
+            <div class="image">
+              <img src="{{avatar}}" alt="{{user.name}}">
+            </div>
+          </div>
+          <div class="col">
+            <input type="file" name="avatar" id="avatar" value="{{user.avatar}}">
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="description">User description</label>
+        <textarea id="description" name="description" rows="4" cols="50" placeholder="Enter a description...">{{user.description}}</textarea>
+      </div>
+
+      <div class="input-group">
+        <input type="checkbox" id="sitter" name="sitter" {{#if user.sitter}} checked="true" {{/if}}class="inline">
+        <label for="sitter" class="inline">Sitter</label>
+      </div>
+      <input type="submit" value="Submit edit">
+      {{#if errorMessage}}
+      <p>{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
+</section>

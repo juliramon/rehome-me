@@ -5,6 +5,7 @@ const Adoption = require('../models/Adoption.model');
 const {
   formatDate
 } = require('../helpers/helpers');
+const User = require('../models/User.model');
 
 const getIndex = async (req, res, next) => {
   try {
@@ -34,11 +35,18 @@ const getUserProfile = async (req, res) => {
       host: req.session.currentUser._id
     }).populate('animal').populate('owner')
 
+    console.log(userAnimalsOwned)
+
+    const user = await User.findById(req.session.currentUser._id)
+    const emptyAvatar = 'https://res.cloudinary.com/agustems/image/upload/v1592843963/rehome-me/empty-avatar.svg.svg';
+    const avatar = user.avatar || emptyAvatar
     res.render('user-profile', {
+      user,
       userInSession: req.session.currentUser,
       userAnimals,
       userAnimalsAdopted,
-      userAnimalsOwned
+      userAnimalsOwned,
+      avatar
     })
   } catch (error) {
     console.log(error)
@@ -206,6 +214,7 @@ const editAnimal = async (req, res, next) => {
   res.redirect('/user-profile')
 };
 
+
 const adoptAnimal = async (req, res, next) => {
   try {
     const animal = await Animal.findById(req.params.animalId);
@@ -239,6 +248,76 @@ const adoptAnimal = async (req, res, next) => {
   }
 };
 
+
+
+
+
+const getEditProfileForm = async (req, res, next) => {
+  const user = await User.findById(req.params.userId)
+  const emptyAvatar = 'https://res.cloudinary.com/agustems/image/upload/v1592843963/rehome-me/empty-avatar.svg.svg';
+  const avatar = user.avatar || emptyAvatar
+  res.render('edit-user', {user, avatar});
+}
+
+const editUser = async (req, res, next) => {
+  try {
+    console.log('Edit form submitted, values changed=>', req.body);
+    const {
+      username, 
+      avatar, 
+      description,
+      sitter
+    } = req.body;
+
+    const booleanCheck = sitter ? true : false;
+
+    const editUser = await User.findByIdAndUpdate(req.params.userId, {$set: {username, avatar: req.file.path, description, sitter: booleanCheck}})
+    res.redirect('/user-profile')
+
+  } catch (error){
+    console.log(error);
+  }
+}
+
+const getSittersList = async (req, res, next) => {
+  try{
+    const sitters = await User.find({sitter: true});
+    res.render('users', {sitters, userInSession: req.session.currentUser});
+  } catch(error){
+    console.log(error);
+  }
+}
+
+const getSitterDetails = async (req, res, next) => {
+  try{
+    const userAnimals = await Animal.find({
+      owner: req.params.userId
+    });
+    const user = await User.findById(req.params.userId);
+    console.log(user)
+    const emptyAvatar = 'https://res.cloudinary.com/agustems/image/upload/v1592843963/rehome-me/empty-avatar.svg.svg';
+    const avatar = user.avatar || emptyAvatar
+    if(user._id == req.session.currentUser._id){
+      res.render('user-profile', {user, avatar, userAnimals, userInSession: req.session.currentUser});  
+    } else {
+      res.render('userProfilePublic', {user, avatar, userAnimals, userInSession: req.session.currentUser});
+    }
+  } catch(error){
+    console.log(error);
+  }
+}
+
+const deleteUser = async (req, res, next) => {
+  try{
+    const user = await User.deleteOne({_id: req.params.userId})
+    const userAnimals = await Animal.deleteMany({owner: req.session.currentUser._id})
+    req.session.destroy();
+    res.redirect('/');
+  } catch(error){
+    console.log('Error deleting the user =>', error);
+  }
+}
+
 module.exports = {
   getIndex,
   getUserProfile,
@@ -250,4 +329,9 @@ module.exports = {
   getEditAnimalForm,
   editAnimal,
   adoptAnimal,
+  getSittersList,
+  getEditProfileForm,
+  editUser,
+  getSitterDetails,
+  deleteUser
 }

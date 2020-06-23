@@ -8,29 +8,27 @@
     <div class="user wrapper">
       <div class="col">
         <div class="avatar">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe">
+          <img src="{{avatar}}" alt="{{user.username}}">
         </div>
       </div>
       <div class="col">
         <div class="user-data">
           <ul>
-            <li class="username">
-              <h1>{{userInSession.username}}</h1>
+            <li class="username"><h1>{{user.username}}</h1></li>
+            <li class="username"><p>@{{user.username}}</p></li>
+            <li class="description">{{user.description}}</li>
+            <li class="">{{#if user.sitter}} User is sitter {{/if}}</li>
+            <li>
+              <a href="/user/{{user._id}}/edit" title="Edit profile">Edit profile</a>
+              <a href="/user/{{user._id}}/delete" title="Delete profile">Delete profile</a>
             </li>
-            <li class="username">
-              <p>@{{userInSession.username}}</p>
-            </li>
-            <li class="description">{{userInSession.description}}</li>
-            {{!-- <li class="edit-profile">
-              <a href="/users/edit?user_id={{_id}}" title="Edit profile" class="btn">Edit profile</a>
-            </li> --}}
           </ul>
         </div>
       </div>
     </div>
   </div>
   <div class="header">
-    <h2>{{userInSession.username}}'s animals up for adoption</h2>
+    <h2>{{user.username}}'s animals</h2>
   </div>
   <div class="animals wrapper">
     {{#each userAnimals}}
