@@ -22,7 +22,8 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    // match: [/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm, 'Invalid URL']
+    default: 'https://res.cloudinary.com/agustems/image/upload/v1592843963/rehome-me/empty-avatar.svg.svg',
+    match: [/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm, 'Invalid URL']
   },
   description: String,
   sitter: Boolean
