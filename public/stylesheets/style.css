@@ -14,7 +14,9 @@ section {
 a {
   text-decoration: none; }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: 0; }
 
 /* Responsive NavBar */
@@ -135,7 +137,8 @@ nav .wrapper {
 .buttons-log > form {
   margin: 3%; }
 
-input[type=submit], button[type=submit] {
+input[type=submit],
+button[type=submit] {
   background-color: #FFFFFF;
   color: #86B8B1;
   text-transform: uppercase;
@@ -148,7 +151,8 @@ input[type=submit], button[type=submit] {
   transition: all 0.4s ease 0s;
   cursor: pointer; }
 
-input[type=submit]:hover, button[type=submit]:hover {
+input[type=submit]:hover,
+button[type=submit]:hover {
   color: #FFFFFF;
   background-color: #86B8B1;
   border: 1px solid #FFFFFF;
@@ -158,7 +162,11 @@ input[type=submit]:hover, button[type=submit]:hover {
   text-align: center;
   border-bottom: 1px dotted #86B8B1; }
 
-.process h2, .process h3, .process h4, .process h5, .process .fa {
+.process h2,
+.process h3,
+.process h4,
+.process h5,
+.process .fa {
   color: #4D716D; }
 
 .features {
@@ -179,7 +187,9 @@ input[type=submit]:hover, button[type=submit]:hover {
 #userProfile {
   padding-top: 15px; }
 
-#userProfile .header > h1, h2, p {
+#userProfile .header > h1,
+h2,
+p {
   margin: 10px 0;
   color: #4D716D; }
 
@@ -220,7 +230,7 @@ input[type=submit]:hover, button[type=submit]:hover {
 .floating-button .add-btn {
   height: 70px;
   width: 70px;
-  background-color: #86B8B1;
+  background-color: #4D716D;
   border-radius: 70px;
   display: block;
   text-align: center;
@@ -304,8 +314,20 @@ input[type=submit]:hover, button[type=submit]:hover {
   border-radius: 100%; }
 
 .animal-text {
-  margin: 10% 2%;
+  margin: 10% 2% 0% 2%;
   background-color: #86B8B1; }
+
+.animal-adoption {
+  padding: 2%;
+  margin: 5% 3% 20% 3%;
+  padding: 5%;
+  color: #4D716D;
+  border: 2px solid #4D716D;
+  border-radius: 20px;
+  text-align: center; }
+
+.animal-adoption > form {
+  margin-top: 3%; }
 
 /* FEATURED ANIMALS*/
 .featured-animals > h2 {
@@ -348,7 +370,9 @@ input[type=submit]:hover, button[type=submit]:hover {
 .form .input-group {
   margin-bottom: 15px; }
 
-.form input, .form select, .form textarea {
+.form input,
+.form select,
+.form textarea {
   padding: 10px;
   width: 100%;
   border-radius: 4px;
@@ -385,7 +409,6 @@ input[type=submit]:hover, button[type=submit]:hover {
 /* FOOTER */
 footer {
   width: 100%;
-  margin-top: 2%;
   padding: 1.6em;
   background-color: #4D716D;
   color: #FFFFFF;
@@ -402,5 +425,14 @@ footer > a {
 footer > img {
   width: 1.2em;
   margin-right: 0.7em; }
+
+/* ERROR HANDLING */
+.error {
+  background: #f02b63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 380px; }
 
 /*# sourceMappingURL=style.css.map */

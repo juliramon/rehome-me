@@ -14,8 +14,12 @@
       <div class="col">
         <div class="user-data">
           <ul>
-            <li class="username"><h1>{{userInSession.username}}</h1></li>
-            <li class="username"><p>@{{userInSession.username}}</p></li>
+            <li class="username">
+              <h1>{{userInSession.username}}</h1>
+            </li>
+            <li class="username">
+              <p>@{{userInSession.username}}</p>
+            </li>
             <li class="description">{{userInSession.description}}</li>
             {{!-- <li class="edit-profile">
               <a href="/users/edit?user_id={{_id}}" title="Edit profile" class="btn">Edit profile</a>
@@ -26,15 +30,31 @@
     </div>
   </div>
   <div class="header">
-    <h2>{{userInSession.username}}'s animals</h2>
+    <h2>{{userInSession.username}}'s animals up for adoption</h2>
   </div>
   <div class="animals wrapper">
     {{#each userAnimals}}
-      {{> animalCardCRUD}}
+    {{> animalCardCRUD}}
+    {{/each}}
+  </div>
+  <div class="header">
+    <h2>{{userInSession.username}}'s already rehomed!</h2>
+  </div>
+  <div class="animals wrapper">
+    {{#each userAnimalsAdopted}}
+    {{> animalCardADOPT}}
+    {{/each}}
+  </div>
+  <div class="header">
+    <h2>{{userInSession.username}}'s animals pets!</h2>
+  </div>
+  <div class="animals wrapper">
+    {{#each userAnimalsOwned}}
+    {{> animalCardOWNED}}
     {{/each}}
   </div>
   {{else}}
-    <p>Still not logged in. Please <a href="/login">login</a>.</p>
+  <p>Still not logged in. Please <a href="/login">login</a>.</p>
   {{/if}}
   {{> addButton}}
 </section>

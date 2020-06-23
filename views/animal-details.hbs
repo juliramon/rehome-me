@@ -10,8 +10,8 @@
         <li><b>Category: </b>{{findAnimal.category}}</li><br>
         <li><b>Size: </b>{{findAnimal.size}}</li><br>
         <li><b>CheckIn / CheckOut: </b>{{checkInDate}} /
-        <br>
-         {{checkOutDate}}</li><br>
+          <br>
+          {{checkOutDate}}</li><br>
         {{#if findAnimal.specialNeeds}}
         <li><b>Animal with special needs</b></li>
         {{/if}}
@@ -27,5 +27,11 @@
       <h3>Care Routine</h3><br>
       <p>{{findAnimal.careRoutine}}</p>
     </div>
+  </section>
+  <section class="animal-adoption">
+    <h3>{{findAnimal.name}} is up for rehoming. Do you want to be it's new family?</h3>
+    <form action="/animal/{{findAnimal._id}}/adopt" method="POST">
+      <input type="submit" value="Adopt">
+    </form>
   </section>
 </main>

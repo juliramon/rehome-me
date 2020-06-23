@@ -10,7 +10,8 @@ const {
   deleteAnimal,
   getAnimalsList,
   getEditAnimalForm,
-  editAnimal
+  editAnimal,
+  adoptAnimal,
 } = require('../controllers/pages.controllers');
 
 const router = express.Router();
@@ -25,5 +26,6 @@ router
   .get('/animals', getAnimalsList)
   .get('/animal/:animalId/edit', getEditAnimalForm)
   .post('/animal/:animalId/edit', fileUploader.single('image'), editAnimal)
+  .post('/animal/:animalId/adopt', adoptAnimal)
 
 module.exports = router;

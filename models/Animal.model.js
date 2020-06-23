@@ -32,12 +32,13 @@ const animalSchema = new Schema({
     type: String,
     required: true,
   },
-  careRoutine: String ,
+  careRoutine: String,
   specialNeeds: Boolean,
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-  }
+  },
+  adopted: Boolean
 });
 
 const Animal = mongoose.model('Animal', animalSchema);
