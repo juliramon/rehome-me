@@ -123,12 +123,18 @@ const deleteAnimal = async (req, res, next) => {
 };
 
 const getAnimalsList = async (req, res, next) => {
-  const animals = await Animal.find({
+  const filter = {
     adopted: undefined
-  });
+  }
+  if (req.query.filter) {
+    filter.category = req.query.filter
+  }
+
+  const animals = await Animal.find(filter);
   res.render('animals', {
     animals,
-    userInSession: req.session.currentUser
+    userInSession: req.session.currentUser,
+    activeFilter: req.query.filter
   })
 }
 

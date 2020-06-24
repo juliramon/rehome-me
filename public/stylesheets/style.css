@@ -9,7 +9,7 @@
   margin: 0 auto; }
 
 section {
-  padding: 45px 20px; }
+  padding: 25px 20px; }
 
 a {
   text-decoration: none; }
@@ -330,6 +330,9 @@ p {
   margin-top: 3%; }
 
 /* FEATURED ANIMALS*/
+.featured-animals {
+  margin-bottom: 10%; }
+
 .featured-animals > h2 {
   color: #4D716D; }
 
@@ -434,5 +437,18 @@ footer > img {
   margin: 20px auto;
   padding: 20px;
   width: 380px; }
+
+/* FILTER BAR */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 5%; }
+
+.btn-filter {
+  margin: 10px; }
+
+.btn-filter > img {
+  width: 30px; }
 
 /*# sourceMappingURL=style.css.map */
