@@ -5,6 +5,12 @@ const mongoose = require('mongoose');
 const saltRounds = 10;
 
 const loadSignupForm = (req, res) => {
+  if(!req.session.visitedUrls){
+    req.session.visitedUrls = [];
+    req.session.visitedUrls.push(req.url);
+  } else {
+    req.session.visitedUrls.push(req.url);
+  }
   if(req.session.currentUser){
     return res.redirect('/user-profile');
   } else {
@@ -59,6 +65,12 @@ const submitSignupForm = async (req, res, next) => {
 };
 
 const loadLoginForm = (req, res) => {
+  if(!req.session.visitedUrls){
+    req.session.visitedUrls = [];
+    req.session.visitedUrls.push(req.url);
+  } else {
+    req.session.visitedUrls.push(req.url);
+  }
   if(req.session.currentUser){
     return res.redirect('/user-profile');
   } else {

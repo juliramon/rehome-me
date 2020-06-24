@@ -1,15 +1,22 @@
+require('../configs/session.config');
+
 const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
 const Animal = require('../models/Animal.model');
 const Adoption = require('../models/Adoption.model');
-const User = require('../models/User.model');
 const {
   formatDate
 } = require('../helpers/helpers');
-
+const User = require('../models/User.model');
 
 const getIndex = async (req, res, next) => {
   try {
+    if(!req.session.visitedUrls){
+      req.session.visitedUrls = [];
+      req.session.visitedUrls.push(req.url);
+    } else {
+      req.session.visitedUrls.push(req.url);
+    }
     const animals = await Animal.find({
       adopted: undefined
     }).limit(6);
@@ -24,6 +31,12 @@ const getIndex = async (req, res, next) => {
 
 const getUserProfile = async (req, res) => {
   try {
+    if(!req.session.visitedUrls){
+      req.session.visitedUrls = [];
+      req.session.visitedUrls.push(req.url);
+    } else {
+      req.session.visitedUrls.push(req.url);
+    }
     const userAnimals = await Animal.find({
       owner: req.session.currentUser._id,
       adopted: undefined
@@ -49,7 +62,15 @@ const getUserProfile = async (req, res) => {
   }
 }
 
-const getAnimalForm = (req, res) => res.render('add-animal', {userInSession: req.session.currentUser});
+const getAnimalForm = (req, res) => {
+  if(!req.session.visitedUrls){
+    req.session.visitedUrls = [];
+    req.session.visitedUrls.push(req.url);
+  } else {
+    req.session.visitedUrls.push(req.url);
+  }
+  res.render('add-animal', {userInSession: req.session.currentUser})
+};
 
 const createNewAnimal = async (req, res, next) => {
   try {
@@ -103,6 +124,12 @@ const createNewAnimal = async (req, res, next) => {
 
 const getAnimalDetails = async (req, res, next) => {
   try {
+    if(!req.session.visitedUrls){
+      req.session.visitedUrls = [];
+      req.session.visitedUrls.push(req.url);
+    } else {
+      req.session.visitedUrls.push(req.url);
+    }
     const findAnimal = await Animal.findById(req.params.id);
     const checkInDate = formatDate(findAnimal, 'checkin');
     const checkOutDate = formatDate(findAnimal, 'checkout');
@@ -126,6 +153,12 @@ const deleteAnimal = async (req, res, next) => {
 
 const getAnimalsList = async (req, res, next) => {
   try {
+    if(!req.session.visitedUrls){
+      req.session.visitedUrls = [];
+      req.session.visitedUrls.push(req.url);
+    } else {
+      req.session.visitedUrls.push(req.url);
+    }
     const animals = await Animal.find({
       adopted: undefined
     });
@@ -140,6 +173,12 @@ const getAnimalsList = async (req, res, next) => {
 
 const getEditAnimalForm = async (req, res, next) => {
   try{
+    if(!req.session.visitedUrls){
+      req.session.visitedUrls = [];
+      req.session.visitedUrls.push(req.url);
+    } else {
+      req.session.visitedUrls.push(req.url);
+    }
     const animal = await Animal.findById(req.params.animalId);
     const checkInDate = formatDate(animal, 'checkin');
     const checkOutDate = formatDate(animal, 'checkout');
@@ -249,6 +288,12 @@ const adoptAnimal = async (req, res, next) => {
 
 const getEditProfileForm = async (req, res, next) => {
   try{
+    if(!req.session.visitedUrls){
+      req.session.visitedUrls = [];
+      req.session.visitedUrls.push(req.url);
+    } else {
+      req.session.visitedUrls.push(req.url);
+    }
     const user = await User.findById(req.params.userId)
     res.render('edit-user', {user});
   }catch(error){
@@ -277,6 +322,12 @@ const editUser = async (req, res, next) => {
 
 const getSittersList = async (req, res, next) => {
   try{
+    if(!req.session.visitedUrls){
+      req.session.visitedUrls = [];
+      req.session.visitedUrls.push(req.url);
+    } else {
+      req.session.visitedUrls.push(req.url);
+    }
     const sitters = await User.find({sitter: true});
     res.render('users', {sitters, userInSession: req.session.currentUser});
   } catch(error){
@@ -286,6 +337,12 @@ const getSittersList = async (req, res, next) => {
 
 const getSitterDetails = async (req, res, next) => {
   try{
+    if(!req.session.visitedUrls){
+      req.session.visitedUrls = [];
+      req.session.visitedUrls.push(req.url);
+    } else {
+      req.session.visitedUrls.push(req.url);
+    }
     const userAnimals = await Animal.find({
       owner: req.params.userId
     });
