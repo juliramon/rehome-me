@@ -549,9 +549,31 @@ footer>img {
 }
 
 .btn-filter {
-  margin: 10px;
+  margin: 5px;
 }
 
 .btn-filter>img {
   width: 30px;
+}
+
+@media screen and (min-width: 800px) {
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-bottom: 5%;
+  }
+
+  .btn-filter>img {
+    width: 50px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .filter-bar {
+    display: flex;
+    justify-content: left;
+    flex-wrap: nowrap;
+    margin-bottom: 5%;
+  }
 }
