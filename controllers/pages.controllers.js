@@ -127,13 +127,19 @@ const deleteAnimal = async (req, res, next) => {
 
 const getAnimalsList = async (req, res, next) => {
   try {
-    const animals = await Animal.find({
-      adopted: undefined
-    });
-    res.render('animals', {
-      animals,
-      userInSession: req.session.currentUser
-    })
+      const filter = {
+    adopted: undefined
+  }
+  if (req.query.filter) {
+    filter.category = req.query.filter
+  }
+
+  const animals = await Animal.find(filter);
+  res.render('animals', {
+    animals,
+    userInSession: req.session.currentUser,
+    activeFilter: req.query.filter
+  })
   }catch(error){
     console.log('Error getting the animals list =>', error)
   }
@@ -196,19 +202,23 @@ const editAnimal = async (req, res, next) => {
       specialNeeds
     } = req.body;
     const booleanCheck = specialNeeds ? true : false;
+    const formFields = {
+      name,
+      category,
+      size,
+      checkin,
+      checkout,
+      description,
+      careRoutine,
+      specialNeeds: booleanCheck
+    }
+    if(req.file){
+      formFields.image = req.file.path;
+    }
     const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {
-      $set: {
-        name,
-        category,
-        size,
-        image: req.file.path,
-        checkin,
-        checkout,
-        description,
-        careRoutine,
-        specialNeeds: booleanCheck
-      }
+      $set: formFields
     })
+    console.log(editAnimal)
     res.redirect('/user-profile')
   }catch(error){
     console.log('Error editing the animal =>', error)
@@ -292,9 +302,9 @@ const getSitterDetails = async (req, res, next) => {
     });
     const user = await User.findById(req.params.userId);
     if(user._id == req.session.currentUser._id){
-      res.render('user-profile', {user, avatar, userAnimals, userInSession: req.session.currentUser});  
+      res.render('user-profile', {user, userAnimals, userInSession: req.session.currentUser});  
     } else {
-      res.render('userProfilePublic', {user, avatar, userAnimals, userInSession: req.session.currentUser});
+      res.render('userProfilePublic', {user, userAnimals, userInSession: req.session.currentUser});
     }
   } catch(error){
     console.log('Error loading the user profile >', error);

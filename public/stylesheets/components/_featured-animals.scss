@@ -1,0 +1,33 @@
+/* FEATURED ANIMALS*/
+.featured-animals>h2 {
+  color: $dark-green;
+}
+
+.box.animal {
+  background-color: $soft-green;
+  border-radius: 15px;
+  width: 100%;
+  margin: 2% 0;
+  padding: 3%;
+}
+
+.box.animal a {
+  color: $white;
+}
+
+.box.animal .buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  margin-top: 10px;
+}
+
+.box.animal .buttons .btn {
+  width: 100px;
+}
+
+.box.animal .buttons .btn:first-child {
+  margin-right: 10px;
+}
