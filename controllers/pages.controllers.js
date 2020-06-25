@@ -2,9 +2,11 @@ const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
 const Animal = require('../models/Animal.model');
 const Adoption = require('../models/Adoption.model');
+const User = require('../models/User.model');
 const {
   formatDate
 } = require('../helpers/helpers');
+
 
 const getIndex = async (req, res, next) => {
   try {
@@ -34,20 +36,20 @@ const getUserProfile = async (req, res) => {
       host: req.session.currentUser._id
     }).populate('animal').populate('owner')
 
+    const user = await User.findById(req.session.currentUser._id)
     res.render('user-profile', {
+      user,
       userInSession: req.session.currentUser,
       userAnimals,
       userAnimalsAdopted,
-      userAnimalsOwned
+      userAnimalsOwned,
     })
-  } catch (error) {
-    console.log(error)
+  } catch(error) {
+    console.log('Error getting the user profile =>', error)
   }
 }
 
-const getAnimalForm = (req, res) => res.render('add-animal', {
-  userInSession: req.session.currentUser
-})
+const getAnimalForm = (req, res) => res.render('add-animal', {userInSession: req.session.currentUser});
 
 const createNewAnimal = async (req, res, next) => {
   try {
@@ -123,7 +125,8 @@ const deleteAnimal = async (req, res, next) => {
 };
 
 const getAnimalsList = async (req, res, next) => {
-  const filter = {
+  try {
+      const filter = {
     adopted: undefined
   }
   if (req.query.filter) {
@@ -136,80 +139,85 @@ const getAnimalsList = async (req, res, next) => {
     userInSession: req.session.currentUser,
     activeFilter: req.query.filter
   })
+  }catch(error){
+    console.log('Error getting the animals list =>', error)
+  }
 }
 
 const getEditAnimalForm = async (req, res, next) => {
-  const animal = await Animal.findById(req.params.animalId);
-  const checkInDate = formatDate(animal, 'checkin');
-  const checkOutDate = formatDate(animal, 'checkout');
-  const sizes = Animal.schema.path('size').enumValues;
-  const objSizes = sizes.map(el => {
-    const newEl = {
-      name: el
-    }
-    return newEl;
-  })
-
-  objSizes.forEach(el => {
-    if (el.name === animal.size) {
-      let index = objSizes.indexOf(el);
-      objSizes.splice(index, 1);
-    }
-  })
-
-  const species = Animal.schema.path('category').enumValues;
-  const objSpecies = species.map(el => {
-    const newEl = {
-      name: el
-    }
-    return newEl;
-  })
-
-  objSpecies.forEach(el => {
-    if (el.name === animal.category) {
-      let index = objSpecies.indexOf(el);
-      objSpecies.splice(index, 1);
-    }
-  })
-
-  res.render('edit-animal', {
-    animal,
-    checkInDate,
-    checkOutDate,
-    objSizes,
-    objSpecies,
-    userInSession: req.session.currentUser
-  })
+  try{
+    const animal = await Animal.findById(req.params.animalId);
+    const checkInDate = formatDate(animal, 'checkin');
+    const checkOutDate = formatDate(animal, 'checkout');
+    const sizes = Animal.schema.path('size').enumValues;
+    const objSizes = sizes.map(el => {
+      const newEl = {
+        name: el
+      }
+      return newEl;
+    })
+    objSizes.forEach(el => {
+      if (el.name === animal.size) {
+        let index = objSizes.indexOf(el);
+        objSizes.splice(index, 1);
+      }
+    })
+    const species = Animal.schema.path('category').enumValues;
+    const objSpecies = species.map(el => {
+      const newEl = {
+        name: el
+      }
+      return newEl;
+    })
+    objSpecies.forEach(el => {
+      if (el.name === animal.category) {
+        let index = objSpecies.indexOf(el);
+        objSpecies.splice(index, 1);
+      }
+    })
+    res.render('edit-animal', {
+      animal,
+      checkInDate,
+      checkOutDate,
+      objSizes,
+      objSpecies,
+      userInSession: req.session.currentUser
+    })
+  }catch(error){
+    console.log('Error loading the edit animal form =>', error)
+  }
 };
 
 const editAnimal = async (req, res, next) => {
-  const {
-    name,
-    category,
-    size,
-    checkin,
-    checkout,
-    description,
-    careRoutine,
-    specialNeeds
-  } = req.body;
-
-  const booleanCheck = specialNeeds ? true : false;
-
-  const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {
-    $set: {
+  try{
+    const {
       name,
       category,
       size,
-      image: req.file.path,
       checkin,
       checkout,
       description,
       careRoutine,
-      specialNeeds: booleanCheck
-    }
-  })
-  res.redirect('/user-profile')
+      specialNeeds
+    } = req.body;
+    const booleanCheck = specialNeeds ? true : false;
+    const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {
+      $set: {
+        name,
+        category,
+        size,
+        image: req.file.path,
+        checkin,
+        checkout,
+        description,
+        careRoutine,
+        specialNeeds: booleanCheck
+      }
+    })
+    res.redirect('/user-profile')
+  }catch(error){
+    console.log('Error editing the animal =>', error)
+  }
 };
 
 const adoptAnimal = async (req, res, next) => {
@@ -230,7 +238,7 @@ const adoptAnimal = async (req, res, next) => {
       new: true
     })
     res.redirect('/user-profile');
-  } catch (error) {
+  } catch(error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).render('error', {
         errorMessage: error.message
@@ -245,6 +253,70 @@ const adoptAnimal = async (req, res, next) => {
   }
 };
 
+const getEditProfileForm = async (req, res, next) => {
+  try{
+    const user = await User.findById(req.params.userId)
+    res.render('edit-user', {user});
+  }catch(error){
+    console.log('Error getting the user edit profile form =>', error)
+  }
+};
+
+const editUser = async (req, res, next) => {
+  try {
+    const {
+      username, 
+      description,
+      sitter
+    } = req.body;
+    const booleanCheck = sitter ? true : false;
+    const formFields = {username, description, sitter: booleanCheck}
+    if(req.file){
+      formFields.avatar = req.file.path;
+    }
+    const editUser = await User.findByIdAndUpdate(req.params.userId, {$set: formFields})
+    res.redirect('/user-profile')
+  } catch (error){
+    console.log('Error editting the user profile =>', error);
+  }
+};
+
+const getSittersList = async (req, res, next) => {
+  try{
+    const sitters = await User.find({sitter: true});
+    res.render('users', {sitters, userInSession: req.session.currentUser});
+  } catch(error){
+    console.log('Error getting the sitters list =>', error);
+  }
+};
+
+const getSitterDetails = async (req, res, next) => {
+  try{
+    const userAnimals = await Animal.find({
+      owner: req.params.userId
+    });
+    const user = await User.findById(req.params.userId);
+    if(user._id == req.session.currentUser._id){
+      res.render('user-profile', {user, avatar, userAnimals, userInSession: req.session.currentUser});  
+    } else {
+      res.render('userProfilePublic', {user, avatar, userAnimals, userInSession: req.session.currentUser});
+    }
+  } catch(error){
+    console.log('Error loading the user profile >', error);
+  }
+}
+
+const deleteUser = async (req, res, next) => {
+  try{
+    const user = await User.deleteOne({_id: req.params.userId})
+    const userAnimals = await Animal.deleteMany({owner: req.session.currentUser._id})
+    req.session.destroy();
+    res.redirect('/');
+  } catch(error){
+    console.log('Error deleting the user =>', error);
+  }
+}
+
 module.exports = {
   getIndex,
   getUserProfile,
@@ -256,4 +328,9 @@ module.exports = {
   getEditAnimalForm,
   editAnimal,
   adoptAnimal,
+  getSittersList,
+  getEditProfileForm,
+  editUser,
+  getSitterDetails,
+  deleteUser
 }

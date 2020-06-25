@@ -22,11 +22,11 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
+    default: 'https://res.cloudinary.com/agustems/image/upload/v1592843963/rehome-me/empty-avatar.svg.svg',
     match: [/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm, 'Invalid URL']
   },
-  description: {
-    type: String
-  }
+  description: String,
+  sitter: Boolean
 });
 
 const User = mongoose.model('User', userSchema);
