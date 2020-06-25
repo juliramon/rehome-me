@@ -1,0 +1,38 @@
+/*ANIMAL BOX*/
+.box.animal {
+  width: 100%;
+  margin: 15px 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.box.animal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.box.animal .avatar {
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+  overflow: hidden;
+}
+
+.box.animal .avatar img {
+  border-radius: 100px;
+  width: 80px;
+  height: 80px;
+}
+
+.box.animal .col:nth-child(2) {
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* ANIMAL CARD CRUD */
+.buttons>a:hover {
+  text-decoration: underline;
+}

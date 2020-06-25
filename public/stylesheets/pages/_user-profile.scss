@@ -1,0 +1,44 @@
+/*USER PROFILE*/
+#userProfile {
+  padding-top: 15px;
+}
+
+#userProfile .header>h1,
+h2,
+p {
+  margin: 10px 0;
+  color: $dark-green
+}
+
+#userProfile .user.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  padding: 4%;
+  border: 2px solid $soft-green;
+  border-radius: 20px;
+}
+
+#userProfile .user.wrapper .col:nth-child(2) {
+  margin-left: 20px;
+}
+
+#userProfile .user.wrapper .user-data ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#userProfile .user.wrapper .avatar img {
+  border-radius: 100px;
+  width: 85px;
+  height: 85px;
+}
+
+#userProfile .edit-profile .btn {
+  border: 1px solid red;
+  border-radius: 3px;
+  padding: 5px 10px;
+  display: block;
+  text-align: center;
+}
