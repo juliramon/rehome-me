@@ -22,11 +22,13 @@ require('./configs/db.config');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
+  src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
@@ -37,14 +39,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
+
 hbs.registerHelper('isSelected', function (options, size) {
   return options === size ? 'selected' : '';
+});
+hbs.registerHelper('ifvalue', function (conditional, options) {
+  if (options.hash.value === conditional) {
+    return options.fn(this)
+  } else {
+    return options.inverse(this);
+  }
 });
 
 app.locals.title = 'Express - Generated with IronGenerator';
 
 const recordRoute = (req, res, next) => {
-  if(!req.session.visitedUrls){
+  if (!req.session.visitedUrls) {
     req.session.visitedUrls = [];
     req.session.visitedUrls.push(req.url);
   } else {

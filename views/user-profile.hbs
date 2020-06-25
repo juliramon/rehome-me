@@ -14,8 +14,12 @@
       <div class="col">
         <div class="user-data">
           <ul>
-            <li class="username"><h1>{{user.username}}</h1></li>
-            <li class="username"><p>@{{user.username}}</p></li>
+            <li class="username">
+              <h1>{{user.username}}</h1>
+            </li>
+            <li class="username">
+              <p>@{{user.username}}</p>
+            </li>
             <li class="description">{{user.description}}</li>
             <li class="">{{#if user.sitter}} User is sitter {{/if}}</li>
             <li>
@@ -55,6 +59,13 @@
     {{> animalCardOWNED}}
     {{/each}}
   </div>
+  {{#if user.sitter}}
+  <div class="animals wrapper">
+    {{#each animalsSitted}}
+    {{> animalCardADOPT}}
+    {{/each}}
+  </div>
+  {{/if}}
   {{else}}
   <p>Still not logged in. Please <a href="/login">login</a>.</p>
   {{/if}}

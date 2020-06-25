@@ -25,7 +25,6 @@ const animalSchema = new Schema({
   },
   checkout: {
     type: Date,
-    required: true,
     default: Date.now
   },
   description: {
@@ -37,6 +36,11 @@ const animalSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+  },
+  type: {
+    type: String,
+    enum: ['adoption', 'sitting'],
+    required: true
   },
   adopted: Boolean
 });
