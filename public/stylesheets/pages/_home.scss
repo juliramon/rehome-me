@@ -1,0 +1,88 @@
+.rehome-me {
+  padding: 50px;
+  background-image: url('../images/bg-hero.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.hero {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  padding: 15px 30px;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2%;
+  color: $dark-green;
+  text-align: center;
+}
+
+.buttons-log {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-log>form {
+  margin: 3%;
+}
+
+input[type=submit],
+button[type=submit] {
+  background-color: $white;
+  color: $soft-green;
+  text-transform: uppercase;
+  padding: 1.5vh 4vh;
+  font-size: 0.8em;
+  font-weight: bold;
+  font-family: Sans-Serif;
+  border: 1px solid $soft-green;
+  border-radius: 15px;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+
+input[type=submit]:hover,
+button[type=submit]:hover {
+  color: $white;
+  background-color: $soft-green;
+  border: 1px solid $white;
+  transition: all 0.4s ease 0s;
+}
+
+.process {
+  text-align: center;
+  border-bottom: 1px dotted $soft-green;
+}
+
+.process {
+
+  h2,
+  h3,
+  h4,
+  h5,
+  .fa {
+    color: $dark-green;
+  }
+}
+
+.features {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.feature-card {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.feature-card .fa {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
