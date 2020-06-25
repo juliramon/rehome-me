@@ -126,13 +126,19 @@ const deleteAnimal = async (req, res, next) => {
 
 const getAnimalsList = async (req, res, next) => {
   try {
-    const animals = await Animal.find({
-      adopted: undefined
-    });
-    res.render('animals', {
-      animals,
-      userInSession: req.session.currentUser
-    })
+      const filter = {
+    adopted: undefined
+  }
+  if (req.query.filter) {
+    filter.category = req.query.filter
+  }
+
+  const animals = await Animal.find(filter);
+  res.render('animals', {
+    animals,
+    userInSession: req.session.currentUser,
+    activeFilter: req.query.filter
+  })
   }catch(error){
     console.log('Error getting the animals list =>', error)
   }

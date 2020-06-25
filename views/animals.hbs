@@ -1,12 +1,45 @@
 <section id="animalsList">
+  <h1>Animal filter</h1>
+  <div class="filter-bar">
+    <form>
+      <button class="btn-filter" name="filter" type="submit" value="">
+        <img src="/images/none.png">
+      </button>
+    </form>
+    <form>
+      <button class="btn-filter" name="filter" type="submit" value="dog">
+        <img src="/images/dog.png">
+      </button>
+    </form>
+    <form>
+      <button class="btn-filter" name="filter" type="submit" value="cat">
+        <img src="/images/cat.png">
+      </button>
+    </form>
+    <form>
+      <button class="btn-filter" name="filter" type="submit" value="snake">
+        <img src="/images/snake.png">
+      </button>
+    </form>
+    <form>
+      <button class="btn-filter" name="filter" type="submit" value="rabbit">
+        <img src="/images/bunny.png">
+      </button>
+    </form>
+    <form>
+      <button class="btn-filter" name="filter" type="submit" value="bird">
+        <img src="/images/parrot.png">
+      </button>
+    </form>
+  </div>
   <div class="header">
     <h1>List of animals</h1>
   </div>
   <div class="animals wrapper">
     {{#each animals}}
-      {{> animalCardPublic this}}
-      {{else}}
-      <p>There are no animals yet</p>
+    {{> animalCardPublic this}}
+    {{else}}
+    <p>There are no animals yet</p>
     {{/each}}
   </div>
   {{> addButton}}

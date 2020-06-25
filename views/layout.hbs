@@ -12,11 +12,11 @@
 
 <body>
   {{#if userInSession}}
-    {{> navbarLogged}}
+  {{> navbarLogged}}
   {{else}}
-    {{> navbarNotLogged}}
+  {{> navbarNotLogged}}
   {{/if}}
-  
+
   {{{body}}}
   {{>footer}}
   <script src="/javascripts/navbar-script.js"></script>
