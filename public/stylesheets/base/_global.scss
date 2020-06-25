@@ -1,0 +1,29 @@
+$dark-green: #4D716D;
+$soft-green: #86B8B1;
+$white: #FFFFFF;
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mw-1600 {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 45px 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 0;
+}

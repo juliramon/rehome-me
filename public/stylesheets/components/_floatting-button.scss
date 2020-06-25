@@ -1,0 +1,21 @@
+.floating-button {
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+  overflow: hidden;
+}
+
+.floating-button .add-btn {
+  height: 70px;
+  width: 70px;
+  background-color: $dark-green;
+  border-radius: 70px;
+  display: block;
+  text-align: center;
+  line-height: 72px;
+}
+
+.floating-button>a {
+  color: $white;
+  font-size: 35px;
+}

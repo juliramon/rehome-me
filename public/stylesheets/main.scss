@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+@import
+  'base/global';
+
+@import
+  'components/featured-animals',
+  'components/animal-box',
+  'components/floatting-button',
+  'components/errors';
+
+@import
+  'layout/navigation',
+  'layout/footer',
+  'layout/forms';
+
+@import
+  'pages/home',
+  'pages/contact',
+  'pages/user-profile',
+  'pages/_animal-details';

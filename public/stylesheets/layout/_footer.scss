@@ -1,0 +1,21 @@
+footer {
+  width: 100%;
+  padding: 1.6em;
+  background-color: $dark-green;
+  color: $white;
+  font-size: 0.7em;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+footer>a {
+  color: $soft-green;
+  text-decoration: underline
+}
+
+footer>img {
+  width: 1.2em;
+  margin-right: 0.7em;
+}
