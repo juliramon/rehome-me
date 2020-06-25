@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('./configs/session.config');
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -41,6 +42,19 @@ hbs.registerHelper('isSelected', function (options, size) {
 });
 
 app.locals.title = 'Express - Generated with IronGenerator';
+
+const recordRoute = (req, res, next) => {
+  if(!req.session.visitedUrls){
+    req.session.visitedUrls = [];
+    req.session.visitedUrls.push(req.url);
+  } else {
+    req.session.visitedUrls.push(req.url);
+  }
+  console.log(req.session);
+  next()
+}
+
+app.use(recordRoute);
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
