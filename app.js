@@ -50,7 +50,6 @@ const recordRoute = (req, res, next) => {
   } else {
     req.session.visitedUrls.push(req.url);
   }
-  console.log(req.session);
   next()
 }
 
