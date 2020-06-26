@@ -24,7 +24,7 @@ const router = express.Router();
 
 router
   .get('/', getIndex)
-  .get('/user-profile', ensureLogin.ensureLoggedIn(), getUserProfile)
+  .get('/user-profile', getUserProfile)
   .get('/animal/add', ensureLogin.ensureLoggedIn(), getAnimalForm)
   .post('/animal/add', fileUploader.single('image'), createNewAnimal)
   .get('/animal/:id', getAnimalDetails)

@@ -26,6 +26,7 @@ const getIndex = async (req, res, next) => {
 
 const getUserProfile = async (req, res) => {
   try {
+    console.log('user =>', req.user)
     console.log('current session =>', req.session)
     const findUser = {
       owner: req.session.currentUser._id,
