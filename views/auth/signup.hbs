@@ -1,5 +1,6 @@
 <section class="mw-1600">
   <div class="form">
+    <a href="/auth/google">Signup with Google</a>
     <form action="/signup" method="POST">
       <div class="input-group">
         <label for="username">Username</label>
@@ -18,5 +19,8 @@
       <p>{{errorMessage}}</p>
       {{/if}}
     </form>
+    <div class="form-link">
+      <a href="/login" title="Forgot password?">Already have an account? Log in</a>
+    </div>
   </div>
 </section>

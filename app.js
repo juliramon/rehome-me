@@ -11,6 +11,9 @@ const logger = require('morgan');
 const path = require('path');
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const User = require('./models/User.model');
 
 const indexRouter = require('./routes/pages.routes');
 const authRouter = require('./routes/auth.routes');
@@ -24,6 +27,53 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// PASSPORT SETUP
+passport.serializeUser(async(user, callback) => {
+  callback(null, user._id)
+});
+passport.deserializeUser(async(id, callback) => {
+  try{
+    const passportUser = await User.findById(id);
+    callback(null, passportUser);
+  }catch(error){
+    callback(error);
+  }
+});
+
+passport.use(
+  new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: '/auth/google/callback'
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    try{
+      console.log('Google account details =>', profile)
+      const foundUser = await User.findOne({googleID: profile.id});
+      if(foundUser){
+        done(null, foundUser);
+        return;
+      }
+      try { 
+        const newUser = await User.create({googleID: profile.id, fullName: profile.displayName, email: profile.emails[0].value, avatar: profile.photos[0].value});
+        done(null, newUser);
+      }catch(error){
+        done(error);
+      }
+    }catch(error){
+      console.log(error)
+    }
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  req.session.currentUser = req.user;
+  next();
+})
 
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),

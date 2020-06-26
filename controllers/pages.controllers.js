@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
 const Animal = require('../models/Animal.model');
 const Adoption = require('../models/Adoption.model');
+const app = require('../app');
 const {
   formatDate
 } = require('../helpers/helpers');
@@ -25,10 +26,12 @@ const getIndex = async (req, res, next) => {
 
 const getUserProfile = async (req, res) => {
   try {
-    const userAnimals = await Animal.find({
+    console.log('current session =>', req.session)
+    const findUser = {
       owner: req.session.currentUser._id,
       adopted: undefined
-    })
+    }
+    const userAnimals = await Animal.find(findUser)
     const userAnimalsAdopted = await Adoption.find({
       owner: req.session.currentUser._id
     }).populate('animal').populate('host')

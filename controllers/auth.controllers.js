@@ -1,6 +1,8 @@
 const bcryptjs = require('bcryptjs');
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const app = require('../app');
 
 const saltRounds = 10;
 
@@ -107,10 +109,26 @@ const logout = (req, res) => {
   res.redirect('/')
 }
 
+const passportAuth = (passport.authenticate('google', {
+  scope: [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email'
+    ]
+  })
+);
+
+const passportAuthCallback = (passport.authenticate('google', {
+    successRedirect: '/user-profile',
+    failureRedirect: '/'
+  })
+);
+
 module.exports = {
   loadSignupForm,
   submitSignupForm,
   loadLoginForm,
   submitLoginForm,
-  logout
+  logout,
+  passportAuth,
+  passportAuthCallback
 }
