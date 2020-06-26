@@ -70,10 +70,17 @@ passport.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-  req.session.currentUser = req.user;
-  next();
-})
+// app.use((req, res, next) => {
+//   if(req.user){
+//     req.session.currentUser = req.user;
+//   }
+//   if(!req.session.currentUser){
+//     res.redirect('/login');
+//   }
+//   console.log('session =>', req.session);
+//   console.log('current user =>', req.session.currentUser);
+//   next();
+// })
 
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
