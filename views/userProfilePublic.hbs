@@ -1,6 +1,6 @@
 <section id="userProfile">
   <div class="header">
-    <h1>{{user.username}}'s profile</h1>
+    <h1>{{user.fullname}}'s profile</h1>
   </div>
   <div class="box">
     <div class="user wrapper">
@@ -13,7 +13,7 @@
         <div class="user-data">
           <ul>
             <li class="username">
-              <h1>{{user.username}}</h1>
+              <h1>{{user.fullname}}</h1>
             </li>
             <li class="username">
               <p>@{{user.username}}</p>
@@ -26,7 +26,7 @@
     </div>
   </div>
   <section class="animal-adoption">
-    <h3>Do you want {{user.username}} to take care of your pet?</h3>
+    <h3>Do you want {{user.fullname}} to take care of your pet?</h3>
     <form action="/user/{{user._id}}/hire" method="POST">
       <div class="input-group">
         <label for="animalid">Select one of your registered animals</label>

@@ -139,6 +139,45 @@ select:focus {
     flex-wrap: nowrap;
     margin-bottom: 5%; } }
 
+.btn {
+  border-radius: 8px;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: Sans-Serif;
+  display: block;
+  text-align: center; }
+
+.btn-dark {
+  background-color: #4D716D;
+  color: #FFFFFF; }
+
+.btn-soft {
+  background-color: #cce0dd;
+  color: #4D716D; }
+
+.btn-large {
+  padding: 1.5vh 4vh;
+  font-size: 0.8em; }
+
+.btn-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.btn-gl {
+  flex: 1;
+  margin-right: 15px; }
+
+.btn-img img {
+  width: 17px;
+  height: auto;
+  margin-right: 8px; }
+
+.buttons {
+  display: flex;
+  flex-flow: row wrap; }
+
 header {
   position: sticky;
   position: -webkit-sticky;
@@ -469,5 +508,35 @@ p {
 
 .animal-adoption > form {
   margin-top: 3%; }
+
+#err .image {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 100px;
+  margin: 0 auto; }
+
+#err img {
+  width: 150px;
+  height: auto; }
+
+#err .text {
+  text-align: center;
+  margin-top: 30px; }
+
+#err .btn {
+  background-color: #FFFFFF;
+  color: #86B8B1;
+  text-transform: uppercase;
+  padding: 1.5vh 4vh;
+  font-size: 0.8em;
+  font-weight: bold;
+  font-family: Sans-Serif;
+  border: 1px solid #86B8B1;
+  border-radius: 15px;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 15px; }
 
 /*# sourceMappingURL=main.css.map */

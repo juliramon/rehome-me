@@ -1,11 +1,14 @@
 <section class="mw-1600">
   <div class="form">
     <form method="POST" enctype="multipart/form-data">
+    <div class="input-group">
+        <label for="username">Name and last name</label>
+        <input type="text" name="fullname" id="fullname" placeholder="Edit your name and last name" value="{{user.fullname}}">
+      </div>
       <div class="input-group">
         <label for="username">Username</label>
         <input type="text" name="username" id="username" placeholder="Edit your username" value="{{user.username}}">
       </div>
-
       <div class="input-group">
         <label for="avatar">Avatar</label>
         <div class="wrapper">

@@ -6,3 +6,18 @@ exports.formatDate = (model, field) => {
   date < 10 ? date = `0${date}` : undefined;
   return year + "-" + month + "-" + date;
 }
+
+exports.generateUsername = fullname => {
+  let cleanFullname = fullname.toLowerCase().split(' ').join('');
+  let randomNumber = Math.floor(Math.random() * 1000000000);
+  return cleanFullname + "-" + randomNumber;
+}
+
+exports.validateUsername = (arr, newUsername) => {
+  let isUsernameAvailable = true;
+  const usernames = arr.map(el => el.username);
+  usernames.forEach(el => {
+    if(newUsername == el){ isUsernameAvailable = false; } 
+  })
+  return isUsernameAvailable;
+};

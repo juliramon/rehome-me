@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+  fullname: {
+      type: String,
+      require: [true, 'Name and lastname are required']
+  },
   username: {
     type: String,
     require: [true, 'Username is required'],
@@ -16,17 +20,23 @@ const userSchema = new Schema({
     trim: true,
     match: [/^\S+@\S+\.\S+$/, 'Invalid email address']
   },
-  passwordHash: {
-    type: String,
-    required: [true, 'Password is required']
-  },
+  passwordHash: String,
   avatar: {
     type: String,
     default: 'https://res.cloudinary.com/agustems/image/upload/v1592843963/rehome-me/empty-avatar.svg.svg',
-    match: [/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm, 'Invalid URL']
+    // match: [/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm, 'Invalid URL']
+  },
+  googleId: {
+    type: String,
+  },
+  facebookId: {
+    type: String,
   },
   description: String,
-  sitter: Boolean
+  sitter: {
+    type: Boolean,
+    default: 'false'
+  }
 });
 
 const User = mongoose.model('User', userSchema);

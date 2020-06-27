@@ -4,22 +4,19 @@ require('../configs/session.config');
 const http = require('http');
 let app = require('../app');
 
-app.use((req, res, next) => {
-  if(res.status(404)){
-    const urls = req.session.visitedUrls
-    const lastUrl = urls[urls.length - 1];
-    res.render('error-404', {lastUrl});
-  }
-});
-
 app.use((err, req, res, next) => {
   // always log the error
   console.error('ERROR', req.method, req.path, err);
+  const urls = req.session.visitedUrls
+  const lastUrl = urls[urls.length - 2];
 
+  if(res.status(404)){
+    res.render('error-404', {lastUrl});
+  }
   // only render if the error ocurred before sending the response
   if (!res.headersSent) {
     res.status(500);
-    res.render('error');
+    res.render('error-500', {lastUrl});
   }
 });
 
@@ -27,7 +24,6 @@ let server = http.createServer(app);
 
 server.on('error', error => {
   if (error.syscall !== 'listen') { throw error }
-
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':

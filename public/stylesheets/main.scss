@@ -6,7 +6,8 @@
 'components/animal-box',
 'components/floatting-button',
 'components/errors',
-'components/filter-animals';
+'components/filter-animals',
+'components/buttons';
 
 @import 'layout/navigation',
 'layout/footer',
@@ -15,4 +16,5 @@
 @import 'pages/home',
 'pages/contact',
 'pages/user-profile',
-'pages/_animal-details';
+'pages/_animal-details',
+'pages/error404';
