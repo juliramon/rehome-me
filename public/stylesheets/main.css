@@ -80,6 +80,9 @@ select:focus {
 .buttons > a:hover {
   text-decoration: underline; }
 
+.box.animal li {
+  color: #FFFFFF; }
+
 .floating-button {
   position: fixed;
   bottom: 50px;
@@ -326,6 +329,13 @@ footer > img {
 
 .form .wrapper .col:nth-child(2) {
   width: 100%; }
+
+.form {
+  margin-bottom: 70px; }
+
+#adoption-sitting {
+  display: flex;
+  justify-content: center; }
 
 .rehome-me {
   padding: 50px;

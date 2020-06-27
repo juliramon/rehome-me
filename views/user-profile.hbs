@@ -36,19 +36,28 @@
     {{/each}}
   </div>
   <div class="header">
-    <h2>{{userInSession.fullname}}'s already rehomed!</h2>
+
+    <h2>{{userInSession.username}} open processes</h2>
   </div>
   <div class="animals wrapper">
-    {{#each userAnimalsAdopted}}
-    {{> animalCardADOPT}}
+    {{#each openProcesses}}
+    {{> animalProcesses}}
     {{/each}}
   </div>
   <div class="header">
-    <h2>{{userInSession.fullname}}'s animals pets!</h2>
+    <h2>{{userInSession.fullname}} pending processes</h2>
   </div>
   <div class="animals wrapper">
-    {{#each userAnimalsOwned}}
-    {{> animalCardOWNED}}
+    {{#each pendingProcesses}}
+    {{> processPending}}
+    {{/each}}
+  </div>
+  <div class="header">
+    <h2>{{userInSession.fullname}} closed processes</h2>
+  </div>
+  <div class="animals wrapper">
+    {{#each processesFinished}}
+    {{> animalProcesses}}
     {{/each}}
   </div>
   {{else}}

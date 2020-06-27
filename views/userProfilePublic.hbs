@@ -25,13 +25,22 @@
       </div>
     </div>
   </div>
-  <div class="header">
-    <h2>{{user.fullname}}'s animals</h2>
-  </div>
-  <div class="animals wrapper">
-    {{#each userAnimals}}
-    {{> animalCardPublic}}
-    {{/each}}
-  </div>
+  <section class="animal-adoption">
+    <h3>Do you want {{user.fullname}} to take care of your pet?</h3>
+    <form action="/user/{{user._id}}/hire" method="POST">
+      <div class="input-group">
+        <label for="animalid">Select one of your registered animals</label>
+        <select name="animalid" id="animalid">
+          {{#each animalsForSitting}}
+          <option value="{{_id}}">
+            {{name}}
+          </option>
+          {{/each}}
+        </select>
+      </div>
+      <input type="submit" value="Hire Sitter!">
+    </form>
+    <h5>If you don't have any animals registered, go to <a href="/animal/add">Register Animal</a></h5>
+  </section>
   {{> addButton}}
 </section>

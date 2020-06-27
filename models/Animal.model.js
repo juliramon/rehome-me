@@ -25,7 +25,6 @@ const animalSchema = new Schema({
   },
   checkout: {
     type: Date,
-    required: true,
     default: Date.now
   },
   description: {
@@ -38,7 +37,15 @@ const animalSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  adopted: Boolean
+  type: {
+    type: String,
+    enum: ['adoption', 'sitting'],
+    required: true
+  },
+  adopted: {
+    type: String,
+    enum: ['adopted', 'not-adopted', 'solicited']
+  }
 });
 
 const Animal = mongoose.model('Animal', animalSchema);

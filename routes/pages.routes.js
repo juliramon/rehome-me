@@ -15,9 +15,12 @@ const {
   adoptAnimal,
   getSitterDetails,
   getSittersList,
+  hireSitter,
   getEditProfileForm,
   editUser,
-  deleteUser
+  deleteUser,
+  acceptAdoption,
+  rejectAdoption,
 } = require('../controllers/pages.controllers');
 
 const router = express.Router();
@@ -35,8 +38,11 @@ router
   .post('/animal/:animalId/adopt', adoptAnimal)
   .get('/users', getSittersList)
   .get('/user/:userId', getSitterDetails)
+  .post('/user/:userId/hire', hireSitter)
   .get('/user/:userId/edit', getEditProfileForm)
   .post('/user/:userId/edit', fileUploader.single('avatar'), editUser)
   .get('/user/:userId/delete', deleteUser)
-  
+  .get('/adoption/:adoptionId/accept', acceptAdoption)
+  .get('/adoption/:adoptionId/reject', rejectAdoption)
+
 module.exports = router;
