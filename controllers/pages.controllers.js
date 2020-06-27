@@ -12,7 +12,8 @@ const User = require('../models/User.model');
 const getIndex = async (req, res, next) => {
   try {
     const animals = await Animal.find({
-      adopted: undefined
+      adopted: 'not-adopted',
+      type: 'adoption'
     }).limit(6);
     res.render('index', {
       animals: animals,
@@ -27,30 +28,43 @@ const getUserProfile = async (req, res) => {
   try {
     const userAnimals = await Animal.find({
       owner: req.session.currentUser._id,
-      adopted: undefined
+      adopted: 'not-adopted'
     })
-    const userAnimalsAdopted = await Adoption.find({
-      owner: req.session.currentUser._id
-    }).populate('animal').populate('host')
 
-    const userAnimalsOwned = await Adoption.find({
-      host: req.session.currentUser._id
-    }).populate('animal').populate('owner')
+    const openProcesses = await Adoption.find({
+      $and: [{
+        status: 'pending'
+      }, {
+        owner: {
+          $ne: req.session.currentUser._id
+        }
+      }]
+    }).populate('animal').populate('owner').populate('host');
 
+    const pendingProcesses = await Adoption.find({
+      $and: [{
+        status: 'pending'
+      }, {
+        owner: req.session.currentUser._id
+      }]
+    }).populate('animal').populate('owner').populate('host');
 
-    const animalsSitted = await Adoption.find({
-      host: req.session.currentUser._id,
-      //type: 'temporary'
-    })
+    const processesFinished = await Adoption.find({
+      $or: [{
+        status: 'accepted'
+      }, {
+        status: 'rejected'
+      }]
+    }).populate('animal').populate('owner').populate('host')
 
     const user = await User.findById(req.session.currentUser._id)
     res.render('user-profile', {
       user,
       userInSession: req.session.currentUser,
       userAnimals,
-      userAnimalsAdopted,
-      userAnimalsOwned,
-      animalsSitted
+      openProcesses,
+      pendingProcesses,
+      processesFinished
     })
   } catch (error) {
     console.log('Error getting the user profile =>', error)
@@ -80,7 +94,7 @@ const createNewAnimal = async (req, res, next) => {
       description,
       careRoutine,
       specialNeeds,
-      type
+      type,
     } = req.body;
 
     const hasEmptyCredentials = !name || !category || !size || !checkin || !description;
@@ -103,7 +117,8 @@ const createNewAnimal = async (req, res, next) => {
       careRoutine,
       specialNeeds: booleanCheck,
       owner: req.session.currentUser._id,
-      type
+      type,
+      adopted: 'not-adopted',
     })
     return res.redirect('/user-profile');
   } catch (error) {
@@ -147,7 +162,7 @@ const deleteAnimal = async (req, res, next) => {
 const getAnimalsList = async (req, res, next) => {
   try {
     const filter = {
-      adopted: undefined,
+      adopted: 'not-adopted',
       type: 'adoption'
     }
     if (req.query.filter) {
@@ -251,14 +266,16 @@ const adoptAnimal = async (req, res, next) => {
     const adoption = await Adoption.create({
       animal: animal._id,
       checkin: animal.checkin,
-      checkout: animal.checkout,
       owner: animal.owner,
-      host: req.session.currentUser._id
+      host: req.session.currentUser._id,
+      type: 'permanent',
+      status: 'pending'
     });
+
     const animalAdopted = await Animal.findOneAndUpdate({
       _id: req.params.animalId
     }, {
-      adopted: true
+      adopted: 'solicited'
     }, {
       new: true
     })
@@ -331,20 +348,29 @@ const getSittersList = async (req, res, next) => {
 const getSitterDetails = async (req, res, next) => {
   try {
     const userAnimals = await Animal.find({
-      owner: req.params.userId
+      owner: req.params.userId,
     });
+
     const user = await User.findById(req.params.userId);
+
+    const animalsForSitting = await Animal.find({
+      owner: req.session.currentUser._id,
+      type: 'sitting'
+    });
+
     if (user._id == req.session.currentUser._id) {
       res.render('user-profile', {
         user,
         userAnimals,
-        userInSession: req.session.currentUser
+        userInSession: req.session.currentUser,
+        animalsForSitting
       });
     } else {
       res.render('userProfilePublic', {
         user,
         userAnimals,
-        userInSession: req.session.currentUser
+        userInSession: req.session.currentUser,
+        animalsForSitting
       });
     }
   } catch (error) {
@@ -367,6 +393,84 @@ const deleteUser = async (req, res, next) => {
   }
 }
 
+const hireSitter = async (req, res, next) => {
+  try {
+    const {
+      animalid
+    } = req.body
+
+    const animal = await Animal.findById(animalid);
+
+    const sitting = await Adoption.create({
+      animal: animal._id,
+      checkin: animal.checkin,
+      checkout: animal.checkout,
+      owner: animal.owner,
+      host: req.params.userId,
+      type: 'temporary',
+      status: 'pending'
+    });
+
+    res.redirect('/user-profile');
+
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      res.status(400).render('error', {
+        errorMessage: error.message
+      })
+    } else if (error instanceof TypeError) {
+      res.status(400).render('auth/login', {
+        errorMessage: 'You must be logged in to access to adopt a pet'
+      })
+    } else {
+      next(error)
+    }
+  }
+}
+
+const acceptAdoption = async (req, res, next) => {
+  try {
+    const adoption = await Adoption.findByIdAndUpdate(req.params.adoptionId, {
+      status: 'accepted'
+    }, {
+      new: true
+    }).populate('animal');
+
+
+    const animalAdopted = await Animal.findByIdAndUpdate(adoption.animal._id, {
+      adopted: 'adopted'
+    }, {
+      new: true
+    })
+
+    console.log(animalAdopted)
+    res.redirect('/user-profile')
+  } catch (error) {
+    console.log('Error while adopting the animal=> ', error)
+  }
+}
+
+
+const rejectAdoption = async (req, res, next) => {
+  try {
+    const adoption = await Adoption.findByIdAndUpdate(req.params.adoptionId, {
+      status: 'rejected'
+    }, {
+      new: true
+    }).populate('animal');
+
+    const animalAdopted = await Animal.findByIdAndUpdate(adoption.animal._id, {
+      adopted: 'not-adopted'
+    }, {
+      new: true
+    })
+
+    res.redirect('/user-profile')
+  } catch (error) {
+    console.log('Error while adopting the animal=> ', error)
+  }
+}
+
 module.exports = {
   getIndex,
   getUserProfile,
@@ -382,5 +486,8 @@ module.exports = {
   getEditProfileForm,
   editUser,
   getSitterDetails,
-  deleteUser
+  deleteUser,
+  hireSitter,
+  acceptAdoption,
+  rejectAdoption
 }

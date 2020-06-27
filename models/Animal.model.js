@@ -42,7 +42,10 @@ const animalSchema = new Schema({
     enum: ['adoption', 'sitting'],
     required: true
   },
-  adopted: Boolean
+  adopted: {
+    type: String,
+    enum: ['adopted', 'not-adopted', 'solicited']
+  }
 });
 
 const Animal = mongoose.model('Animal', animalSchema);

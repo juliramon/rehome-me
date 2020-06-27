@@ -80,6 +80,9 @@ select:focus {
 .buttons > a:hover {
   text-decoration: underline; }
 
+.box.animal li {
+  color: #FFFFFF; }
+
 .floating-button {
   position: fixed;
   bottom: 50px;
