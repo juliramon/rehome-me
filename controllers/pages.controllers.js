@@ -25,10 +25,10 @@ const getIndex = async (req, res, next) => {
 
 const getUserProfile = async (req, res) => {
   try {
-    const findUser = {
+    const userAnimals = await Animal.find({
       owner: req.session.currentUser._id,
       adopted: 'not-adopted'
-    }
+    })
     const openProcesses = await Adoption.find({
       $or: [{
         $and: [{
@@ -476,7 +476,7 @@ const acceptAdoption = async (req, res, next) => {
     }, {
       new: true
     })
-    
+
     res.redirect('/user-profile')
   } catch (error) {
     console.log('Error while adopting the animal=> ', error)
@@ -502,8 +502,6 @@ const rejectAdoption = async (req, res, next) => {
     console.log('Error while adopting the animal=> ', error)
   }
 }
-
-
 
 module.exports = {
   getIndex,
