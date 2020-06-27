@@ -32,20 +32,44 @@ const getUserProfile = async (req, res) => {
     })
 
     const openProcesses = await Adoption.find({
-      $and: [{
-        status: 'pending'
+      $or: [{
+        $and: [{
+          status: 'pending'
+        }, {
+          owner: req.session.currentUser._id
+        }, {
+          type: 'temporary'
+        }]
       }, {
-        owner: {
-          $ne: req.session.currentUser._id
-        }
+        $and: [{
+          status: 'pending'
+        }, {
+          owner: {
+            $ne: req.session.currentUser._id
+          }
+        }, {
+          type: 'permanent'
+        }]
       }]
     }).populate('animal').populate('owner').populate('host');
 
     const pendingProcesses = await Adoption.find({
-      $and: [{
-        status: 'pending'
+      $or: [{
+        $and: [{
+          status: 'pending'
+        }, {
+          type: 'temporary'
+        }, {
+          host: req.session.currentUser._id
+        }]
       }, {
-        owner: req.session.currentUser._id
+        $and: [{
+          status: 'pending'
+        }, {
+          owner: req.session.currentUser._id
+        }, {
+          type: 'permanent'
+        }]
       }]
     }).populate('animal').populate('owner').populate('host');
 
@@ -405,7 +429,7 @@ const hireSitter = async (req, res, next) => {
       animal: animal._id,
       checkin: animal.checkin,
       checkout: animal.checkout,
-      owner: animal.owner,
+      owner: req.session.currentUser._id,
       host: req.params.userId,
       type: 'temporary',
       status: 'pending'
@@ -450,7 +474,6 @@ const acceptAdoption = async (req, res, next) => {
   }
 }
 
-
 const rejectAdoption = async (req, res, next) => {
   try {
     const adoption = await Adoption.findByIdAndUpdate(req.params.adoptionId, {
@@ -470,6 +493,8 @@ const rejectAdoption = async (req, res, next) => {
     console.log('Error while adopting the animal=> ', error)
   }
 }
+
+
 
 module.exports = {
   getIndex,
