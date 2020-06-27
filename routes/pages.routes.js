@@ -1,5 +1,6 @@
 const express = require('express');
 const fileUploader = require('../configs/cloudinary.config');
+const ensureLogin = require('connect-ensure-login');
 
 const {
   getIndex,

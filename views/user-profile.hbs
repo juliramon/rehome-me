@@ -8,13 +8,13 @@
     <div class="user wrapper">
       <div class="col">
         <div class="avatar">
-          <img src="{{user.avatar}}" alt="{{user.username}}">
+          <img src="{{user.avatar}}" alt="{{user.fullname}}">
         </div>
       </div>
       <div class="col">
         <div class="user-data">
           <ul>
-            <li class="username"><h1>{{user.username}}</h1></li>
+            <li class="username"><h1>{{user.fullname}}</h1></li>
             <li class="username"><p>@{{user.username}}</p></li>
             <li class="description">{{user.description}}</li>
             <li class="">{{#if user.sitter}} User is sitter {{/if}}</li>
@@ -22,17 +22,13 @@
               <a href="/user/{{user._id}}/edit" title="Edit profile">Edit profile</a>
               <a href="/user/{{user._id}}/delete" title="Delete profile">Delete profile</a>
             </li>
-            <li class="username">
-              <p>@{{userInSession.username}}</p>
-            </li>
-            <li class="description">{{userInSession.description}}</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
   <div class="header">
-    <h2>{{user.username}}'s animals</h2>
+    <h2>{{user.fullname}}'s animals</h2>
   </div>
   <div class="animals wrapper">
     {{#each userAnimals}}
@@ -40,7 +36,7 @@
     {{/each}}
   </div>
   <div class="header">
-    <h2>{{userInSession.username}}'s already rehomed!</h2>
+    <h2>{{userInSession.fullname}}'s already rehomed!</h2>
   </div>
   <div class="animals wrapper">
     {{#each userAnimalsAdopted}}
@@ -48,7 +44,7 @@
     {{/each}}
   </div>
   <div class="header">
-    <h2>{{userInSession.username}}'s animals pets!</h2>
+    <h2>{{userInSession.fullname}}'s animals pets!</h2>
   </div>
   <div class="animals wrapper">
     {{#each userAnimalsOwned}}

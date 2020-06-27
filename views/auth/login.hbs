@@ -1,9 +1,14 @@
 <section class="mw-1600">
+  <h1>Log in to Rehome Me</h1>
+  <div class="buttons">
+    <a href="/auth/google" class="btn btn-large btn-dark btn-flex btn-gl btn-img"> <img src="/images/google.svg" alt="Logo Google" > Login with Google</a>
+    <a href="/auth/facebook" class="btn btn-large btn-soft btn-flex" class="btn-img"><img src="/images/facebook.svg" alt="Logo Facebook"></a>
+  </div>
   <div class="form">
     <form action="/login" method="POST">
       <div class="input-group">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" placeholder="Type your username">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Type your email address">
       </div>
       <div class="input-group">
         <label for="password">password</label>
@@ -14,6 +19,9 @@
       <p class="error">{{errorMessage}}</p>
       {{/if}}
     </form>
+    <div class="form-link">
+      <a href="/signup" title="Forgot password?">Don't have an account? Sign up</a>
+    </div>
     <div class="form-link">
       <a href="#" title="Forgot password?">Forgot password?</a>
     </div>
