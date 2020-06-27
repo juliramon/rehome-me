@@ -28,8 +28,7 @@ const getUserProfile = async (req, res) => {
     const findUser = {
       owner: req.session.currentUser._id,
       adopted: 'not-adopted'
-    })
-    
+    }
     const openProcesses = await Adoption.find({
       $or: [{
         $and: [{
@@ -382,14 +381,12 @@ const getSitterDetails = async (req, res, next) => {
   try {
     const userAnimals = await Animal.find({
       owner: req.params.userId,
-    });
-
+    })
     const user = await User.findById(req.params.userId);
-
     const animalsForSitting = await Animal.find({
       owner: req.session.currentUser._id,
       type: 'sitting'
-    });
+    })
 
     if (user._id == req.session.currentUser._id) {
       res.render('user-profile', {
@@ -397,7 +394,7 @@ const getSitterDetails = async (req, res, next) => {
         userAnimals,
         userInSession: req.session.currentUser,
         animalsForSitting
-      });
+      })
     } else {
       res.render('userProfilePublic', {
         user,
@@ -405,14 +402,15 @@ const getSitterDetails = async (req, res, next) => {
         userInSession: req.session.currentUser,
         animalsForSitting
       });
-    if(!req.session.currentUser || req.session.currentUser._id != user._id){
-      res.render('userProfilePublic', {user, userAnimals, userInSession: req.session.currentUser});
-    } else if(req.session.currentUser._id == user._id) {
-      res.render('user-profile', {user, userAnimals, userInSession: req.session.currentUser});  
+      if(!req.session.currentUser || req.session.currentUser._id != user._id){
+        res.render('userProfilePublic', {user, userAnimals, userInSession: req.session.currentUser});
+      } else if(req.session.currentUser._id == user._id) {
+        res.render('user-profile', {user, userAnimals, userInSession: req.session.currentUser});  
+      }
     }
-  } catch (error) {
-    console.log('Error loading the user profile >', error);
-  }
+  }catch(error) {
+      console.log('Error loading the user profile >', error);
+    }
 }
 
 const deleteUser = async (req, res, next) => {
@@ -473,14 +471,12 @@ const acceptAdoption = async (req, res, next) => {
       new: true
     }).populate('animal');
 
-
     const animalAdopted = await Animal.findByIdAndUpdate(adoption.animal._id, {
       adopted: 'adopted'
     }, {
       new: true
     })
-
-    console.log(animalAdopted)
+    
     res.redirect('/user-profile')
   } catch (error) {
     console.log('Error while adopting the animal=> ', error)
