@@ -8,13 +8,13 @@
     <div class="user wrapper">
       <div class="col">
         <div class="avatar">
-          <img src="{{user.avatar}}" alt="{{user.username}}">
+          <img src="{{user.avatar}}" alt="{{user.fullname}}">
         </div>
       </div>
       <div class="col">
         <div class="user-data">
           <ul>
-            <li class="username"><h1>{{user.fullName}}</h1></li>
+            <li class="username"><h1>{{user.fullname}}</h1></li>
             <li class="username"><p>@{{user.username}}</p></li>
             <li class="description">{{user.description}}</li>
             <li class="">{{#if user.sitter}} User is sitter {{/if}}</li>
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="header">
-    <h2>{{user.fullName}}'s animals</h2>
+    <h2>{{user.fullname}}'s animals</h2>
   </div>
   <div class="animals wrapper">
     {{#each userAnimals}}
@@ -36,7 +36,7 @@
     {{/each}}
   </div>
   <div class="header">
-    <h2>{{userInSession.fullName}}'s already rehomed!</h2>
+    <h2>{{userInSession.fullname}}'s already rehomed!</h2>
   </div>
   <div class="animals wrapper">
     {{#each userAnimalsAdopted}}
@@ -44,7 +44,7 @@
     {{/each}}
   </div>
   <div class="header">
-    <h2>{{userInSession.fullName}}'s animals pets!</h2>
+    <h2>{{userInSession.fullname}}'s animals pets!</h2>
   </div>
   <div class="animals wrapper">
     {{#each userAnimalsOwned}}

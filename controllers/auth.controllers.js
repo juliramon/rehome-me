@@ -3,6 +3,7 @@ const User = require('../models/User.model');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const app = require('../app');
+const {generateUsername} = require('../helpers/helpers');
 
 const saltRounds = 10;
 
@@ -17,16 +18,15 @@ const loadSignupForm = (req, res) => {
 const submitSignupForm = async (req, res, next) => {
   try {
     const {
-      username,
+      fullname,
       email,
       password
     } = req.body;
-    const hasEmptyCredentials = !username || !email || !password;
+    const hasEmptyCredentials = !fullname || !email || !password;
     if (hasEmptyCredentials) {
       return res.render('auth/signup', {
-        errorMessage: 'Username, email and password are mandatory'
+        errorMessage: 'Name and lastname, email and password are mandatory'
       });
-      
     };
 
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -38,7 +38,9 @@ const submitSignupForm = async (req, res, next) => {
 
     const salt = await bcryptjs.genSalt(saltRounds);
     const hashedPassword = await bcryptjs.hash(password, salt);
+    const username = generateUsername(fullname)
     const userSignup = await User.create({
+      fullname,
       username,
       email,
       passwordHash: hashedPassword
@@ -52,7 +54,7 @@ const submitSignupForm = async (req, res, next) => {
       });
     } else if (error.code === 11000) {
       res.status(400).render('auth/signup', {
-        errorMessage: 'Username or email already in use'
+        errorMessage: 'Email already in use'
       });
     } else {
       next(error);
@@ -71,22 +73,22 @@ const loadLoginForm = (req, res) => {
 const submitLoginForm = async (req, res, next) => {
   try {
     const {
-      username,
+      email,
       password
     } = req.body;
-    const hasEmptyCredentials = !username || !password;
+    const hasEmptyCredentials = !email || !password;
     if (hasEmptyCredentials) {
       return res.render('auth/login', {
-        errorMessage: 'Please enter both username and password to login'
+        errorMessage: 'Please enter both email and password to login'
       })
     };
 
     const userLogin = await User.findOne({
-      username
+      email
     })
     if (!userLogin) {
       res.render('auth/login', {
-        errorMessage: 'Username is not found. Try another username.'
+        errorMessage: 'Email is not found. Try again.'
       })
       return;
     } else if (bcryptjs.compareSync(password, userLogin.passwordHash)) {
@@ -109,19 +111,28 @@ const logout = (req, res) => {
   res.redirect('/')
 }
 
-const passportAuth = (passport.authenticate('google', {
-  scope: [
-    'https://www.googleapis.com/auth/userinfo.profile',
-    'https://www.googleapis.com/auth/userinfo.email'
+const passportAuth = {
+  google: passport.authenticate('google', {
+    scope: [
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email'
     ]
+  }),
+  facebook: passport.authenticate('facebook', {
+    scope: 'email'
   })
-);
+} 
 
-const passportAuthCallback = (passport.authenticate('google', {
+const passportAuthCallback = {
+  google: passport.authenticate('google', {
     successRedirect: '/user-profile',
-    failureRedirect: '/'
+    failureRedirect: '/login'
+  }),
+  facebook: passport.authenticate('facebook', {
+    successRedirect: '/user-profile',
+    failureRedirect: '/login'
   })
-);
+} 
 
 module.exports = {
   loadSignupForm,

@@ -17,7 +17,9 @@ router
   .get('/login', loadLoginForm)
   .post('/login', submitLoginForm)
   .post('/logout', logout)
-  .get('/auth/google', passportAuth)
-  .get('/auth/google/callback', passportAuthCallback)
+  .get('/auth/google', passportAuth.google)
+  .get('/auth/google/callback', passportAuthCallback.google)
+  .get('/auth/facebook', passportAuth.facebook)
+  .get('/auth/facebook/callback', passportAuthCallback.facebook)
 
 module.exports = router;

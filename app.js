@@ -13,7 +13,9 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('./models/User.model');
+const {generateUsername} = require('./helpers/helpers');
 
 const indexRouter = require('./routes/pages.routes');
 const authRouter = require('./routes/auth.routes');
@@ -49,14 +51,40 @@ passport.use(
   },
   async (accessToken, refreshToken, profile, done) => {
     try{
-      console.log('Google account details =>', profile)
-      const foundUser = await User.findOne({googleID: profile.id});
+      const foundUser = await User.findOne({googleId: profile.id});
       if(foundUser){
-        done(null, foundUser);
-        return;
+        return done(null, foundUser);
       }
       try { 
-        const newUser = await User.create({googleID: profile.id, fullName: profile.displayName, email: profile.emails[0].value, avatar: profile.photos[0].value});
+        const username = generateUsername(profile.displayName);
+        const newUser = await User.create({googleId: profile.id, fullname: profile.displayName, username: username, email: profile.emails[0].value, avatar: profile.photos[0].value});
+        done(null, newUser);
+      }catch(error){
+        done(error);
+      }
+    }catch(error){
+      console.log(error)
+    }
+  })
+);
+
+passport.use(
+  new FacebookStrategy({
+    clientID: process.env.FACEBOOK_CLIENT_ID,
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL: '/auth/facebook/callback',
+    profileFields: ['id', 'displayName', 'name', 'email', 'gender', 'photos']
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    console.log(profile)
+    try{
+      const foundUser = await User.findOne({facebookId: profile.id});
+      if(foundUser){
+        return done(null, foundUser);
+      }
+      try { 
+        const username = generateUsername(profile.displayName);
+        const newUser = await User.create({facebookId: profile.id, fullname: profile.displayName, username: username, email: profile.emails[0].value, avatar: profile.photos[0].value});
         done(null, newUser);
       }catch(error){
         done(error);
@@ -74,8 +102,6 @@ app.use((req, res, next) => {
   if(req.user){
     req.session.currentUser = req.user;
   }
-  console.log('session =>', req.session);
-  console.log('current user =>', req.session.currentUser);
   next();
 })
 
