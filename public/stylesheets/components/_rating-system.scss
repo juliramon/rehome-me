@@ -1,0 +1,63 @@
+.rating-container {
+  width: 400px;
+  background-color: $grey-green;
+  padding: 20px 30px;
+  border: 2px solid $dark-green;
+  border-radius: 5px;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+form .textarea {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+
+form .textarea textarea {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: 1px solid $dark-green;
+  padding: 10px;
+  font-size: 1em;
+  resize: none;
+}
+
+.rating-container .star-widget input {
+  display: none;
+}
+
+.star-widget label {
+  font-size: 40px;
+  color: $dark-green;
+  padding: 10px;
+  float: right;
+  transition: all 0.2s ease;
+}
+
+.star-widget {
+
+  input:not(:checked)~label:hover,
+  input:not(:checked)~label:hover~label {
+    color: #fd4;
+  }
+
+  input:checked~label {
+    color: #fe7;
+    text-shadow: 0 0 20px $dark-green;
+  }
+}
+
+form .btn {
+  cursor: pointer;
+}
+
+form .btn-rating {
+  margin-top: 15px;
+}
