@@ -14,8 +14,12 @@
       <div class="col">
         <div class="user-data">
           <ul>
-            <li class="username"><h1>{{user.fullname}}</h1></li>
-            <li class="username"><p>@{{user.username}}</p></li>
+            <li class="username">
+              <h1>{{user.fullname}}</h1>
+            </li>
+            <li class="username">
+              <p>@{{user.username}}</p>
+            </li>
             <li class="description">{{user.description}}</li>
             <li class="">{{#if user.sitter}} User is sitter {{/if}}</li>
             <li>
@@ -57,7 +61,7 @@
   </div>
   <div class="animals wrapper">
     {{#each processesFinished}}
-    {{> animalProcesses}}
+    {{> finishedProcesses}}
     {{/each}}
   </div>
   {{else}}

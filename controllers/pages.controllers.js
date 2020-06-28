@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
 const Animal = require('../models/Animal.model');
 const Adoption = require('../models/Adoption.model');
-const app = require('../app');
-const {formatDate, validateUsername} = require('../helpers/helpers');
+const {
+  formatDate
+} = require('../helpers/helpers');
 const User = require('../models/User.model');
 
 const getIndex = async (req, res, next) => {
@@ -29,6 +30,7 @@ const getUserProfile = async (req, res) => {
       owner: req.session.currentUser._id,
       adopted: 'not-adopted'
     })
+
     const openProcesses = await Adoption.find({
       $or: [{
         $and: [{
@@ -42,9 +44,7 @@ const getUserProfile = async (req, res) => {
         $and: [{
           status: 'pending'
         }, {
-          owner: {
-            $ne: req.session.currentUser._id
-          }
+          host: req.session.currentUser._id
         }, {
           type: 'permanent'
         }]
@@ -320,8 +320,10 @@ const adoptAnimal = async (req, res, next) => {
 const getEditProfileForm = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId)
-    res.render('edit-user', {user, userInSession: req.session.currentUser});
-  }catch(error){
+    res.render('edit-user', {
+      user
+    });
+  } catch (error) {
     console.log('Error getting the user edit profile form =>', error)
   }
 };
@@ -329,29 +331,17 @@ const getEditProfileForm = async (req, res, next) => {
 const editUser = async (req, res, next) => {
   try {
     const {
-      fullname,
-      username, 
+      username,
       description,
       sitter
     } = req.body;
-    const user = await User.findById(req.params.userId)
-    const users = await User.find();
-    const hasEmptyDetails = !fullname || !username
-    if (hasEmptyDetails) {
-      return res.render('edit-user', {user, userInSession: req.session.currentUser, errorMessage: 'Name and lastname, and username are mandatory'
-      });
-    };
-    let isUsernameAvailable = validateUsername(users, username);
-    if(user.username === username){
-      isUsernameAvailable = true;
-    }
-    if(isUsernameAvailable == false) {
-      return res.render('edit-user', {user, userInSession: req.session.currentUser, errorMessage: 'Username already in use'
-      });
-    }
     const booleanCheck = sitter ? true : false;
-    const formFields = {fullname, username, description, sitter: booleanCheck}
-    if(req.file){
+    const formFields = {
+      username,
+      description,
+      sitter: booleanCheck
+    }
+    if (req.file) {
       formFields.avatar = req.file.path;
     }
     const editUser = await User.findByIdAndUpdate(req.params.userId, {
@@ -381,12 +371,14 @@ const getSitterDetails = async (req, res, next) => {
   try {
     const userAnimals = await Animal.find({
       owner: req.params.userId,
-    })
+    });
+
     const user = await User.findById(req.params.userId);
+
     const animalsForSitting = await Animal.find({
       owner: req.session.currentUser._id,
       type: 'sitting'
-    })
+    });
 
     if (user._id == req.session.currentUser._id) {
       res.render('user-profile', {
@@ -394,7 +386,7 @@ const getSitterDetails = async (req, res, next) => {
         userAnimals,
         userInSession: req.session.currentUser,
         animalsForSitting
-      })
+      });
     } else {
       res.render('userProfilePublic', {
         user,
@@ -402,15 +394,10 @@ const getSitterDetails = async (req, res, next) => {
         userInSession: req.session.currentUser,
         animalsForSitting
       });
-      if(!req.session.currentUser || req.session.currentUser._id != user._id){
-        res.render('userProfilePublic', {user, userAnimals, userInSession: req.session.currentUser});
-      } else if(req.session.currentUser._id == user._id) {
-        res.render('user-profile', {user, userAnimals, userInSession: req.session.currentUser});  
-      }
     }
-  }catch(error) {
-      console.log('Error loading the user profile >', error);
-    }
+  } catch (error) {
+    console.log('Error loading the user profile >', error);
+  }
 }
 
 const deleteUser = async (req, res, next) => {
@@ -471,11 +458,13 @@ const acceptAdoption = async (req, res, next) => {
       new: true
     }).populate('animal');
 
-    const animalAdopted = await Animal.findByIdAndUpdate(adoption.animal._id, {
-      adopted: 'adopted'
-    }, {
-      new: true
-    })
+    if (adoption.type === 'permanent') {
+      const animalAdopted = await Animal.findByIdAndUpdate(adoption.animal._id, {
+        adopted: 'adopted'
+      }, {
+        new: true
+      })
+    }
 
     res.redirect('/user-profile')
   } catch (error) {
