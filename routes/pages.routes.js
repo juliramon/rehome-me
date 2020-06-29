@@ -21,6 +21,7 @@ const {
   deleteUser,
   acceptAdoption,
   rejectAdoption,
+  rateSitter
 } = require('../controllers/pages.controllers');
 
 const router = express.Router();
@@ -44,5 +45,6 @@ router
   .get('/user/:userId/delete', deleteUser)
   .get('/adoption/:adoptionId/accept', acceptAdoption)
   .get('/adoption/:adoptionId/reject', rejectAdoption)
+  .post('/rate/:adoptionId', rateSitter)
 
 module.exports = router;

@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   fullname: {
-      type: String,
-      require: [true, 'Name and lastname are required']
+    type: String,
+    require: [true, 'Name and lastname are required']
   },
   username: {
     type: String,
@@ -36,7 +36,9 @@ const userSchema = new Schema({
   sitter: {
     type: Boolean,
     default: 'false'
-  }
+  },
+  ratings: [Number],
+  comments: [String]
 });
 
 const User = mongoose.model('User', userSchema);
