@@ -16,6 +16,8 @@
             <li class="username">@{{user.username}}</li>
             <li class="description">{{user.description}}</li>
             <li class="isSitter">{{#if user.sitter}} <span class="lnr lnr-checkmark-circle"></span> Can host pets {{/if}}</li>
+            {{#if ratingAvg}}<li class="">This user has a {{ratingAvg}} / 5 <i class="fa fa-star"></i></li>{{/if}}
+            {{#unless ratingAvg}}<li class="">This user hasn't got any valorations yet</li>{{/unless}}
           </ul>
         </div>
       </div>
@@ -40,3 +42,66 @@
     {{> addButton}}
   </div>
 </section>
+
+{{#if ratingAvg}}
+<section class="comment-section">
+  <h3><i class="fa fa-comments-o"></i> User comentaries about {{user.fullname}}</h3>
+  {{#each user.comments}}
+  <div class="comment">
+    <p><i class="fa fa-commenting-o"></i> {{@this}}</p>
+  </div>
+  {{/each}}
+</section>
+{{/if}}
+
+{{#if userValorations}}
+<section class="pending-comments">
+  <h3>You already have hired that sitter! Would you like to rate your interaction?</h3>
+  {{#each userValorations}}
+  <div class="rating-comment">
+    <h4>How did {{host.fullname}} treat {{animal.name}}?</h4>
+    <div class="rating-container">
+      <form action="/rate/{{_id}}" method="POST">
+        <div class="star-widget">
+          <input type="radio" name="rate" id="rate-5" value="5">
+          <label for="rate-5" class="fa fa-star"></label>
+          <input type="radio" name="rate" id="rate-4" value="4">
+          <label for="rate-4" class="fa fa-star"></label>
+          <input type="radio" name="rate" id="rate-3" value="3">
+          <label for="rate-3" class="fa fa-star"></label>
+          <input type="radio" name="rate" id="rate-2" value="2">
+          <label for="rate-2" class="fa fa-star"></label>
+          <input type="radio" name="rate" id="rate-1" value="1">
+          <label for="rate-1" class="fa fa-star"></label>
+        </div>
+        <div class="textarea">
+          <textarea name="comment" cols="30" placeholder="Describe your experience..."></textarea>
+        </div>
+        <div class="btn-rating">
+          <button type="submit">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  {{/each}}
+</section>
+{{/if}}
+
+<section class="animal-adoption">
+  <h3>Do you want {{user.fullname}} to take care of your pet?</h3>
+  <form action="/user/{{user._id}}/hire" method="POST">
+    <div class="input-group">
+      <label for="animalid">Select one of your registered animals</label>
+      <select name="animalid" id="animalid">
+        {{#each animalsForSitting}}
+        <option value="{{_id}}">
+          {{name}}
+        </option>
+        {{/each}}
+      </select>
+    </div>
+    <input type="submit" value="Hire Sitter!">
+  </form>
+  <h5>If you don't have any animals registered, go to <a href="/animal/add">Register Animal</a></h5>
+</section>
+{{> addButton}}

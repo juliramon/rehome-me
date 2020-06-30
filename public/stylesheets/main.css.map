@@ -12,6 +12,7 @@
 		"components/_cards.scss",
 		"components/_user-profile-box.scss",
 		"components/_headers.scss",
+		"components/_rating-system.scss",
 		"layout/_navigation.scss",
 		"layout/_footer.scss",
 		"layout/_forms.scss",
