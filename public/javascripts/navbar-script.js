@@ -5,7 +5,7 @@ const navSlide = () => {
   const nav = document.querySelector('.nav-links');
   const navLinks = document.querySelectorAll('.nav-links li');
   // Burger menu logic
-  burger.addEventListener('click', () => {    
+  burger.addEventListener('click', () => {
     // Toggle the animation style to animate the side menu
     const toggleLinkAnimation = (link, index) => {
       const hasAnimation = link.style.animation

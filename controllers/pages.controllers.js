@@ -26,6 +26,7 @@ const getIndex = async (req, res, next) => {
 
 const getUserProfile = async (req, res) => {
   try {
+    const filter = req.query.filter;
     const userAnimals = await Animal.find({
       owner: req.session.currentUser._id,
       adopted: 'not-adopted'
@@ -77,11 +78,11 @@ const getUserProfile = async (req, res) => {
       }, {
         status: 'rejected'
       }]
-    }).populate('animal').populate('owner').populate('host')
-
+    }).populate('animal').populate('owner').populate('host');
     const user = await User.findById(req.session.currentUser._id)
     res.render('user-profile', {
       user,
+      filter,
       userInSession: req.session.currentUser,
       userAnimals,
       openProcesses,
