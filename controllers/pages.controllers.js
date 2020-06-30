@@ -393,7 +393,7 @@ const getSitterDetails = async (req, res, next) => {
       }]
     }).populate('animal').populate('host');
 
-    const ratingAvg = (user.ratings.length == 0) ? false : user.ratings.reduce((a, b) => a + b, 0) / user.ratings.length;
+    const ratingAvg = (user.ratings.length == 0) ? false : (user.ratings.reduce((a, b) => a + b, 0) / user.ratings.length).toFixed(1);
     const userValorations = (userHostSitting.length == 0) ? false : userHostSitting;
 
     if (user._id == req.session.currentUser._id) {
@@ -537,7 +537,6 @@ const rateSitter = async (req, res, next) => {
     console.log('Error while rating the sitter=> ', error)
   }
 }
-
 
 module.exports = {
   getIndex,

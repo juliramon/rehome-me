@@ -19,7 +19,7 @@
               <p>@{{user.username}}</p>
             </li>
             <li class="description">{{user.description}}</li>
-            {{#if ratingAvg}}<li class="">This user has a {{ratingAvg}}/5 <i class="fa fa-star"></i></li>{{/if}}
+            {{#if ratingAvg}}<li class="">This user has a {{ratingAvg}} / 5 <i class="fa fa-star"></i></li>{{/if}}
             {{#unless ratingAvg}}<li class="">This user hasn't got any valorations yet</li>{{/unless}}
           </ul>
         </div>
@@ -27,6 +27,17 @@
     </div>
   </div>
 </section>
+
+{{#if ratingAvg}}
+<section class="comment-section">
+  <h3><i class="fa fa-comments-o"></i> User comentaries about {{user.fullname}}</h3>
+  {{#each user.comments}}
+  <div class="comment">
+    <p><i class="fa fa-commenting-o"></i> {{@this}}</p>
+  </div>
+  {{/each}}
+</section>
+{{/if}}
 
 {{#if userValorations}}
 <section class="pending-comments">
@@ -56,16 +67,6 @@
         </div>
       </form>
     </div>
-  </div>
-  {{/each}}
-</section>
-{{/if}}
-
-{{#if ratingAvg}}
-<section class="comment-section">
-  {{#each user.comments}}
-  <div class="comment">
-    <p>{{@this}}</p>
   </div>
   {{/each}}
 </section>
