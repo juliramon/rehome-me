@@ -1,4 +1,4 @@
-<div class="box animal">
+<div class="card flex">
   <div class="col">
     <div class="avatar">
       <a href="/animal/{{animal._id}}">
@@ -11,8 +11,8 @@
       <li class="name">
         <h3>{{animal.name}}</h3>
       </li>
-      <li>Process: {{animal.type}}</li>
-      <li>Status: {{status}}</li>
+      <li><span class="lnr lnr-flag"></span> {{animal.type}}</li>
+      <li><span class="lnr lnr-tag"></span> {{status}}</li>
     </ul>
   </div>
 </div>

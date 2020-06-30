@@ -1,12 +1,16 @@
 .filter-bar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 5%;
 }
 
 .btn-filter {
-  margin: 5px;
+  margin: 15px 4px 4px;
+  border: 1px solid $soft-green;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: white;
+  display: flex;
 }
 
 .btn-filter>img {

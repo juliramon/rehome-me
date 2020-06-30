@@ -1,13 +1,15 @@
-<section id="sittersList">
-  <div class="header">
-    <h1>List of sitters</h1>
+<section class="mw-1600 sitters-list">
+  <div class="content">
+    <div class="header">
+      <h1>Users that can adopt</h1>
+    </div>
+    <div class="animals wrapper">
+      {{#each sitters}}
+        {{> userCard this}}
+        {{else}}
+        <p>There are no sitters yet</p>
+      {{/each}}
+    </div>
+    {{> addButton}}
   </div>
-  <div class="animals wrapper">
-    {{#each sitters}}
-      {{> userCard this}}
-      {{else}}
-      <p>There are no sitters yet</p>
-    {{/each}}
-  </div>
-  {{> addButton}}
 </section>

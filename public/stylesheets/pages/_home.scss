@@ -1,49 +1,39 @@
 .rehome-me {
-  padding: 50px;
-  background-image: url('../images/bg-hero.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-}
-
-.hero {
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 6px;
-  padding: 15px 30px;
-}
-
-.titles {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2%;
-  color: $dark-green;
-  text-align: center;
-}
-
-.buttons-log {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-}
-
-.buttons-log>form {
-  margin: 3%;
-}
-
-input[type=submit],
-button[type=submit] {
-  background-color: $white;
-  color: $soft-green;
-  text-transform: uppercase;
-  padding: 1.5vh 4vh;
-  font-size: 0.8em;
-  font-weight: bold;
-  font-family: Sans-Serif;
-  border: 1px solid $soft-green;
-  border-radius: 15px;
-  transition: all 0.4s ease 0s;
-  cursor: pointer;
+  .hero {
+    padding: 50px 20px;
+    background-image: url(/images/bubbles.svg);
+    background-repeat: repeat;
+    background-color: $soft-green;
+    margin: 0 -20px;
+  }
+  .titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: $white;
+    text-align: left;
+  }
+  h1 {
+    margin: 0;
+    font-size: 1.8em;
+    line-height: 1.3em;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.25);
+  }
+  .buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
+  .buttons .btn {
+    width: 100%;
+  }
+  .buttons .btn:last-child {
+    margin-top: 8px;
+  }
 }
 
 input[type=submit]:hover,
@@ -54,18 +44,13 @@ button[type=submit]:hover {
   transition: all 0.4s ease 0s;
 }
 
-.process {
+.process, .featured-animals {
   text-align: center;
   border-bottom: 1px dotted $soft-green;
 }
 
-.process {
-
-  h2,
-  h3,
-  h4,
-  h5,
-  .fa {
+.process, .featured-animals {
+  h2,h3,h4,h5,.lnr {
     color: $dark-green;
   }
 }
@@ -82,7 +67,11 @@ button[type=submit]:hover {
   padding: 15px;
 }
 
-.feature-card .fa {
+.feature-card .lnr {
   font-size: 30px;
   margin-bottom: 8px;
+}
+
+.featured-animals {
+
 }

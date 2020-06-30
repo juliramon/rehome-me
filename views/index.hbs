@@ -1,59 +1,59 @@
-<main>
- <section class="rehome-me">
-  <div class="hero">
-    <div class="titles">
-      <h1>Rehome Me</h1><br>
-      <h5>Because rehoming a pet shoud be easy and stress free</h5>
-    </div>
-
-    <div class="buttons-log">
-      <form action="/login" method="GET">
-        <input type="submit" value="Login">
-      </form>
-      <form action="/signup" method="GET">
-        <input type="submit" value="Sign Up">
-      </form>
-    </div>
-  </div>
-  </section>
-
-<section class="process">
-  <h2>How does it work?</h2>
-  <div class="features">
-    <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fa fa-paw" aria-hidden="true"></i>
+<section class="mw-1600 rehome-me">
+  <div class="content">
+    <div class="hero">
+      <div class="titles">
+        <h1>Rehoming a pet shoud be easy and stress free.<br>Start using Rehome me!</h1>
       </div>
-      <div class="feature-explanation">
-        <h3>Add a Pet Profile</h3>
-        <h5>Get your pets posted on Rehome Me to be seen by the adopters</h5>
-      </div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fa fa-home" aria-hidden="true"></i>
-      </div>
-      <div class="feature-explanation">
-        <h3>Get a New Home</h3>
-        <h5>Wait for an adopter to contact you or choose one of the available homes</h5>
-      </div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fa fa-handshake-o" aria-hidden="true"></i>
-      </div>
-      <div class="feature-explanation">
-        <h3>Finalize the Adoption</h3>
-        <h5>Get your pets posted on Rehome Me to be seen by the adopters</h5>
+      <div class="buttons">
+        <a href="/signup" title="Sign up" class="btn btn-dark btn-large">Sign up</a>
+        <a href="/login" title="Login" class="btn btn-soft btn-large">Log in</a>
       </div>
     </div>
   </div>
 </section>
-<section class="featured-animals">
-  <h2>Featured Pets</h2>
-  <br>
-  {{#each animals}}
-    {{> animalCardPublic}}
-  {{/each}}
+<section class="process p-tb-50">
+  <div class="content">
+    <div class="header">
+      <h2>How does it work?</h2>
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="lnr lnr-paw"></span>
+        </div>
+        <div class="feature-explanation">
+          <h3>Add a Pet Profile</h3>
+          <h5>Get your pets posted on Rehome Me to be seen by the adopters</h5>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="lnr lnr-home"></span>
+        </div>
+        <div class="feature-explanation">
+          <h3>Get a New Home</h3>
+          <h5>Wait for an adopter to contact you or choose one of the available homes</h5>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="lnr lnr-smile"></span>
+        </div>
+        <div class="feature-explanation">
+          <h3>Finalize the Adoption</h3>
+          <h5>Get your pets posted on Rehome Me to be seen by the adopters</h5>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-</main>
+<section class="featured-animals p-tb-50">
+  <div class="content">
+    <div class="header">
+      <h2>Featured pets</h2>
+    </div>
+    {{#each animals}}
+      {{> animalCardPublic}}
+    {{/each}}
+  </div>
+</section>

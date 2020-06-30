@@ -1,22 +1,32 @@
 $dark-green: #4D716D;
 $soft-green: #86B8B1;
 $grey-green: #cce0dd;
+$grey: #888888;
 $white: #FFFFFF;
+$header-typo: 'Roboto Slab', serif;
+$main-typo: 'M PLUS Rounded 1c', sans-serif;
+$bold: 900;
+$regular: 700;
+$light: 400;
 
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: $main-typo;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $header-typo;
+}
+
+.bg-dark {
+  background-color: $dark-green;
 }
 
 .mw-1600 {
   max-width: 1600px;
   margin: 0 auto;
-}
-
-section {
-  padding: 45px 20px;
 }
 
 a {
@@ -27,4 +37,22 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.sep.full {
+  border-bottom: 1px solid $soft-green;
+  margin: 0 -20px;
+}
+
+section {
+  padding: 0 20px;
+}
+
+.p-tb-50 {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }

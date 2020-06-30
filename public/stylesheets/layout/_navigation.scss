@@ -60,9 +60,9 @@ nav .wrapper {
   display: none;
 }
 
-.burger i {
+.burger .lnr {
   color: $white;
-  font-size: 1.5em;
+  font-size: 1.8em;
 }
 
 @media screen and (max-width: 1024px) {
@@ -73,14 +73,14 @@ nav .wrapper {
   .nav-links {
     position: absolute;
     right: 0px;
-    height: 92vh;
+    height: calc(100vh - 50.38px);
     top: 6.1vh;
     background-color: $soft-green;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 60%;
-    transform: translatex(100%);
+    transform: translatex(0%);
     transition: transform 0.5s ease-in;
   }
 
@@ -89,7 +89,7 @@ nav .wrapper {
   }
 
   .burger {
-    display: block;
+    display: inherit;
     cursor: pointer;
   }
 }
@@ -108,4 +108,16 @@ nav .wrapper {
     opacity: 1;
     transform: translateX(0px)
   }
+}
+
+main {
+  transition: transform 0.5s ease-in;
+  transform: translateX(0%);
+  background-color: white;
+  height: calc(100vh - 50.38px);
+  overflow-x: hidden;
+}
+
+.main-transition {
+  transform: translateX(-60%);
 }

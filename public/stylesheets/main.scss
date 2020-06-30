@@ -4,10 +4,12 @@
 
 @import 'components/featured-animals',
 'components/animal-box',
-'components/floatting-button',
 'components/errors',
 'components/filter-animals',
-'components/buttons';
+'components/buttons',
+'components/cards',
+'components/user-profile-box',
+'components/headers';
 
 @import 'layout/navigation',
 'layout/footer',
@@ -17,4 +19,5 @@
 'pages/contact',
 'pages/user-profile',
 'pages/_animal-details',
-'pages/error404';
+'pages/errors',
+'pages/auth';

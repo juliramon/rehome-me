@@ -1,71 +1,65 @@
-<section id="userProfile">
-  <div class="header">
-    <h1>My Profile</h1>
-    <p>See and edit your profile data and animals added</p>
-  </div>
-  <div class="box">
+<section class="mw-1600 user-profile">
+  <div class="content">
+    <div class="header">
+      <h1>My Profile</h1>
+      <p>See and edit your profile data and animals added</p>
+    </div>
     {{#if userInSession}}
+    <div class="cover bg-auth"></div>
     <div class="user wrapper">
-      <div class="col">
+      <div class="col flex">
         <div class="avatar">
           <img src="{{user.avatar}}" alt="{{user.fullname}}">
+        </div>
+        <div class="buttons">
+          <a href="/user/{{user._id}}/edit" title="Edit profile" class="btn btn-soft btn-small">Edit profile</a>
         </div>
       </div>
       <div class="col">
         <div class="user-data">
           <ul>
-            <li class="username">
+            <li class="name">
               <h1>{{user.fullname}}</h1>
             </li>
-            <li class="username">
-              <p>@{{user.username}}</p>
-            </li>
+            <li class="username">@{{user.username}}</li>
             <li class="description">{{user.description}}</li>
-            <li class="">{{#if user.sitter}} User is sitter {{/if}}</li>
-            <li>
-              <a href="/user/{{user._id}}/edit" title="Edit profile">Edit profile</a>
-              <a href="/user/{{user._id}}/delete" title="Delete profile">Delete profile</a>
-            </li>
+            <li class="isSitter">{{#if user.sitter}}<span class="lnr lnr-checkmark-circle"></span> Can host pets {{/if}}</li>
           </ul>
         </div>
       </div>
     </div>
+    <div class="tabs">
+      <ul>
+        <li><a href="#" title="Animals" class="active">Animals</a></li>
+        <li><a href="#" title="Open processes">Open&nbsp;processes</a></li>
+        <li><a href="#" title="Pending processes">Pending&nbsp;processes</a></li>
+        <li><a href="#" title="Closed processes">Closed&nbsp;processes</a></li>
+      </ul>
+    </div>
+    <div class="sep full"></div>
+    <div class="animals wrapper">
+      {{#each userAnimals}}
+      {{> animalCardCRUD}}
+      {{/each}}
+    </div>
+    <div class="animals wrapper">
+      {{#each openProcesses}}
+      {{> animalProcesses}}
+      {{/each}}
+    </div>
+    <div class="animals wrapper">
+      {{#each pendingProcesses}}
+      {{> processPending}}
+      {{/each}}
+    </div>
+    <div class="animals wrapper">
+      {{#each processesFinished}}
+      {{> finishedProcesses}}
+      {{/each}}
+    </div>
+    {{else}}
+    <p>Still not logged in. Please <a href="/login">login</a>.</p>
+    {{/if}}
+    {{> addButton}}
   </div>
-  <div class="header">
-    <h2>{{user.fullname}}'s animals</h2>
-  </div>
-  <div class="animals wrapper">
-    {{#each userAnimals}}
-    {{> animalCardCRUD}}
-    {{/each}}
-  </div>
-  <div class="header">
-
-    <h2>{{userInSession.username}} open processes</h2>
-  </div>
-  <div class="animals wrapper">
-    {{#each openProcesses}}
-    {{> animalProcesses}}
-    {{/each}}
-  </div>
-  <div class="header">
-    <h2>{{userInSession.fullname}} pending processes</h2>
-  </div>
-  <div class="animals wrapper">
-    {{#each pendingProcesses}}
-    {{> processPending}}
-    {{/each}}
-  </div>
-  <div class="header">
-    <h2>{{userInSession.fullname}} closed processes</h2>
-  </div>
-  <div class="animals wrapper">
-    {{#each processesFinished}}
-    {{> finishedProcesses}}
-    {{/each}}
-  </div>
-  {{else}}
-  <p>Still not logged in. Please <a href="/login">login</a>.</p>
-  {{/if}}
-  {{> addButton}}
 </section>
