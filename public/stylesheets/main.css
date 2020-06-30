@@ -4,8 +4,16 @@
   box-sizing: border-box;
   font-family: "M PLUS Rounded 1c", sans-serif; }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Roboto Slab", serif; }
+
+body {
+  margin-bottom: 8%; }
 
 .bg-dark {
   background-color: #4D716D; }
@@ -396,7 +404,7 @@ nav .wrapper {
   .nav-links {
     position: absolute;
     right: 0px;
-    height: calc(100vh - 50.38px);
+    height: 90vh;
     top: 6.1vh;
     background-color: #86B8B1;
     display: none;
@@ -426,19 +434,21 @@ main {
   transition: transform 0.5s ease-in;
   transform: translateX(0%);
   background-color: white;
-  height: calc(100vh - 50.38px);
   overflow-x: hidden; }
 
 .main-transition {
   transform: translateX(-60%); }
 
 footer {
+  height: 6vh;
   width: 100%;
   padding: 1.6em;
   background-color: #4D716D;
   color: #FFFFFF;
   font-size: 0.7em;
-  text-align: center; }
+  text-align: center;
+  position: fixed;
+  bottom: 0; }
 
 footer > a {
   color: #86B8B1;
@@ -638,14 +648,6 @@ footer > img {
   .rehome-me .buttons .btn:last-child {
     margin-top: 8px; }
 
-/*
-input[type=submit]:hover,
-button[type=submit]:hover {
-  color: $white;
-  background-color: $soft-green;
-  border: 1px solid $white;
-  transition: all 0.4s ease 0s;
-}*/
 .process,
 .featured-animals {
   text-align: center;
