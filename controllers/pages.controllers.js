@@ -275,7 +275,6 @@ const editAnimal = async (req, res, next) => {
     const editAnimal = await Animal.findByIdAndUpdate(req.params.animalId, {
       $set: formFields
     })
-    console.log(editAnimal)
     res.redirect('/user-profile')
   } catch (error) {
     console.log('Error editing the animal =>', error)
@@ -380,6 +379,23 @@ const getSitterDetails = async (req, res, next) => {
       type: 'sitting'
     });
 
+    const userHostSitting = await Adoption.find({
+      $and: [{
+        owner: req.session.currentUser._id
+      }, {
+        host: req.params.userId
+      }, {
+        status: 'accepted'
+      }, {
+        type: 'temporary'
+      }, {
+        rate: 0
+      }]
+    }).populate('animal').populate('host');
+
+    const ratingAvg = (user.ratings.length == 0) ? false : (user.ratings.reduce((a, b) => a + b, 0) / user.ratings.length).toFixed(1);
+    const userValorations = (userHostSitting.length == 0) ? false : userHostSitting;
+
     if (user._id == req.session.currentUser._id) {
       res.render('user-profile', {
         user,
@@ -391,6 +407,8 @@ const getSitterDetails = async (req, res, next) => {
       res.render('userProfilePublic', {
         user,
         userAnimals,
+        ratingAvg,
+        userValorations,
         userInSession: req.session.currentUser,
         animalsForSitting
       });
@@ -492,6 +510,34 @@ const rejectAdoption = async (req, res, next) => {
   }
 }
 
+const rateSitter = async (req, res, next) => {
+  try {
+    const {
+      rate,
+      comment
+    } = req.body
+
+    const rateSitting = await Adoption.findByIdAndUpdate(req.params.adoptionId, {
+      rate: rate
+    }, {
+      new: true
+    }).populate('host')
+
+    const pushUserValoration = await User.findByIdAndUpdate(rateSitting.host._id, {
+      $push: {
+        ratings: rate,
+        comments: comment
+      }
+    }, {
+      new: true
+    })
+
+    res.redirect('/users');
+  } catch (error) {
+    console.log('Error while rating the sitter=> ', error)
+  }
+}
+
 module.exports = {
   getIndex,
   getUserProfile,
@@ -510,5 +556,6 @@ module.exports = {
   deleteUser,
   hireSitter,
   acceptAdoption,
-  rejectAdoption
+  rejectAdoption,
+  rateSitter
 }

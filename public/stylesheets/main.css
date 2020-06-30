@@ -178,6 +178,70 @@ select:focus {
   display: flex;
   flex-flow: row wrap; }
 
+.comment-section {
+  margin: 1% 1%;
+  color: #4D716D; }
+  .comment-section .comment {
+    margin: 5px;
+    padding: 5px 15px;
+    border: 1px solid #4D716D;
+    border-radius: 10px; }
+
+.rating-container {
+  width: 400px;
+  background-color: #cce0dd;
+  padding: 20px 30px;
+  border: 2px solid #4D716D;
+  border-radius: 5px; }
+  .rating-container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; }
+
+form .textarea {
+  height: 100px;
+  width: 100%;
+  overflow: hidden; }
+
+form .textarea textarea {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: 1px solid #4D716D;
+  padding: 10px;
+  font-size: 1em;
+  resize: none; }
+
+.rating-container .star-widget input {
+  display: none; }
+
+.star-widget label {
+  font-size: 40px;
+  color: #4D716D;
+  padding: 10px;
+  float: right;
+  transition: all 0.2s ease; }
+
+.star-widget input:not(:checked) ~ label:hover,
+.star-widget input:not(:checked) ~ label:hover ~ label {
+  color: #fd4; }
+
+.star-widget input:checked ~ label {
+  color: #fe7;
+  text-shadow: 0 0 20px #4D716D; }
+
+form .btn {
+  cursor: pointer; }
+
+form .btn-rating {
+  margin-top: 15px; }
+
+.rating-comment h4,
+.pending-comments h3 {
+  color: #4D716D;
+  margin-bottom: 2%; }
+
 header {
   position: sticky;
   position: -webkit-sticky;
@@ -499,10 +563,10 @@ p {
 
 .animal-adoption {
   padding: 2%;
-  margin: 5% 3% 20% 3%;
+  margin: 2% 3% 20% 3%;
   padding: 5%;
   color: #4D716D;
-  border: 2px solid #4D716D;
+  border: 2px solid #86B8B1;
   border-radius: 20px;
   text-align: center; }
 

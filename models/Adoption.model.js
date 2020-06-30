@@ -34,6 +34,12 @@ const adoptionSchema = new Schema({
     type: String,
     enum: ['pending', 'accepted', 'rejected'],
     required: true
+  },
+  rate: {
+    type: Number,
+    min: 0,
+    max: 5,
+    default: 0,
   }
 });
 
