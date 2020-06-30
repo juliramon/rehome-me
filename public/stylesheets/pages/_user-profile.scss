@@ -1,44 +1,82 @@
 /*USER PROFILE*/
-#userProfile {
-  padding-top: 15px;
-}
-
-#userProfile .header>h1,
-h2,
-p {
-  margin: 10px 0;
-  color: $dark-green
-}
-
-#userProfile .user.wrapper {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  padding: 4%;
-  border: 2px solid $soft-green;
-  border-radius: 20px;
-}
-
-#userProfile .user.wrapper .col:nth-child(2) {
-  margin-left: 20px;
-}
-
-#userProfile .user.wrapper .user-data ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-#userProfile .user.wrapper .avatar img {
-  border-radius: 100px;
-  width: 85px;
-  height: 85px;
-}
-
-#userProfile .edit-profile .btn {
-  border: 1px solid red;
-  border-radius: 3px;
-  padding: 5px 10px;
-  display: block;
-  text-align: center;
+.user-profile {
+  .header {
+    display: none;
+  }
+  .cover {
+    height: 100px;
+    margin: 0 -20px
+  }
+  .user {
+    .wrapper {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+    }
+    .col.flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+     .avatar img {
+      margin-top: -40px;
+      border: 5px solid $white;
+      border-radius: 100px;
+      width: 95px;
+      height: 95px;
+    }
+     .user-data ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 10px;
+    }
+    ul li.username {
+      color: $grey;
+      font-weight: $light;
+      letter-spacing: 0.3px;
+      margin-bottom: 10px;
+    }
+    ul li.description {
+      font-size: 0.9em;
+      line-height: 1.5em;
+    }
+    ul li.isSitter {
+      font-size: 0.9em;
+      font-weight: $regular;
+      margin-top: 10px;;
+    }
+  }
+  .tabs {
+    width: 100%;
+    overflow-x: scroll;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 -10px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    ul li {
+      padding: 4px 10px;
+    }
+    ul li a {
+      font-family: $header-typo;
+      color: $soft-green;
+    }
+    ul li a.active {
+      color: $dark-green;
+    }
+    ul li a.active:after {
+      content: '';
+      display: block;
+      height: 4px;
+      width: auto;
+      background: $dark-green;
+      position: relative;
+      top: 4px;
+    }
+  }
 }

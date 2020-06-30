@@ -3,9 +3,10 @@
   transition: all 0.4s ease 0s;
   cursor: pointer;
   font-weight: bold;
-  font-family: Sans-Serif;
   display: block;
   text-align: center;
+  letter-spacing: 0.6px;
+  border: none;
 }
 
 .btn-dark {
@@ -21,6 +22,13 @@
 .btn-large {
   padding: 1.5vh 4vh;
   font-size: 0.8em;
+}
+
+.btn-small {
+  padding: 1vh 2vh;
+  font-size: 0.7em;
+  height: 35px;
+  letter-spacing: 0;
 }
 
 .btn-flex {
@@ -40,7 +48,32 @@
   margin-right: 8px;
 }
 
+.btn-w100 {
+  width: 100%;
+}
+
 .buttons {
   display: flex;
   flex-flow: row wrap;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  overflow: hidden;
+  .add-btn {
+    height: 70px;
+    width: 70px;
+    background-color: $dark-green;
+    border-radius: 100px;
+    display: block;
+    text-align: center;
+    line-height: 72px;
+    transform: rotate(45deg);
+  }
+  a {
+    color: $white;
+    font-size: 35px;
+  }
 }

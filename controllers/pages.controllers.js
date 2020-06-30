@@ -320,7 +320,8 @@ const getEditProfileForm = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId)
     res.render('edit-user', {
-      user
+      user, 
+      userInSession: req.session.currentUser
     });
   } catch (error) {
     console.log('Error getting the user edit profile form =>', error)
