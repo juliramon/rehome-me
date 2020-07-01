@@ -2,6 +2,7 @@ require('../configs/session.config');
 
 const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
+const transporter = require('../configs/nodemailer.config')
 const Animal = require('../models/Animal.model');
 const Adoption = require('../models/Adoption.model');
 const {
@@ -321,7 +322,7 @@ const getEditProfileForm = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId)
     res.render('edit-user', {
-      user, 
+      user,
       userInSession: req.session.currentUser
     });
   } catch (error) {
@@ -422,12 +423,25 @@ const getSitterDetails = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
   try {
+
+    const userMail = await User.findById(req.params.userId)
+
+    const mailOptions = {
+      from: process.env.GMAIL_ACCOUNT,
+      to: userMail.email,
+      subject: 'We are sorry to see you go :(',
+      text: 'We are sorry to see you go. If you ever need us again, we will be here for you! In the meantime, we deleted all your data, including your animals and personal information from our database.',
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => error ? console.log(error) : console.log('Email sent: ' + info.response))
+
     const user = await User.deleteOne({
       _id: req.params.userId
     })
     const userAnimals = await Animal.deleteMany({
       owner: req.session.currentUser._id
     })
+
     req.session.destroy();
     res.redirect('/');
   } catch (error) {
