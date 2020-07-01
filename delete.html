@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="background: #4D716D; height: 100px; background-size: cover;
+    background-repeat: no-repeat; text-align: center; padding: 35px; font-size:1.5em; color:#cce0dd;">
+    <h1>The process has been closed!</h1>
+  </div>
+  <section style="padding: 20px; margin: 50px; border: 2px solid #4D716D; border-radius:40px; text-align: center;">
+    <h2>PROCESS CLOSED</h2>
+    <p>The process opened about the ${adoption.animal.name} in the <strong>Rehome Me</strong> webpage has been
+      closed.<br>
+      The actual petition status is ${adoption.status}.
+      <ul style="list-style-type: none">
+        <li><b>Animal's name</b>: ${adoption.animal.name}</li>
+        <li><b>Current owner</b>: ${adoption.owner.username}</li>
+        <li><b>Owner's email</b>: ${adoption.owner.email}</li>
+        <li><b>Host</b>: ${adoption.host.username}</li>
+        <li><b>Host's email</b>: ${adoption.host.email}</li>
+      </ul>
+    </p>
+    <p>To obtain more details, please log in at <a href="http://rehome-me.herokuapp.com/">Rehome Me</a>.</p>
+    <div>
+      <img
+        src="https://images2.minutemediacdn.com/image/upload/c_crop,h_1195,w_2127,x_0,y_0/f_auto,q_auto,w_1100/v1586626259/shape/mentalfloss/606627-gettyimages-1080967246.jpg"
+        alt="process-finished">
+    </div>
+  </section>
+</body>
