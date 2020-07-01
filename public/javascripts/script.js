@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let tabs = document.querySelectorAll('.user-profile .fake-link');
 let activeTab = tabs[localStorage.getItem('activeTab')];
+if(!activeTab){
+  activeTab = tabs[0];
+}
 activeTab.classList.add('active');
 
 tabs.forEach((el, index) => el.addEventListener('click', () => {
