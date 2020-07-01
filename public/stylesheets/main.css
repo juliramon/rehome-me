@@ -638,18 +638,29 @@ footer > img {
   .rehome-me .buttons .btn:last-child {
     margin-top: 8px; }
 
+/*
 input[type=submit]:hover,
 button[type=submit]:hover {
-  color: #FFFFFF;
-  background-color: #86B8B1;
-  border: 1px solid #FFFFFF;
-  transition: all 0.4s ease 0s; }
-
-.process, .featured-animals {
+  color: $white;
+  background-color: $soft-green;
+  border: 1px solid $white;
+  transition: all 0.4s ease 0s;
+}*/
+.process,
+.featured-animals {
   text-align: center;
   border-bottom: 1px dotted #86B8B1; }
 
-.process h2, .process h3, .process h4, .process h5, .process .lnr, .featured-animals h2, .featured-animals h3, .featured-animals h4, .featured-animals h5, .featured-animals .lnr {
+.process h2,
+.process h3,
+.process h4,
+.process h5,
+.process .lnr,
+.featured-animals h2,
+.featured-animals h3,
+.featured-animals h4,
+.featured-animals h5,
+.featured-animals .lnr {
   color: #4D716D; }
 
 .features {
@@ -738,6 +749,23 @@ button[type=submit]:hover {
     background: #4D716D;
     position: relative;
     top: 4px; }
+
+.fake-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #86B8B1;
+  font-weight: 600;
+  cursor: pointer; }
+
+.fake-link:hover {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #4D716D;
+  padding: 0;
+  color: #4D716D;
+  font-weight: 600;
+  cursor: pointer; }
 
 /* ANIMAL DETAILS PAGE */
 #details-main {
