@@ -73,7 +73,7 @@ nav .wrapper {
   .nav-links {
     position: absolute;
     right: 0px;
-    height: calc(100vh - 50.38px);
+    height: 90vh;
     top: 6.1vh;
     background-color: $soft-green;
     display: none;
@@ -114,7 +114,6 @@ main {
   transition: transform 0.5s ease-in;
   transform: translateX(0%);
   background-color: white;
-  height: calc(100vh - 50.38px);
   overflow-x: hidden;
 }
 

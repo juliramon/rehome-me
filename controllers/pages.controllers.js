@@ -2,6 +2,13 @@ require('../configs/session.config');
 
 const mongoose = require('mongoose');
 const uploadCloud = require('../configs/cloudinary.config');
+const {
+  transporter,
+  deleteMail,
+  adoptionPetition,
+  sitterPetition,
+  processClosed
+} = require('../configs/nodemailer.config');
 const Animal = require('../models/Animal.model');
 const Adoption = require('../models/Adoption.model');
 const {
@@ -301,6 +308,17 @@ const adoptAnimal = async (req, res, next) => {
     }, {
       new: true
     })
+
+    const adopt = await Adoption.findById(adoption._id).populate('owner').populate('host');
+
+    const info = await transporter.sendMail({
+      from: process.env.GMAIL_ACCOUNT,
+      to: adopt.owner.email,
+      subject: `Someone is interested ${animal.name}, ${adopt.owner.fullname}!`,
+      text: 'We are sad to see you go',
+      html: adoptionPetition(animal.name, adopt.owner.fullname, adopt.host.username)
+    }, (error, info) => error ? console.log(error) : console.log('Email sent: ' + info.response))
+
     res.redirect('/user-profile');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
@@ -321,7 +339,7 @@ const getEditProfileForm = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId)
     res.render('edit-user', {
-      user, 
+      user,
       userInSession: req.session.currentUser
     });
   } catch (error) {
@@ -422,12 +440,23 @@ const getSitterDetails = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
   try {
+    const userMail = await User.findById(req.params.userId)
+
+    const info = await transporter.sendMail({
+      from: process.env.GMAIL_ACCOUNT,
+      to: userMail.email,
+      subject: 'We are sorry to see you go ' + userMail.fullname,
+      text: 'We are sad to see you go',
+      html: deleteMail(userMail.fullname)
+    }, (error, info) => error ? console.log(error) : console.log('Email sent: ' + info.response))
+
     const user = await User.deleteOne({
       _id: req.params.userId
     })
     const userAnimals = await Animal.deleteMany({
       owner: req.session.currentUser._id
     })
+
     req.session.destroy();
     res.redirect('/');
   } catch (error) {
@@ -453,6 +482,18 @@ const hireSitter = async (req, res, next) => {
       status: 'pending'
     });
 
+    const sitt = await Adoption.findById(
+      sitting._id
+    ).populate('owner').populate('host');
+
+    const info = await transporter.sendMail({
+      from: process.env.GMAIL_ACCOUNT,
+      to: sitt.host.email,
+      subject: 'Someone is interested in your service ' + sitt.host.fullname,
+      text: 'We are sad to see you go',
+      html: sitterPetition(sitt.host.fullname, sitt.owner.username, sitt.checkin, sitt.checkout)
+    }, (error, info) => error ? console.log(error) : console.log('Email sent: ' + info.response))
+
     res.redirect('/user-profile');
 
   } catch (error) {
@@ -476,15 +517,23 @@ const acceptAdoption = async (req, res, next) => {
       status: 'accepted'
     }, {
       new: true
-    }).populate('animal');
+    }).populate('animal').populate('host').populate('owner');
 
     if (adoption.type === 'permanent') {
       const animalAdopted = await Animal.findByIdAndUpdate(adoption.animal._id, {
         adopted: 'adopted'
       }, {
         new: true
-      })
+      });
     }
+
+    const info = await transporter.sendMail({
+      from: process.env.GMAIL_ACCOUNT,
+      to: `${adoption.host.email}, ${adoption.owner.email}`,
+      subject: 'Your opened process in Rehome Me has been closed!',
+      text: 'We are sad to see you go',
+      html: processClosed(adoption.animal.name, adoption.status, adoption.owner.username, adoption.owner.email, adoption.host.username, adoption.host.email)
+    }, (error, info) => error ? console.log(error) : console.log('Email sent: ' + info.response))
 
     res.redirect('/user-profile')
   } catch (error) {
@@ -498,13 +547,21 @@ const rejectAdoption = async (req, res, next) => {
       status: 'rejected'
     }, {
       new: true
-    }).populate('animal');
+    }).populate('animal').populate('owner').populate('host');
 
     const animalAdopted = await Animal.findByIdAndUpdate(adoption.animal._id, {
       adopted: 'not-adopted'
     }, {
       new: true
     })
+
+    const info = await transporter.sendMail({
+      from: process.env.GMAIL_ACCOUNT,
+      to: `${adoption.host.email}, ${adoption.owner.email}`,
+      subject: 'Your opened process in Rehome Me has been closed!',
+      text: 'We are sad to see you go',
+      html: processClosed(adoption.animal.name, adoption.status, adoption.owner.username, adoption.owner.email, adoption.host.username, adoption.host.email)
+    }, (error, info) => error ? console.log(error) : console.log('Email sent: ' + info.response))
 
     res.redirect('/user-profile')
   } catch (error) {
