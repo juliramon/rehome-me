@@ -3,12 +3,18 @@ const User = require('../models/User.model');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const app = require('../app');
-const {generateUsername} = require('../helpers/helpers');
+const {
+  generateUsername
+} = require('../helpers/helpers');
+const {
+  transporter,
+  createAccount
+} = require('../configs/nodemailer.config');
 
 const saltRounds = 10;
 
 const loadSignupForm = (req, res) => {
-  if(req.session.currentUser){
+  if (req.session.currentUser) {
     return res.redirect('/user-profile');
   } else {
     return res.render('auth/signup');
@@ -46,6 +52,16 @@ const submitSignupForm = async (req, res, next) => {
       passwordHash: hashedPassword
     })
     req.session.currentUser = userSignup;
+
+    const userMail = await User.findById(req.session.currentUser._id);
+    const info = await transporter.sendMail({
+      from: process.env.GMAIL_ACCOUNT,
+      to: userMail.email,
+      subject: `Welcome to Rehome Me!`,
+      text: 'We are sad to see you go',
+      html: createAccount(userMail.fullname)
+    }, (error, info) => error ? console.log(error) : console.log('Email sent: ' + info.response))
+
     res.redirect('/user-profile');
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
@@ -63,7 +79,7 @@ const submitSignupForm = async (req, res, next) => {
 };
 
 const loadLoginForm = (req, res) => {
-  if(req.session.currentUser){
+  if (req.session.currentUser) {
     return res.redirect('/user-profile');
   } else {
     return res.render('auth/login');
@@ -121,7 +137,7 @@ const passportAuth = {
   facebook: passport.authenticate('facebook', {
     scope: 'email'
   })
-} 
+}
 
 const passportAuthCallback = {
   google: passport.authenticate('google', {
@@ -131,8 +147,8 @@ const passportAuthCallback = {
   facebook: passport.authenticate('facebook', {
     successRedirect: '/user-profile',
     failureRedirect: '/login'
-  })
-} 
+  }),
+}
 
 module.exports = {
   loadSignupForm,
