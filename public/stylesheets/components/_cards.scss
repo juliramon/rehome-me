@@ -90,3 +90,37 @@
     color: $white;
   }
 }
+
+.card-adopt-sitt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10%;
+
+  form {
+    width: 100%;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width:1024px) {
+  .card-adopt-sitt {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5%;
+
+    form {
+      width: 45%;
+      margin: 0 25px;
+
+      .btn {
+        width: 100%;
+        font-size: 1.4em;
+      }
+    }
+  }
+}
