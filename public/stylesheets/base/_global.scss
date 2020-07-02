@@ -31,6 +31,7 @@ body {
   margin-bottom: 8%;
 }
 
+
 .bg-dark {
   background-color: $dark-green;
 }
@@ -66,4 +67,10 @@ section {
 .p-tb-50 {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+
+.animal-list,
+.sitters-list,
+.user-profile {
+  height: 87vh;
 }

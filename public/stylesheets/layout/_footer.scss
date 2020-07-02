@@ -1,12 +1,13 @@
 footer {
-  height: 6vh;
+  height: 4vh;
   width: 100%;
   padding: 1.6em;
   background-color: $dark-green;
   color: $white;
-  font-size: 0.7em;
+  font-size: 0.4em;
   text-align: center;
   position: fixed;
+  align-items: center;
   bottom: 0;
 }
 
@@ -18,4 +19,11 @@ footer>a {
 footer>img {
   width: 1.2em;
   margin-right: 0.7em;
+}
+
+@media only screen and (min-width: 1024px) {
+  footer {
+    height: 6vh;
+    font-size: 0.7em;
+  }
 }

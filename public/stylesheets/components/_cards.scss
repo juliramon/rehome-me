@@ -10,6 +10,7 @@
   box-shadow: 0px -2px 62px rgba(33, 49, 47, 0.9);
   padding: 40px 20px 30px 20px;
   background-color: $white;
+
   h1 {
     font-size: 2.4em;
     font-weight: $bold;
@@ -17,13 +18,16 @@
     max-width: 70%;
     line-height: 1.2em;
   }
+
   .sep {
     margin: 20px 0;
     text-align: center;
   }
+
   .sep span {
     color: $soft-green;
   }
+
   .sep span:before {
     content: '';
     display: inline-block;
@@ -33,6 +37,7 @@
     top: -4px;
     margin-right: 9px;
   }
+
   .sep span:after {
     content: '';
     display: inline-block;
@@ -42,6 +47,7 @@
     top: -4px;
     margin-left: 9px;
   }
+
   .buttons {
     margin-top: 30px;
   }
@@ -55,6 +61,7 @@
   align-items: center;
   box-shadow: none;
   padding: 18px 20px;
+
   img {
     width: 75px;
     height: 75px;
@@ -63,11 +70,23 @@
     border: 2px solid $grey-green;
     display: flex;
   }
+
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
     color: $white;
     margin-left: 18px;
+  }
+}
+
+.card-links {
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+
+  a {
+    margin-right: 15px;
+    color: $white;
   }
 }
