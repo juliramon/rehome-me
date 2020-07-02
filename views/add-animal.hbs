@@ -81,18 +81,22 @@
     </form>
   </div>
   {{else}}
-  <div id="adoption-sitting">
-    <form>
-      <button class="btn-filter" name="filter" type="submit" value="adoption">
-        Adoption service
-      </button>
-    </form>
-    <form>
-      <button class="btn-filter" name="filter" type="submit" value="sitting">
-        Host service
-      </button>
-    </form>
-  </div>
+  <section class="mw-1600 auth bg-auth">
+    <div class="card-auth">
+      <h1>What service do you need today?</h1>
+      <div class="card-adopt-sitt">
+        <form>
+          <button class="btn btn-large btn-dark btn-flex btn-gl" name="filter" type="submit" value="adoption">
+            Adoption service
+          </button>
+        </form>
+        <form>
+          <button class="btn btn-large btn-soft btn-flex btn-gl" name="filter" type="submit" value="sitting">
+            Host service
+          </button>
+        </form>
+      </div>
+  </section>
   {{/if}}
   {{#if errorMessage}}
   <p>{{errorMessage}}</p>
