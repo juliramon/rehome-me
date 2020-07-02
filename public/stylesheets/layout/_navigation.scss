@@ -7,7 +7,7 @@ header {
 nav {
   background-color: $soft-green;
   padding: 0 5% 0 5%;
-  border-bottom: 1px solid $white;
+  border-bottom: 3px solid $white;
 }
 
 nav .wrapper {
@@ -115,6 +115,7 @@ main {
   transform: translateX(0%);
   background-color: white;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .main-transition {

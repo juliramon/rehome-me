@@ -5,11 +5,10 @@
     </div>
     <div class="animals wrapper">
       {{#each sitters}}
-        {{> userCard this}}
-        {{else}}
-        <p>There are no sitters yet</p>
+      {{> userCard this}}
+      {{else}}
+      <p>There are no sitters yet</p>
       {{/each}}
     </div>
-    {{> addButton}}
   </div>
 </section>

@@ -4,10 +4,12 @@
       <div class="titles">
         <h1>Rehoming a pet should be easy and stress free.<br>Start using Rehome me!</h1>
       </div>
+      {{#unless userInSession}}
       <div class="buttons">
         <a href="/signup" title="Sign up" class="btn btn-dark btn-large">Sign up</a>
         <a href="/login" title="Login" class="btn btn-soft btn-large">Log in</a>
       </div>
+      {{/unless}}
     </div>
   </div>
 </section>

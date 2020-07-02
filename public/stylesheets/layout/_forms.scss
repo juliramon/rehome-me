@@ -1,14 +1,18 @@
 /*EDIT-ADD FORMS*/
 .form {
+  margin-bottom: 30px;
+
   label {
     display: block;
     margin-bottom: 8px;
     color: $soft-green;
     text-transform: capitalize;
   }
+
   .input-group {
     margin-bottom: 15px;
   }
+
   input,
   select,
   textarea {
@@ -67,16 +71,20 @@
   label {
     margin: 0;
   }
+
   .wrapper {
     flex-flow: column nowrap;
     align-items: flex-start;
   }
+
   .wrapper .image img {
     right: -15px;
   }
+
   .wrapper input {
     padding: 5px 0 0 5px;
   }
+
   .input-group {
     display: flex;
     align-items: center;
@@ -84,31 +92,40 @@
     margin-bottom: 0;
     padding: 7px 0;
   }
+
   .input-group.description {
     align-items: flex-start;
   }
+
   .input-group.description label {
     padding-top: 10px;
   }
+
   .input-group.sitter {
     justify-content: initial;
   }
+
   .input-group.sitter label {
     margin-left: 12px;
   }
-  input, select, textarea {
+
+  input,
+  select,
+  textarea {
     border: none;
     width: 270px;
   }
+
   .image img {
     margin: 0;
   }
+
   .btn {
     margin-top: 30px;
   }
+
   .delete {
     color: $dark-green;
-    position: absolute;
     bottom: 20px;
     margin: 0 auto;
     width: 100%;
@@ -129,22 +146,27 @@
     align-items: center;
     flex-flow: row nowrap;
   }
+
   .input-group .col:nth-child(2) {
     width: 100%;
   }
+
   span {
     color: $soft-green;
     display: inline-block;
     margin-right: 15px;
   }
+
   label {
     margin: 0;
     font-size: 0.75em;
   }
+
   input {
     border: none;
     padding: 0;
   }
+
   .form-link {
     display: flex;
     flex-flow: row nowrap;
@@ -152,10 +174,12 @@
     justify-content: space-between;
     margin: 30px 0 0;
   }
+
   .form-link a {
     color: $soft-green;
     font-size: 0.85em;
   }
+
   .form-link a:first-child:after {
     content: '';
     display: inline-block;
@@ -165,10 +189,12 @@
     top: -4px;
     margin: 0 9px;
   }
+
   .form-link.signup a {
     width: 100%;
     text-align: center;
   }
+
   .form-link.signup a:first-child::after {
     display: none !important;
   }

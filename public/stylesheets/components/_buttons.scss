@@ -24,7 +24,8 @@
 }
 
 .btn-soft:hover {
-  background-color: $soft-green-hover;;
+  background-color: $soft-green-hover;
+  ;
 }
 
 .btn-large {
@@ -66,10 +67,12 @@
 }
 
 .floating-button {
-  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
   bottom: 0px;
-  right: 20px;
-  overflow: hidden;
+
 
   .add-btn {
     height: 70px;
@@ -107,4 +110,8 @@
   background-color: $soft-green;
   border: 1px solid $white;
   transition: all 0.4s ease 0s;
+}
+
+.save-btn {
+  width: 50%
 }
