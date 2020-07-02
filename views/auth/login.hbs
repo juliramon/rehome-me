@@ -1,0 +1,44 @@
+<section class="mw-1600 auth bg-auth">
+  <div class="card-auth">
+    <h1>Good to see you again!</h1>
+    <div class="buttons">
+      <a href="/auth/google" class="btn btn-large btn-dark btn-flex btn-gl btn-img"> <img src="/images/google.svg"
+          alt="Logo Google"> Log in with Google</a>
+      <a href="/auth/facebook" class="btn btn-large btn-soft btn-flex btn-gl btn-img"><img src="/images/facebook.svg"
+          alt="Logo Facebook">Log in with Facebook</a>
+    </div>
+    <div class="sep">
+      <span>or</span>
+    </div>
+    <div class="form">
+      <form action="/login" method="POST">
+        <div class="input-group">
+          <div class="col">
+            <span class="lnr lnr-envelope"></span>
+          </div>
+          <div class="col">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Type your email address">
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="col">
+            <span class="lnr lnr-lock"></span>
+          </div>
+          <div class="col">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="**********">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-soft btn-large btn-w100">Log in</button>
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+      <div class="form-link">
+        <a href="/signup" title="Forgot password?">Create an account</a>
+        <a href="#" title="Forgot password?">Forgot password?</a>
+      </div>
+    </div>
+  </div>
+</section>

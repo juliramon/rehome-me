@@ -1,0 +1,52 @@
+<section class="mw-1600 auth bg-auth">
+  <div class="card-auth">
+    <h1>Welcome to Rehome me!</h1>
+    <div class="buttons">
+      <a href="/auth/google" class="btn btn-large btn-dark btn-flex btn-gl btn-img"> <img src="/images/google.svg"
+          alt="Logo Google"> Sign up with Google</a>
+      <a href="/auth/facebook" class="btn btn-large btn-soft btn-flex btn-gl btn-img"><img src="/images/facebook.svg"
+          alt="Logo Facebook"> Sign up with Facebook</a>
+    </div>
+    <div class="sep">
+      <span>or</span>
+    </div>
+    <div class="form">
+      <form action="/signup" method="POST">
+        <div class="input-group">
+          <div class="col">
+            <span class="lnr lnr-user"></span>
+          </div>
+          <div class="col">
+            <label for="username">Name</label>
+            <input type="text" name="fullname" id="fullname" placeholder="Type your name and lastname">
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="col">
+            <span class="lnr lnr-envelope"></span>
+          </div>
+          <div class="col">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Type your email address">
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="col">
+            <span class="lnr lnr-lock"></span>
+          </div>
+          <div class="col">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="**********">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-soft btn-large btn-w100">Create account</button>
+        {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+        {{/if}}
+      </form>
+      <div class="form-link signup">
+        <a href="/login" title="Forgot password?">Already have an account? Log in</a>
+      </div>
+    </div>
+  </div>
+</section>

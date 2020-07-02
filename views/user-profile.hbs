@@ -1,0 +1,92 @@
+<section class="user-profile">
+  <div class="cover bg-auth"></div>
+  <div class="content mw-1600">
+    <div class="header">
+      <h1>My Profile</h1>
+      <p>See and edit your profile data and animals added</p>
+    </div>
+    {{#if userInSession}}
+    <div class="user wrapper">
+      <div class="col flex">
+        <div class="avatar">
+          <img src="{{user.avatar}}" alt="{{user.fullname}}">
+        </div>
+        <div class="buttons">
+          <a href="/user/{{user._id}}/edit" title="Edit profile" class="btn btn-soft btn-small">Edit profile</a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="user-data">
+          <ul>
+            <li class="name">
+              <h1>{{user.fullname}}</h1>
+            </li>
+            <li class="username">@{{user.username}}</li>
+            <li class="description">{{user.description}}</li>
+            <li class="isSitter">{{#if user.sitter}}<span class="lnr lnr-checkmark-circle"></span> Can host pets {{/if}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="tabs">
+      <ul>
+        <li>
+          <form><button class="fake-link" name="filter" value="animals" type="submit" title="Animals">Animals</button>
+          </form>
+        </li>
+        <li>
+          <form><button class="fake-link" name="filter" value="open-processes" type="submit"
+              title="Open processes">Open&nbsp;processes</button></form>
+        </li>
+        <li>
+          <form><button class="fake-link" name="filter" value="pend-processes" type="submit"
+              title="Pending processes">Pending&nbsp;processes</button></form>
+        </li>
+        <li>
+          <form><button class="fake-link" name="filter" value="close-processes" type="submit"
+              title="Closed processes">Closed&nbsp;processes</button></form>
+        </li>
+      </ul>
+    </div>
+    <div class="sep full"></div>
+    {{#ifvalue filter value=undefined}}
+    <div class="animals wrapper">
+      {{#each userAnimals}}
+      {{> animalCardCRUD}}
+      {{/each}}
+    </div>
+    {{/ifvalue}}
+    {{#ifvalue filter value='animals'}}
+    <div class="animals wrapper">
+      {{#each userAnimals}}
+      {{> animalCardCRUD}}
+      {{/each}}
+    </div>
+    {{/ifvalue}}
+    {{#ifvalue filter value="open-processes"}}
+    <div class="animals wrapper">
+      {{#each openProcesses}}
+      {{> animalProcesses}}
+      {{/each}}
+    </div>
+    {{/ifvalue}}
+    {{#ifvalue filter value="pend-processes"}}
+    <div class="animals wrapper">
+      {{#each pendingProcesses}}
+      {{> processPending}}
+      {{/each}}
+    </div>
+    {{/ifvalue}}
+    {{#ifvalue filter value="close-processes"}}
+    <div class="animals wrapper">
+      {{#each processesFinished}}
+      {{> finishedProcesses}}
+      {{/each}}
+    </div>
+    {{/ifvalue}}
+    {{else}}
+    <p>Still not logged in. Please <a href="/login">login</a>.</p>
+    {{/if}}
+  </div>
+</section>

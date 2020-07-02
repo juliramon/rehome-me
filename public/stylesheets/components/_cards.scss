@@ -1,0 +1,147 @@
+.card {
+  background-color: $white;
+  box-shadow: 4px 7px 25px rgba(52, 78, 75, 0.8);
+  border-radius: 8px;
+  padding: 30px 25px;
+}
+
+.card-auth {
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0px -2px 62px rgba(33, 49, 47, 0.9);
+  padding: 40px 20px 30px 20px;
+  background-color: $white;
+
+  h1 {
+    font-size: 2.4em;
+    font-weight: $bold;
+    color: $dark-green;
+    max-width: 70%;
+    line-height: 1.2em;
+  }
+
+  .sep {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .sep span {
+    color: $soft-green;
+  }
+
+  .sep span:before {
+    content: '';
+    display: inline-block;
+    width: 60px;
+    border-bottom: 1px solid $soft-green;
+    position: relative;
+    top: -4px;
+    margin-right: 9px;
+  }
+
+  .sep span:after {
+    content: '';
+    display: inline-block;
+    width: 60px;
+    border-bottom: 1px solid $soft-green;
+    position: relative;
+    top: -4px;
+    margin-left: 9px;
+  }
+
+  .buttons {
+    margin-top: 30px;
+  }
+}
+
+.card.flex {
+  background-color: $soft-green;
+  margin: 18px 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  box-shadow: none;
+  padding: 18px 20px;
+
+  img {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    overflow: hidden;
+    border: 2px solid $grey-green;
+    display: flex;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: $white;
+    margin-left: 18px;
+  }
+}
+
+.card-links {
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+
+  a {
+    margin-right: 15px;
+    color: $white;
+  }
+}
+
+.card-adopt-sitt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10%;
+
+  form {
+    width: 100%;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+.crud {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0;
+}
+
+.link-delete {
+  margin-left: 10px;
+  width: 40%;
+  margin-top: 30px;
+}
+
+
+@media only screen and (min-width:1024px) {
+  .card-adopt-sitt {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5%;
+
+    form {
+      width: 45%;
+      margin: 0 25px;
+
+      .btn {
+        width: 100%;
+        font-size: 1.4em;
+      }
+    }
+  }
+
+  .card-auth h1 {
+    text-align: center;
+    max-width: 100%;
+  }
+}

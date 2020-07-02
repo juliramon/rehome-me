@@ -1,0 +1,123 @@
+header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+nav {
+  background-color: $soft-green;
+  padding: 0 5% 0 5%;
+  border-bottom: 3px solid $white;
+}
+
+nav .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 6vh;
+}
+
+.img-logo>img {
+  padding-right: 25%;
+  width: 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1.3em;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  color: $white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links li form button {
+  background-color: transparent;
+  border: none;
+  color: $white;
+  font-weight: bold;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.burger {
+  display: none;
+}
+
+.burger .lnr {
+  color: $white;
+  font-size: 1.8em;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .nav-links {
+    position: absolute;
+    right: 0px;
+    height: 90vh;
+    top: 6.1vh;
+    background-color: $soft-green;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    transform: translatex(0%);
+    transition: transform 0.5s ease-in;
+  }
+
+  .nav-links li {
+    opacity: 0;
+  }
+
+  .burger {
+    display: inherit;
+    cursor: pointer;
+  }
+}
+
+.nav-active {
+  transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px)
+  }
+}
+
+main {
+  transition: transform 0.5s ease-in;
+  transform: translateX(0%);
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.main-transition {
+  transform: translateX(-60%);
+}

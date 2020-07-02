@@ -1,0 +1,38 @@
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.btn-filter {
+  margin: 15px 4px 4px;
+  border: 1px solid $soft-green;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: white;
+  display: flex;
+}
+
+.btn-filter>img {
+  width: 30px;
+}
+
+@media screen and (min-width: 800px) {
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .btn-filter>img {
+    width: 50px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .filter-bar {
+    display: flex;
+    justify-content: left;
+    flex-wrap: nowrap;
+  }
+}

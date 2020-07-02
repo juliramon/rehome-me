@@ -1,0 +1,77 @@
+<section class="edit-animal">
+  <div class="content mw-1600">
+    <div class="form">
+      <form method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+          <label for="name">Pet's Name</label>
+          <input type="text" name="name" id="name" placeholder="Type your pet's name" value="{{animal.name}}">
+        </div>
+
+        <div class="input-group">
+          <label for="category">Pet's species</label>
+          <select name="category" id="category">
+            <option value="{{animal.category}}" selected>{{animal.category}}</option>
+            {{#each objSpecies}}
+              <option value="{{name}}">{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="size">Pet's size</label>
+          <select name="size" id="size">
+            <option value="{{animal.size}}" selected>{{animal.size}}</option>
+            {{#each objSizes}}
+              <option value="{{name}}">{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="image">Pet's Photo</label>
+          <div class="wrapper">
+            <div class="col">
+              <div class="image">
+                <img src="{{animal.image}}" alt="{{animal.name}}">
+              </div>
+            </div>
+            <div class="col">
+              <input type="file" name="image" id="image" value="{{animal.image}}">
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="chekin">Check-In</label>
+          <input type="date" name="checkin" id="checkin" value="{{checkInDate}}">
+        </div>
+
+        <div class="input-group">
+          <label for="checkout">Check-Out</label>
+          <input type="date" name="checkout" id="checkout" value="{{checkOutDate}}">
+        </div>
+
+        <div class="input-group">
+          <label for="description">Pet's description</label>
+          <textarea id="description" name="description" rows="4" cols="50">{{animal.description}}
+          </textarea>
+        </div>
+
+        <div class="input-group">
+          <label for="careRoutine">Care Routine</label>
+          <textarea id="careRoutine" name="careRoutine" rows="4" cols="50">{{animal.careRoutine}}
+          </textarea>
+        </div>
+
+        <div class="input-group">
+          <input type="checkbox" id="specialNeeds" name="specialNeeds" {{#if animal.specialNeeds}} checked="true" {{/if}}class="inline">
+          <label for="specialNeeds" class="inline">Special Needs</label>
+        </div>
+        <input type="submit" value="Submit edit">
+        {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+        {{/if}}
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<div class="card flex">
+  <div class="col">
+    <div class="avatar">
+      <a href="/animal/{{_id}}">
+        <img src="{{image}}" alt="">
+      </a>
+    </div>
+  </div>
+  <div class="col">
+    <a href="/animal/{{_id}}">
+      <ul>
+        <li class="name">
+          <h3>{{name}}</h3>
+        </li>
+        <li class="size">Size: {{size}}</li>
+        <li class="type">Rehoming type: {{type}}</li>
+      </ul>
+    </a>
+    <div class="card-links">
+      <a href="/animal/{{_id}}/edit" title="Edit" class="btn">Edit</a>
+      <a href="/animal/{{_id}}/delete" title="Remove" class="btn">Remove</a>
+    </div>
+  </div>
+</div>

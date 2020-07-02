@@ -1,0 +1,58 @@
+<section class="edit-user">
+  <div class="content mw-1600">
+    <div class="header">
+      <h1>Edit my profile</h1>
+    </div>
+    <div class="form">
+      <form method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+          <label for="avatar">Avatar</label>
+          <div class="wrapper">
+            <div class="col">
+              <div class="image">
+                <img src="{{user.avatar}}" alt="{{user.name}}">
+              </div>
+            </div>
+            <div class="col">
+              <input type="file" name="avatar" id="avatar">
+            </div>
+          </div>
+        </div>
+        <div class="sep full"></div>
+        <div class="input-group">
+          <label for="username">Name</label>
+          <input type="text" name="fullname" id="fullname" placeholder="Edit your name and last name"
+            value="{{user.fullname}}">
+        </div>
+        <div class="sep full"></div>
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" placeholder="Edit your username" value="{{user.username}}">
+        </div>
+        <div class="sep full"></div>
+        <div class="input-group description">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="4" cols="50"
+            placeholder="Enter a description...">{{user.description}}</textarea>
+        </div>
+        <div class="sep full"></div>
+        <div class="input-group sitter">
+          <input type="checkbox" id="sitter" name="sitter" {{#if user.sitter}} checked="true" {{/if}}class="inline">
+          <label for="sitter" class="inline">I can host animals</label>
+        </div>
+
+        <div class="sep full"></div>
+        <div class=" crud">
+          <div class="save-btn">
+            <input type="submit" class="btn btn-large btn-soft" value="Save changes">
+            {{#if errorMessage}}
+            <p>{{errorMessage}}</p>
+            {{/if}}
+          </div>
+          <div class="link-delete">
+            <a href="/user/{{user._id}}/delete" title="Delete profile" class="delete">Delete profile</a>
+          </div>
+        </div>
+      </form>
+    </div>
+</section>

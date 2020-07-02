@@ -1,0 +1,123 @@
+/*USER PROFILE*/
+.user-profile {
+  .header {
+    display: none;
+  }
+
+  .cover {
+    height: 100px;
+    margin: 0 -20px
+  }
+
+  .user {
+    .wrapper {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+    }
+
+    .col.flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .avatar img {
+      margin-top: -40px;
+      border: 5px solid $white;
+      border-radius: 100px;
+      width: 95px;
+      height: 95px;
+    }
+
+    .user-data ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 10px;
+    }
+
+    ul li.username {
+      color: $grey;
+      font-weight: $light;
+      letter-spacing: 0.3px;
+      margin-bottom: 10px;
+    }
+
+    ul li.description {
+      font-size: 0.9em;
+      line-height: 1.5em;
+    }
+
+    ul li.isSitter {
+      font-size: 0.9em;
+      font-weight: $regular;
+      margin-top: 10px;
+      ;
+    }
+  }
+
+  .tabs {
+    width: 100%;
+    overflow-x: scroll;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 -10px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    ul li {
+      padding: 4px 10px 0 10px;
+    }
+
+    ul li a {
+      font-family: $header-typo;
+      color: $soft-green;
+    }
+
+    ul li a.active {
+      color: $dark-green;
+    }
+
+    ul li a.active:after {
+      content: '';
+      display: block;
+      height: 4px;
+      width: auto;
+      background: $dark-green;
+      position: relative;
+      top: 4px;
+    }
+  }
+}
+
+.fake-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: $soft-green;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.fake-link.active {
+  background: none;
+  border: none;
+  border-bottom: 2px solid $dark-green;
+  padding: 0;
+  color: $dark-green;
+  font-weight: $bold;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1024px) {
+  .user-profile .tabs {
+    overflow-x: hidden;
+  }
+}

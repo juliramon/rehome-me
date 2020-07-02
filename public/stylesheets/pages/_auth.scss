@@ -1,0 +1,11 @@
+.bg-auth {
+  background-image: url('/images/bubbles.svg');
+  background-repeat: repeat;
+  background-color: $soft-green;
+  height: calc(100vh - 50.38px);
+}
+
+.add-animal .bg-auth {
+  margin: 0 -20px;
+  padding: 0 20px;
+}

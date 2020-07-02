@@ -1,0 +1,43 @@
+<section class="animal-details">
+  <div class="content mw-1600">
+  <h1>Hi there! I'm {{findAnimal.name}}</h1>
+  <section class="animal-data">
+    <div class="animal-photo">
+      <img src="/images/signs.svg" alt="Exclamation symbols" class="symbols left">
+      <img src="{{findAnimal.image}}" alt="{{findAnimal.name}}'s photo'">
+      <img src="/images/signs.svg" alt="Exclamation symbols" class="symbols right">
+    </div>
+    <div class="details-list">
+      <ul>
+        <li><b>Name: </b>{{findAnimal.name}}</li><br>
+        <li><b>Category: </b>{{findAnimal.category}}</li><br>
+        <li><b>Size: </b>{{findAnimal.size}}</li><br>
+        <li><b>CheckIn / CheckOut: </b>{{checkInDate}} /
+          <br>
+          {{checkOutDate}}</li><br>
+        {{#if findAnimal.specialNeeds}}
+        <li><b>Animal with special needs</b></li>
+        {{/if}}
+      </ul>
+    </div>
+  </section>
+  <section class="animal-text">
+    <div class="animal-description">
+      <h3>Animal Description</h3><br>
+      <p>{{findAnimal.description}}</p>
+    </div>
+    <div class="animal-routine">
+      <h3>Care Routine</h3><br>
+      <p>{{findAnimal.careRoutine}}</p>
+    </div>
+  </section>
+  {{#ifvalue findAnimal.type value='adoption'}}
+  <section class="animal-adoption">
+    <h3>{{findAnimal.name}} is up for rehoming. Do you want to be it's new family?</h3>
+    <form action="/animal/{{findAnimal._id}}/adopt" method="POST">
+      <input type="submit" value="Adopt" class="btn btn-dark btn-large">
+    </form>
+  </section>
+  {{/ifvalue}}
+  </div>
+</section>

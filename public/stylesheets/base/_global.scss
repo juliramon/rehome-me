@@ -1,0 +1,85 @@
+$dark-green: #4D716D;
+$dark-green-hover: #3d5855;
+$soft-green: #86B8B1;
+$soft-green-hover: #c2d4d2;
+$grey-green: #cce0dd;
+$grey: #888888;
+$white: #FFFFFF;
+$header-typo: 'Roboto Slab',
+serif;
+$main-typo: 'M PLUS Rounded 1c',
+sans-serif;
+$bold: 900;
+$regular: 700;
+$light: 400;
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: $main-typo;
+}
+
+.main {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $header-typo;
+}
+
+
+a,
+a:hover,
+a:focus,
+a:visited {
+  text-decoration: none !important
+}
+
+body {
+  margin-bottom: 8%;
+}
+
+.bg-dark {
+  background-color: $dark-green;
+}
+
+.mw-1600 {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.sep.full {
+  border-bottom: 1px solid $soft-green;
+  margin: 0 -20px;
+}
+
+section {
+  padding: 0 20px;
+}
+
+.p-tb-50 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.animal-list,
+.sitters-list,
+.user-profile {
+  height: 87vh;
+}

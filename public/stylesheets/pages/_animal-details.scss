@@ -1,0 +1,111 @@
+/* ANIMAL DETAILS PAGE */
+.animal-details {
+  margin-top: 2%;
+  h1 {
+    color: $dark-green;
+  }
+}
+
+.animal-text {
+  padding: 3%;
+  color: $white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.animal-text {
+  h3 {
+    text-decoration: underline;
+  }
+}
+
+.animal-routine {
+  margin-top: 8%;
+}
+
+.animal-data {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 20px 0 0 0;
+  padding: 0;
+}
+
+.animal-photo {
+  margin: 0 auto;
+}
+
+.details-list {
+  width: 100%;
+  padding: 3%;
+  color: $dark-green;
+  border: 2px solid $soft-green;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.details-list>ul {
+  list-style: none;
+}
+
+.animal-photo>img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}
+
+.animal-text {
+  margin: 20px 0;
+  background-color: $soft-green;
+}
+
+.animal-adoption {
+  padding: 0 0 70px 0;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.animal-adoption .hire {
+  padding: 2%;
+  margin: 2% 3% 20% 3%;
+  padding: 5%;
+  color: $dark-green;
+  border: 2px solid $soft-green;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.animal-adoption>form {
+  margin-top: 3%;
+}
+
+.animal-adoption .input-group {
+  margin: 15px;
+}
+
+@media screen and (min-width: 1024px) {
+  .animal-data {
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+  .animal-photo {
+    margin-right: 30px;
+  }
+  .comment-section h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  .animal-routine {
+    margin-top: 2%;
+  }
+  .animal-adoption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .animal-adoption form {
+    margin: 0 0 0 15px;
+  }
+  .animal-adoption .hire {
+    width: 50%;
+  }
+}

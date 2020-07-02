@@ -1,2 +1,61 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section class="rehome-me">
+  <div class="content mw-1600">
+    <div class="hero">
+      <div class="titles">
+        <h1>Rehoming a pet should be easy and stress free.<br>Start using Rehome me!</h1>
+      </div>
+      {{#unless userInSession}}
+      <div class="buttons">
+        <a href="/signup" title="Sign up" class="btn btn-dark btn-large">Sign up</a>
+        <a href="/login" title="Login" class="btn btn-soft btn-large">Log in</a>
+      </div>
+      {{/unless}}
+    </div>
+  </div>
+</section>
+<section class="process p-tb-50">
+  <div class="content">
+    <div class="header">
+      <h2>How does it work?</h2>
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="lnr lnr-paw"></span>
+        </div>
+        <div class="feature-explanation">
+          <h3>Add a Pet Profile</h3>
+          <h5>Get your pets posted on Rehome Me to be seen by the adopters</h5>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="lnr lnr-home"></span>
+        </div>
+        <div class="feature-explanation">
+          <h3>Get a New Home</h3>
+          <h5>Wait for an adopter to contact you or choose one of the available homes</h5>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="lnr lnr-smile"></span>
+        </div>
+        <div class="feature-explanation">
+          <h3>Finalize the Adoption</h3>
+          <h5>Get your pets posted on Rehome Me to be seen by the adopters</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="featured-animals p-tb-50">
+  <div class="content">
+    <div class="header">
+      <h2>Featured pets</h2>
+    </div>
+    {{#each animals}}
+    {{> animalCardPublic}}
+    {{/each}}
+  </div>
+</section>

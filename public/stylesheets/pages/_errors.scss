@@ -1,0 +1,48 @@
+.err {
+  display: flex;
+  align-items: center;
+  .card {
+    position: relative;
+    top: -100px;
+    width: 100%;
+    margin: 0 30px;
+  }
+  .image {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 100px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .error-media {
+    width: 150px;
+    height: 150px;
+  }
+  .symbols {
+    position: absolute;
+    width: 30px;
+  }
+  .symbols.left {
+    left: 80px;
+    transform: rotate(-37deg);
+  }
+  .symbols.right {
+    right: 73px;
+    transform: rotate(138deg);
+    top: 140px;
+  }
+  h1 {
+    margin-top: 30px;
+  }
+  .text {
+    text-align: center;
+  }
+  .text p {
+    font-weight: $regular;
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 18px;
+  }
+} 

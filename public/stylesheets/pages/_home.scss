@@ -1,0 +1,177 @@
+.rehome-me {
+  background-position: center center;
+  background-image: url('/images/bubbles.svg');
+  background-repeat: repeat;
+  background-color: $soft-green;
+
+  .hero {
+    padding: 50px 20px;
+    margin: 0 -20px;
+  }
+
+  .titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: $white;
+    text-align: left;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.8em;
+    line-height: 1.3em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
+
+  .buttons .btn {
+    width: 100%;
+  }
+
+  .buttons .btn:last-child {
+    margin-top: 8px;
+  }
+}
+
+.process,
+.featured-animals {
+  text-align: center;
+  border-bottom: 1px dotted $soft-green;
+}
+
+.process,
+.featured-animals {
+
+  h2,
+  h3,
+  h4,
+  h5,
+  .lnr {
+    color: $dark-green;
+  }
+}
+
+.features {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.feature-card {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.feature-card .lnr {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+@media only screen and (min-width: 700px) {
+  .hero {
+    .titles {
+      font-size: 1.2em;
+      margin-left: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 50px;
+      justify-content: center;
+    }
+
+    .buttons .btn-large {
+      font-size: 1.1em;
+      width: 35%;
+      margin: 0 20px;
+    }
+
+    .buttons .btn:last-child {
+      margin-top: 0;
+    }
+  }
+
+  .content {
+    .header h2 {
+      font-size: 2.4em;
+    }
+
+    .feature-card .lnr {
+      font-size: 4em;
+    }
+
+    .feature-icon {
+      margin-bottom: 10px;
+    }
+
+    .feature-explanation {
+      font-size: 1.2em;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .hero {
+    .titles {
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 50px;
+      justify-content: center;
+    }
+
+    .buttons .btn-large {
+      font-size: 1.1em;
+      width: 35%;
+      margin: 0 20px;
+    }
+
+    .buttons .btn:last-child {
+      margin-top: 0;
+    }
+  }
+
+  .content {
+    .header h2 {
+      font-size: 2.4em;
+    }
+
+    .features {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-evenly;
+    }
+
+    .feature-card {
+      padding: 50px;
+    }
+
+    .feature-card .lnr {
+      font-size: 4em;
+    }
+
+    .feature-icon {
+      margin-bottom: 10px;
+    }
+
+    .feature-explanation {
+      font-size: 1.2em;
+    }
+  }
+
+  .featured-animals .content .card {
+    margin: 20px 150px;
+  }
+}
