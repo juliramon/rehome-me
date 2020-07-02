@@ -12,8 +12,13 @@ h5,
 h6 {
   font-family: "Roboto Slab", serif; }
 
+
 a, a:hover, a:focus, a:visited {
   text-decoration: none !important; }
+
+body {
+  margin-bottom: 8%; 
+}
 
 .bg-dark {
   background-color: #4D716D; }
