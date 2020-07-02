@@ -1,12 +1,12 @@
 $dark-green: #4D716D;
+$dark-green-hover: #3d5855;
 $soft-green: #86B8B1;
+$soft-green-hover: #c2d4d2;
 $grey-green: #cce0dd;
 $grey: #888888;
 $white: #FFFFFF;
-$header-typo: 'Roboto Slab',
-serif;
-$main-typo: 'M PLUS Rounded 1c',
-sans-serif;
+$header-typo: 'Roboto Slab', serif;
+$main-typo: 'M PLUS Rounded 1c', sans-serif;
 $bold: 900;
 $regular: 700;
 $light: 400;
@@ -27,10 +27,9 @@ h6 {
   font-family: $header-typo;
 }
 
-body {
-  margin-bottom: 8%;
+a, a:hover, a:focus, a:visited {
+  text-decoration: none !important
 }
-
 
 .bg-dark {
   background-color: $dark-green;
@@ -39,10 +38,6 @@ body {
 .mw-1600 {
   max-width: 1600px;
   margin: 0 auto;
-}
-
-a {
-  text-decoration: none;
 }
 
 input:focus,

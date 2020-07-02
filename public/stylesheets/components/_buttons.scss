@@ -14,9 +14,17 @@
   color: $white;
 }
 
+.btn-dark:hover {
+  background-color: $dark-green-hover;
+}
+
 .btn-soft {
   background-color: $grey-green;
   color: $dark-green;
+}
+
+.btn-soft:hover {
+  background-color: $soft-green-hover;;
 }
 
 .btn-large {
@@ -26,8 +34,7 @@
 
 .btn-small {
   padding: 1vh 2vh;
-  font-size: 0.7em;
-  height: 35px;
+  font-size: 0.8em;
   letter-spacing: 0;
 }
 

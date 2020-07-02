@@ -12,8 +12,8 @@ h5,
 h6 {
   font-family: "Roboto Slab", serif; }
 
-body {
-  margin-bottom: 8%; }
+a, a:hover, a:focus, a:visited {
+  text-decoration: none !important; }
 
 .bg-dark {
   background-color: #4D716D; }
@@ -21,9 +21,6 @@ body {
 .mw-1600 {
   max-width: 1600px;
   margin: 0 auto; }
-
-a {
-  text-decoration: none; }
 
 input:focus,
 textarea:focus,
@@ -159,9 +156,15 @@ section {
   background-color: #4D716D;
   color: #FFFFFF; }
 
+.btn-dark:hover {
+  background-color: #3d5855; }
+
 .btn-soft {
   background-color: #cce0dd;
   color: #4D716D; }
+
+.btn-soft:hover {
+  background-color: #c2d4d2; }
 
 .btn-large {
   padding: 1.5vh 4vh;
@@ -169,8 +172,7 @@ section {
 
 .btn-small {
   padding: 1vh 2vh;
-  font-size: 0.7em;
-  height: 35px;
+  font-size: 0.8em;
   letter-spacing: 0; }
 
 .btn-flex {
@@ -324,7 +326,10 @@ section {
       margin: 0 25px; }
       .card-adopt-sitt form .btn {
         width: 100%;
-        font-size: 1.4em; } }
+        font-size: 1.4em; }
+  .card-auth h1 {
+    text-align: center;
+    max-width: 100%; } }
 
 .header {
   padding: 20px 0 0;
@@ -684,14 +689,12 @@ footer > img {
   display: none !important; }
 
 .rehome-me {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center; }
+  background-position: center center;
+  background-image: url("/images/bubbles.svg");
+  background-repeat: repeat;
+  background-color: #86B8B1; }
   .rehome-me .hero {
     padding: 50px 20px;
-    background-image: url(/images/bubbles.svg);
-    background-repeat: repeat;
-    background-color: #86B8B1;
     margin: 0 -20px; }
   .rehome-me .titles {
     display: flex;
@@ -771,7 +774,7 @@ footer > img {
 @media only screen and (min-width: 1024px) {
   .hero .titles {
     font-size: 1.5em;
-    margin-left: 50px; }
+    text-align: center; }
   .hero .buttons {
     display: flex;
     margin-top: 50px;
@@ -857,7 +860,7 @@ footer > img {
     justify-content: space-between;
     align-items: center; }
   .user-profile .tabs ul li {
-    padding: 4px 10px; }
+    padding: 4px 10px 0 10px; }
   .user-profile .tabs ul li a {
     font-family: "Roboto Slab", serif;
     color: #86B8B1; }
@@ -878,7 +881,8 @@ footer > img {
   padding: 0;
   color: #86B8B1;
   font-weight: 600;
-  cursor: pointer; }
+  cursor: pointer;
+  font-size: 0.8em; }
 
 .fake-link.active {
   background: none;
@@ -886,7 +890,7 @@ footer > img {
   border-bottom: 2px solid #4D716D;
   padding: 0;
   color: #4D716D;
-  font-weight: 600;
+  font-weight: 900;
   cursor: pointer; }
 
 @media only screen and (min-width: 1024px) {
@@ -894,12 +898,10 @@ footer > img {
     overflow-x: hidden; } }
 
 /* ANIMAL DETAILS PAGE */
-#details-main {
-  margin-top: 5%; }
-
-#details-main > h2 {
-  margin-left: 5%;
-  color: #4D716D; }
+.animal-details {
+  margin-top: 2%; }
+  .animal-details h1 {
+    color: #4D716D; }
 
 .animal-text {
   padding: 3%;
@@ -914,32 +916,38 @@ footer > img {
   margin-top: 8%; }
 
 .animal-data {
-  display: flex; }
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 20px 0 0 0;
+  padding: 0; }
 
 .animal-photo {
-  width: 250px;
-  height: 250px;
-  padding: 2%;
-  margin-right: 10px; }
+  margin: 0 auto; }
 
 .details-list {
-  width: 50%;
+  width: 100%;
   padding: 3%;
   color: #4D716D;
   border: 2px solid #86B8B1;
-  border-radius: 10px; }
+  border-radius: 10px;
+  margin-top: 20px; }
 
 .details-list > ul {
   list-style: none; }
 
 .animal-photo > img {
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   border-radius: 100%; }
 
 .animal-text {
-  margin: 10% 2% 0% 2%;
+  margin: 20px 0;
   background-color: #86B8B1; }
+
+.animal-adoption {
+  padding: 0 0 70px 0;
+  display: flex;
+  flex-flow: row nowrap; }
 
 .animal-adoption .hire {
   padding: 2%;
@@ -956,13 +964,23 @@ footer > img {
 .animal-adoption .input-group {
   margin: 15px; }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1024px) {
+  .animal-data {
+    flex-flow: row nowrap;
+    align-items: center; }
+  .animal-photo {
+    margin-right: 30px; }
   .comment-section h3 {
     font-size: 2em;
     margin-bottom: 20px; }
+  .animal-routine {
+    margin-top: 2%; }
   .animal-adoption {
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    align-items: center; }
+  .animal-adoption form {
+    margin: 0 0 0 15px; }
   .animal-adoption .hire {
     width: 50%; } }
 
@@ -1010,5 +1028,9 @@ footer > img {
   background-repeat: repeat;
   background-color: #86B8B1;
   height: calc(100vh - 50.38px); }
+
+.add-animal .bg-auth {
+  margin: 0 -20px;
+  padding: 0 20px; }
 
 /*# sourceMappingURL=main.css.map */

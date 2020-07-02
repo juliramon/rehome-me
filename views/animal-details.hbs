@@ -1,8 +1,11 @@
-<main id="details-main">
-  <h2>Hi there! I'm {{findAnimal.name}}</h2>
+<section class="animal-details">
+  <div class="content mw-1600">
+  <h1>Hi there! I'm {{findAnimal.name}}</h1>
   <section class="animal-data">
     <div class="animal-photo">
+      <img src="/images/signs.svg" alt="Exclamation symbols" class="symbols left">
       <img src="{{findAnimal.image}}" alt="{{findAnimal.name}}'s photo'">
+      <img src="/images/signs.svg" alt="Exclamation symbols" class="symbols right">
     </div>
     <div class="details-list">
       <ul>
@@ -32,8 +35,9 @@
   <section class="animal-adoption">
     <h3>{{findAnimal.name}} is up for rehoming. Do you want to be it's new family?</h3>
     <form action="/animal/{{findAnimal._id}}/adopt" method="POST">
-      <input type="submit" value="Adopt">
+      <input type="submit" value="Adopt" class="btn btn-dark btn-large">
     </form>
   </section>
   {{/ifvalue}}
-</main>
+  </div>
+</section>

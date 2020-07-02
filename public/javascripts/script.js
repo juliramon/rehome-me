@@ -2,7 +2,7 @@ console.log('Woof! JS Connected');
 
 window.addEventListener('load', () => {
   const section = document.querySelector('section');
-  if(section.classList.contains('user-profile')){
+  if(section.classList.contains('user-profile') && section.classList.length < 2){
     let tabs = document.querySelectorAll('.user-profile .fake-link');
     let activeTab = tabs[sessionStorage.getItem('activeTab')];
     if(!activeTab){
