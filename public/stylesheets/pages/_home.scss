@@ -42,15 +42,6 @@
   }
 }
 
-/*
-input[type=submit]:hover,
-button[type=submit]:hover {
-  color: $white;
-  background-color: $soft-green;
-  border: 1px solid $white;
-  transition: all 0.4s ease 0s;
-}*/
-
 .process,
 .featured-animals {
   text-align: center;
@@ -84,4 +75,105 @@ button[type=submit]:hover {
 .feature-card .lnr {
   font-size: 30px;
   margin-bottom: 8px;
+}
+
+@media only screen and (min-width: 700px) {
+  .hero {
+    .titles {
+      font-size: 1.2em;
+      margin-left: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 50px;
+      justify-content: center;
+    }
+
+    .buttons .btn-large {
+      font-size: 1.1em;
+      width: 35%;
+      margin: 0 20px;
+    }
+
+    .buttons .btn:last-child {
+      margin-top: 0;
+    }
+  }
+
+  .content {
+    .header h2 {
+      font-size: 2.4em;
+    }
+
+    .feature-card .lnr {
+      font-size: 4em;
+    }
+
+    .feature-icon {
+      margin-bottom: 10px;
+    }
+
+    .feature-explanation {
+      font-size: 1.2em;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .hero {
+    .titles {
+      font-size: 1.5em;
+      margin-left: 50px;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 50px;
+      justify-content: center;
+    }
+
+    .buttons .btn-large {
+      font-size: 1.1em;
+      width: 35%;
+      margin: 0 20px;
+    }
+
+    .buttons .btn:last-child {
+      margin-top: 0;
+    }
+  }
+
+  .content {
+    .header h2 {
+      font-size: 2.4em;
+    }
+
+    .features {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-evenly;
+    }
+
+    .feature-card {
+      padding: 50px;
+    }
+
+    .feature-card .lnr {
+      font-size: 4em;
+    }
+
+    .feature-icon {
+      margin-bottom: 10px;
+    }
+
+    .feature-explanation {
+      font-size: 1.2em;
+    }
+  }
+
+  .featured-animals .content .card {
+    margin: 20px 150px;
+  }
 }

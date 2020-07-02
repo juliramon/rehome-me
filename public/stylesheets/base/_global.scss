@@ -3,8 +3,10 @@ $soft-green: #86B8B1;
 $grey-green: #cce0dd;
 $grey: #888888;
 $white: #FFFFFF;
-$header-typo: 'Roboto Slab', serif;
-$main-typo: 'M PLUS Rounded 1c', sans-serif;
+$header-typo: 'Roboto Slab',
+serif;
+$main-typo: 'M PLUS Rounded 1c',
+sans-serif;
 $bold: 900;
 $regular: 700;
 $light: 400;
@@ -16,9 +18,19 @@ $light: 400;
   font-family: $main-typo;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $header-typo;
 }
+
+body {
+  margin-bottom: 8%;
+}
+
 
 .bg-dark {
   background-color: $dark-green;
@@ -55,4 +67,10 @@ section {
 .p-tb-50 {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+
+.animal-list,
+.sitters-list,
+.user-profile {
+  height: 87vh;
 }

@@ -59,7 +59,7 @@
   background-color: $soft-green;
 }
 
-.animal-adoption {
+.animal-adoption .hire {
   padding: 2%;
   margin: 2% 3% 20% 3%;
   padding: 5%;
@@ -71,4 +71,24 @@
 
 .animal-adoption>form {
   margin-top: 3%;
+}
+
+.animal-adoption .input-group {
+  margin: 15px;
+}
+
+@media screen and (min-width: 1300px) {
+  .comment-section h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .animal-adoption {
+    display: flex;
+    justify-content: center;
+  }
+
+  .animal-adoption .hire {
+    width: 50%;
+  }
 }

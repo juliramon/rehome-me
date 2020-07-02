@@ -11,11 +11,12 @@
 }
 
 .rating-container {
-  width: 400px;
+  width: 100%;
   background-color: $grey-green;
   padding: 20px 30px;
   border: 2px solid $dark-green;
   border-radius: 5px;
+  margin-bottom: 10%;
 
   form {
     display: flex;
@@ -46,9 +47,9 @@ form .textarea textarea {
 }
 
 .star-widget label {
-  font-size: 40px;
+  font-size: 30px;
   color: $dark-green;
-  padding: 10px;
+  padding: 10px 2px;
   float: right;
   transition: all 0.2s ease;
 }
@@ -78,4 +79,10 @@ form .btn-rating {
 .pending-comments h3 {
   color: $dark-green;
   margin-bottom: 2%;
+}
+
+.pending-comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
