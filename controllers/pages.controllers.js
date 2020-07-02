@@ -540,6 +540,8 @@ const rateSitter = async (req, res, next) => {
   }
 }
 
+const getPrivacyPolicy = (req, res, next) => res.render('privacy-policy', {userInSession: req.session.currentUser});
+
 module.exports = {
   getIndex,
   getUserProfile,
@@ -559,5 +561,6 @@ module.exports = {
   hireSitter,
   acceptAdoption,
   rejectAdoption,
-  rateSitter
+  rateSitter,
+  getPrivacyPolicy
 }
