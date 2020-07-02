@@ -1,5 +1,7 @@
 $dark-green: #4D716D;
+$dark-green-hover: #3d5855;
 $soft-green: #86B8B1;
+$soft-green-hover: #c2d4d2;
 $grey-green: #cce0dd;
 $grey: #888888;
 $white: #FFFFFF;
@@ -27,6 +29,11 @@ h6 {
   font-family: $header-typo;
 }
 
+
+a, a:hover, a:focus, a:visited {
+  text-decoration: none !important
+}
+
 body {
   margin-bottom: 8%;
 }
@@ -38,10 +45,6 @@ body {
 .mw-1600 {
   max-width: 1600px;
   margin: 0 auto;
-}
-
-a {
-  text-decoration: none;
 }
 
 input:focus,
@@ -66,4 +69,10 @@ section {
 .p-tb-50 {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+
+.animal-list,
+.sitters-list,
+.user-profile {
+  height: 87vh;
 }

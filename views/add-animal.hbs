@@ -1,97 +1,105 @@
-<section class="mw-1600">
+<section class="add-animal">
   {{#if filter}}
-  <div class="form">
-    <form action="/animal/add" method="POST" enctype="multipart/form-data">
-      <div class="input-group">
-        <label for="name">Pet's Name</label>
-        <input type="text" name="name" id="name" placeholder="Type your pet's name">
-      </div>
+    <div class="content mw-1600">
+      <div class="form">
+        <form action="/animal/add" method="POST" enctype="multipart/form-data">
+          <div class="input-group">
+            <label for="name">Pet's Name</label>
+            <input type="text" name="name" id="name" placeholder="Type your pet's name">
+          </div>
 
-      <div class="input-group">
-        <label for="category">Pet's species</label>
-        <select name="category" id="category">
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-          <option value="snake">Snake</option>
-          <option value="rabbit">Rabbit</option>
-          <option value="bird">Bird</option>
-        </select>
-      </div>
+          <div class="input-group">
+            <label for="category">Pet's species</label>
+            <select name="category" id="category">
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="snake">Snake</option>
+              <option value="rabbit">Rabbit</option>
+              <option value="bird">Bird</option>
+            </select>
+          </div>
 
-      <div class="input-group">
-        <label for="size">Pet's size</label>
-        <select name="size" id="size">
-          <option value="huge">Huge</option>
-          <option value="large">Large</option>
-          <option value="medium">Medium</option>
-          <option value="small">Small</option>
-          <option value="tiny">Tiny</option>
-        </select>
-      </div>
+          <div class="input-group">
+            <label for="size">Pet's size</label>
+            <select name="size" id="size">
+              <option value="huge">Huge</option>
+              <option value="large">Large</option>
+              <option value="medium">Medium</option>
+              <option value="small">Small</option>
+              <option value="tiny">Tiny</option>
+            </select>
+          </div>
 
-      <div class="input-group">
-        <label for="image">Pet's Photo</label>
-        <input type="file" name="image" id="image">
-      </div>
+          <div class="input-group">
+            <label for="image">Pet's Photo</label>
+            <input type="file" name="image" id="image">
+          </div>
 
-      <div class="input-group">
-        <label for="chekin">Check-In</label>
-        <input type="date" name="checkin" id="checkin">
-      </div>
+          <div class="input-group">
+            <label for="chekin">Check-In</label>
+            <input type="date" name="checkin" id="checkin">
+          </div>
 
-      {{#ifvalue filter value="sitting"}}
-      <div class="input-group">
-        <label for="checkout">Check-Out</label>
-        <input type="date" name="checkout" id="checkout">
-      </div>
-      {{/ifvalue}}
+          {{#ifvalue filter value="sitting"}}
+          <div class="input-group">
+            <label for="checkout">Check-Out</label>
+            <input type="date" name="checkout" id="checkout">
+          </div>
+          {{/ifvalue}}
 
-      <div class="input-group">
-        <label for="description">Pet's description</label>
-        <textarea id="description" name="description" rows="4" cols="50"
-          placeholder="Write the pet's description here ..."></textarea>
-      </div>
+          <div class="input-group">
+            <label for="description">Pet's description</label>
+            <textarea id="description" name="description" rows="4" cols="50"
+              placeholder="Write the pet's description here ..."></textarea>
+          </div>
 
-      <div class="input-group">
-        <label for="careRoutine">Care Routine</label>
-        <textarea id="careRoutine" name="careRoutine" rows="4" cols="50"
-          placeholder="Write the pet's care routine here ..."></textarea>
-      </div>
+          <div class="input-group">
+            <label for="careRoutine">Care Routine</label>
+            <textarea id="careRoutine" name="careRoutine" rows="4" cols="50"
+              placeholder="Write the pet's care routine here ..."></textarea>
+          </div>
 
-      <div class="input-group">
-        <label class="inline" for="specialNeeds"> Special Needs</label>
-        <input class="inline" type="checkbox" id="specialNeeds" name="specialNeeds" value="specialNeeds">
-      </div>
-      {{#ifvalue filter value="adoption"}}
-      <div class="input-group">
-        <label class="inline" for="type"> I completed all the fields and I want to put this animal up for adoption
-        </label>
-        <input class="inline" type="checkbox" id="adoption" name="type" value="adoption" required>
-      </div>
-      {{/ifvalue}}
-      {{#ifvalue filter value="sitting"}}
-      <div class="input-group">
-        <label class="inline" for="type"> I completed all the fields and I want to search a sitter for this animal
-        </label>
-        <input class="inline" type="checkbox" id="sitting" name="type" value="sitting" required>
-      </div>
-      {{/ifvalue}}
+          <div class="input-group">
+            <label class="inline" for="specialNeeds"> Special Needs</label>
+            <input class="inline" type="checkbox" id="specialNeeds" name="specialNeeds" value="specialNeeds">
+          </div>
+          {{#ifvalue filter value="adoption"}}
+          <div class="input-group">
+            <label class="inline" for="type"> I completed all the fields and I want to put this animal up for adoption
+            </label>
+            <input class="inline" type="checkbox" id="adoption" name="type" value="adoption" required>
+          </div>
+          {{/ifvalue}}
+          {{#ifvalue filter value="sitting"}}
+          <div class="input-group">
+            <label class="inline" for="type"> I completed all the fields and I want to search a sitter for this animal
+            </label>
+            <input class="inline" type="checkbox" id="sitting" name="type" value="sitting" required>
+          </div>
+          {{/ifvalue}}
 
-      <button type="submit">Add Pet</button>
-    </form>
-  </div>
+          <button type="submit">Add Pet</button>
+        </form>
+      </div>
+    </div>
   {{else}}
-  <div id="adoption-sitting">
-    <form>
-      <button class="btn-filter" name="filter" type="submit" value="adoption">
-        Adoption service
-      </button>
-    </form>
-    <form>
-      <button class="btn-filter" name="filter" type="submit" value="sitting">
-        Host service
-      </button>
-    </form>
+  <div class="auth bg-auth">
+    <div class="content mw-1600">
+      <div class="card-auth">
+        <h1>What service do you need today?</h1>
+        <div class="card-adopt-sitt">
+          <form>
+            <button class="btn btn-large btn-dark btn-flex btn-gl" name="filter" type="submit" value="adoption">
+              Adoption service
+            </button>
+          </form>
+          <form>
+            <button class="btn btn-large btn-soft btn-flex btn-gl" name="filter" type="submit" value="sitting">
+              Host service
+            </button>
+          </form>
+        </div>
+      </div>
   </div>
   {{/if}}
   {{#if errorMessage}}

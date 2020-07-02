@@ -72,7 +72,7 @@
     }
 
     ul li {
-      padding: 4px 10px;
+      padding: 4px 10px 0 10px;
     }
 
     ul li a {
@@ -103,6 +103,7 @@
   color: $soft-green;
   font-weight: 600;
   cursor: pointer;
+  font-size: 0.8em;
 }
 
 .fake-link.active {
@@ -111,6 +112,12 @@
   border-bottom: 2px solid $dark-green;
   padding: 0;
   color: $dark-green;
-  font-weight: 600;
+  font-weight: $bold;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 1024px) {
+  .user-profile .tabs {
+    overflow-x: hidden;
+  }
 }
