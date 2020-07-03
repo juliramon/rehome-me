@@ -199,3 +199,24 @@
     display: none !important;
   }
 }
+
+
+@media only screen and (min-width: 1024px) {
+  #edit-form {
+    width: 85%;
+    align-self: center;
+    font-size: 1.1em;
+  }
+
+  #header-edit {
+    width: 85%;
+    align-self: center;
+    font-size: 1.1em;
+  }
+
+  #edit-user-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+}

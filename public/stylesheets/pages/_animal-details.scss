@@ -1,6 +1,7 @@
 /* ANIMAL DETAILS PAGE */
 .animal-details {
   margin-top: 2%;
+
   h1 {
     color: $dark-green;
   }
@@ -61,7 +62,8 @@
 .animal-adoption {
   padding: 0 0 70px 0;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column;
+  align-items: center;
 }
 
 .animal-adoption .hire {
@@ -87,24 +89,30 @@
     flex-flow: row nowrap;
     align-items: center;
   }
+
   .animal-photo {
     margin-right: 30px;
   }
+
   .comment-section h3 {
     font-size: 2em;
     margin-bottom: 20px;
   }
+
   .animal-routine {
     margin-top: 2%;
   }
+
   .animal-adoption {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   .animal-adoption form {
     margin: 0 0 0 15px;
   }
+
   .animal-adoption .hire {
     width: 50%;
   }
