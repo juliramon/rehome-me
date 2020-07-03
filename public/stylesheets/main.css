@@ -708,6 +708,20 @@ footer > img {
 .card-auth .form .form-link.signup a:first-child::after {
   display: none !important; }
 
+@media only screen and (min-width: 1024px) {
+  #edit-form {
+    width: 85%;
+    align-self: center;
+    font-size: 1.1em; }
+  #header-edit {
+    width: 85%;
+    align-self: center;
+    font-size: 1.1em; }
+  #edit-user-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center; } }
+
 .rehome-me {
   background-position: center center;
   background-image: url("/images/bubbles.svg");
@@ -967,7 +981,8 @@ footer > img {
 .animal-adoption {
   padding: 0 0 70px 0;
   display: flex;
-  flex-flow: row nowrap; }
+  flex-flow: column;
+  align-items: center; }
 
 .animal-adoption .hire {
   padding: 2%;

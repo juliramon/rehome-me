@@ -62,7 +62,8 @@
 .animal-adoption {
   padding: 0 0 70px 0;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column;
+  align-items: center;
 }
 
 .animal-adoption .hire {
