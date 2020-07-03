@@ -10,10 +10,8 @@
           <li><b>Name: </b>{{findAnimal.name}}</li><br>
           <li><b>Category: </b>{{findAnimal.category}}</li><br>
           <li><b>Size: </b>{{findAnimal.size}}</li><br>
-          <li><b>CheckIn / CheckOut: </b>{{checkInDate}} /
-            <br>
-            {{checkOutDate}}</li><br>
-          {{#if findAnimal.specialNeeds}}
+          <li><b>CheckIn: </b>{{checkInDate}}<br>
+            {{#if findAnimal.specialNeeds}}
           <li><b>Animal with special needs</b></li>
           {{/if}}
         </ul>
